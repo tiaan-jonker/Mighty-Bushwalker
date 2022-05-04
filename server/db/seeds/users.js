@@ -8,7 +8,8 @@ exports.seed = function (knex) {
           auth0_id: 'auth0|61414f84d35ac900717bc280',
           name: 'kelmarna',
           email: 'kelmarna@email.nz',
-          description: 'the awesome developer',
+          rank: 'Bush Lord',
+          xp: '1000',
         },
       ])
     })
