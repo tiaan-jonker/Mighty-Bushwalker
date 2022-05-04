@@ -83,8 +83,6 @@ function Registration() {
           </button>
         </form>
       </section>
-
-      <p>hi</p>
     </>
   )
 }
