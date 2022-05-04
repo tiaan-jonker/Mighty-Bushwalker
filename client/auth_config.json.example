@@ -1,5 +1,5 @@
 {
-  "domain": "{DOMAIN}",
-  "clientId": "{CLIENT_ID}",
-  "audience": "{API_IDENTIFIER}"
+  "domain": "{dev-38nqy9n1.au.auth0.com}",
+  "clientId": "{a3eCBxvNHZ41p8KDJNl0VJxjWZIgsDCF}",
+  "audience": "{https://bush-explorer/api}"
 }
