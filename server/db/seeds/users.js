@@ -18,6 +18,8 @@ exports.seed = function (knex) {
           name: 'example',
           email: 'example@example.com',
           description: 'hi',
+          rank: 'Bush Lord',
+          xp: '1000',
         },
       ])
     })
