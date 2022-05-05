@@ -47,4 +47,18 @@ router.get('/saved/:userId', (req, res) => {
     })
 })
 
+// Get completed tracks by user ID
+router.get('/completed/:userId', (req, res) => {
+  const userId = Number(req.params.userId)
+  db.getCompletedTrackByUser(userId)
+    .then((tracks) => {
+      res.json(tracks)
+      return null
+    })
+    .catch((err) => {
+      console.error(err)
+      res.status(500).json({ message: 'Something went wrong' })
+    })
+})
+
 module.exports = router
