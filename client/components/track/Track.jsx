@@ -5,7 +5,7 @@ import WeatherInfo from '../weather/WeatherInfo'
 function Track() {
   return (
     <section>
-      <div className='track-image-container'>
+      <div className='page-image-container'>
         <img src="images/placeholder-image.svg" alt="placeholder image of track"/>
       </div>
       <div className='track-content-container'>

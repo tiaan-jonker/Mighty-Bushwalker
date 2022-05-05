@@ -4,7 +4,9 @@ import { cacheUser } from '../auth0-utils'
 import Registration from './Registration'
 import { Routes, Route } from 'react-router-dom'
 import UserProfile from './user/UserProfile'
+import UserTracks from './user/UserTracks'
 import Track from './track/Track'
+import Nav from './Nav'
 
 function App() {
   cacheUser(useAuth0)
@@ -12,9 +14,11 @@ function App() {
   return (
     <div className="mobile-container">
       <Routes>
-        <Route path='/' element={<UserProfile />}/>
-        <Route path='/track' element={<Track />}/>
+        <Route path="/" element={<UserProfile />} />
+        <Route path="/track" element={<Track />} />
+        <Route path="/usertracks" element={<UserTracks />} />
       </Routes>
+      <Nav />
     </div>
   )
 }
