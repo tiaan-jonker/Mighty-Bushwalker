@@ -1,5 +1,6 @@
 import React from 'react'
 import TrackButton from './TrackButton'
+import WeatherInfo from '../weather/WeatherInfo'
 
 function Track() {
   return (
@@ -16,7 +17,7 @@ function Track() {
           </p>
         </div>
         <div>
-          
+          <WeatherInfo />
         </div>
       </div>
     </section>
