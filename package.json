@@ -40,12 +40,17 @@
   },
   "dependencies": {
     "@auth0/auth0-react": "^1.8.0",
+    "@fortawesome/fontawesome-free": "^6.1.1",
+    "@fortawesome/free-solid-svg-icons": "^6.1.1",
+    "@fortawesome/react-fontawesome": "^0.1.18",
     "express": "^4.17.2",
     "express-jwt": "^6.1.0",
     "express-jwt-authz": "^2.4.1",
     "jwks-rsa": "^2.0.4",
     "knex": "^1.0.3",
+    "leaflet": "^1.8.0",
     "pg": "^8.7.1",
+    "react-leaflet": "^4.0.0",
     "superagent": "7.1.1"
   },
   "devDependencies": {

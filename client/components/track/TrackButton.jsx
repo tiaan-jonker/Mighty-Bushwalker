@@ -1,7 +1,9 @@
 import React from 'react'
 
 function TrackButton() {
-  return <div>TrackButton</div>
+  return (
+    <button className='track-btn'>Save Bush</button>
+  )
 }
 
 export default TrackButton

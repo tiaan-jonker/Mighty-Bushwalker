@@ -1,12 +1,16 @@
 exports.up = function (knex) {
   return knex.schema.createTable('track_data', (table) => {
     table.increments('id').primary()
+    table.string('assetId')
     table.string('name')
-    table.integer('length')
-    table.string('duration')
-    table.string('route_type')
-    table.string('location')
-    table.string('location_coords')
+    table.integer('days')
+    table.float('hours')
+    table.float('length')
+    table.boolean('return')
+    table.string('difficulty')
+    table.float('lon')
+    table.float('lat')
+    table.string('line')
   })
 }
 

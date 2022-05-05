@@ -7,10 +7,21 @@
   min-height: 812px;
   border: 1px solid black;
   border-radius: 25px;
-  padding: 25px;
   background-color: #eee;
+  position: relative;
+  overflow: hidden;
 }
 
 .app-name {
   font-size: 46px;
+}
+
+.page-container {
+  padding: 25px;
+}
+
+.page-image-container {
+  border-radius: 25px 25px 0px 0px;
+  height: 162px;
+  overflow: hidden;
 }

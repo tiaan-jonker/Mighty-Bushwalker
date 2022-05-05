@@ -16,7 +16,15 @@ function addUser(input, db = connection) {
   return db('users').insert(user)
 }
 
+function getUserById(id, db = connection) {
+  return db('users')
+    .where('id', id)
+    .select('id', 'name', 'description', 'rank', 'xp')
+    .first()
+}
+
 module.exports = {
   getUsers,
   addUser,
+  getUserById,
 }

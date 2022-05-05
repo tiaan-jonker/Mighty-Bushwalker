@@ -22,3 +22,8 @@ auth_config.json
 .idea
 test-results/
 playwright-report/
+
+package-lock.json
+package.json
+
+weather.js
