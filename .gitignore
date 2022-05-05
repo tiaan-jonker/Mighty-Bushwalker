@@ -23,3 +23,5 @@ auth_config.json
 
 package-lock.json
 package.json
+
+weather.js
