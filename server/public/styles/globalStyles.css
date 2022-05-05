@@ -8,6 +8,8 @@
   border: 1px solid black;
   border-radius: 25px;
   background-color: #eee;
+  position: relative;
+  overflow: hidden;
 }
 
 .app-name {
