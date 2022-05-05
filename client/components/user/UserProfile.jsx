@@ -43,7 +43,7 @@ function UserProfile() {
               <img src="icons/arrow.svg" alt="" />
             </div>
           </Link>
-          <Link to="/">
+          <Link to="/userbadges">
             <div className="user-link">
               <p>Badges earned</p>
               <img src="icons/arrow.svg" alt="" />
