@@ -45,7 +45,9 @@
     "express-jwt-authz": "^2.4.1",
     "jwks-rsa": "^2.0.4",
     "knex": "^1.0.3",
+    "leaflet": "^1.8.0",
     "pg": "^8.7.1",
+    "react-leaflet": "^4.0.0",
     "superagent": "7.1.1"
   },
   "devDependencies": {
