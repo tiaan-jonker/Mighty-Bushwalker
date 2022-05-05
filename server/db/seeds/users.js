@@ -9,6 +9,8 @@ exports.seed = function (knex) {
           name: 'kelmarna',
           email: 'kelmarna@email.nz',
           description: 'the awesome developer',
+          rank: 'Bush Lord',
+          xp: '1000',
         },
         {
           id: 2,
