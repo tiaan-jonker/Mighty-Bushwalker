@@ -69,14 +69,11 @@ function Map() {
           zoom={11}
           scrollWheelZoom={true}
         >
-          <TileLayer url="https://api.mapbox.com/styles/v1/mapbox/streets-v11/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoiY2xlbWVud2FyZSIsImEiOiJjbDJzcWpsMG0wMHFnM2pvYXVmNTh0dnE3In0.Gi3RGqZv_HHyNk8Es6Aojw" />
-          <Marker position={startPosition}>
+          <TileLayer url="https://api.mapbox.com/styles/v1/clemenware/cl2sqqm2s000i14nzde71lqaj/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoiY2xlbWVud2FyZSIsImEiOiJjbDJzcWpsMG0wMHFnM2pvYXVmNTh0dnE3In0.Gi3RGqZv_HHyNk8Es6Aojw" />
+          <Marker position={startPosition}></Marker>
+          <Polyline pathOptions={{ color: 'yellowgreen' }} positions={pathLine}>
             <Popup>Aotea Track</Popup>
-          </Marker>
-          <Polyline
-            pathOptions={{ color: 'yellowgreen' }}
-            positions={pathLine}
-          />
+          </Polyline>
         </MapContainer>
       </div>
     </>
