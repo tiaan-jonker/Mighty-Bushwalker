@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react'
 import Weather from './Weather'
 import Forecast from './Forecast'
 import { WEATHER_API_KEY } from '../../../weather'
-import { database } from 'pg/lib/defaults'
 
 function WeatherInfo() {
   const [weatherData, setWeatherData] = useState([])
@@ -51,6 +50,7 @@ function WeatherInfo() {
     return fetch(forecastUrl)
       .then((response) => handleResponse(response))
       .then((forecastWeather) => {
+        console.log(forecastWeather)
         if (Object.entries(forecastWeather).length) {
           return forecastWeather.list
             .filter((forecast) => forecast.dt_txt.match(/09:00:00/))
@@ -61,6 +61,7 @@ function WeatherInfo() {
 
   function mapWeatherData(weatherData) {
     const mapped = {
+      date: weatherData.dt * 1000,
       description: weatherData.weather[0].main,
       icon: weatherData.weather[0].icon,
       currentTemperature: Math.round(weatherData.main.temp),
@@ -72,9 +73,9 @@ function WeatherInfo() {
       ),
     }
 
-    // if (weatherData.dt_txt) {
-    //   mapped.dt_txt = weatherData.dt.txt
-    // }
+    if (weatherData.dt) {
+      mapped.dt_txt = weatherData.dt.txt
+    }
 
     return mapped
   }
@@ -82,7 +83,6 @@ function WeatherInfo() {
   return (
     <div>
       <Weather weatherData={weatherData} />
-      <Forecast forecastData={forecastData} />
     </div>
   )
 }

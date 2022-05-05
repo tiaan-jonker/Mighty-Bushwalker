@@ -11,7 +11,6 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 function Forecast(props) {
-  // console.log(props)
   return <div>Forecast</div>
 }
 
