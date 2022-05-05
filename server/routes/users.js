@@ -4,6 +4,19 @@ const router = express.Router()
 
 // User routes start here
 
+router.post('/', async (req, res) => {
+  const { auth0Id, name, email, description } = req.body
+  const user = { auth0Id, name, email, description }
+
+  try {
+    await db.addUser(user)
+    res.sendStatus(201)
+  } catch (error) {
+    console.error(error)
+    res.status(500).json({ message: 'unable to insert user into the database' })
+  }
+})
+
 // GET /api/v1/users/:userId
 
 router.get('/:id', (req, res) => {
