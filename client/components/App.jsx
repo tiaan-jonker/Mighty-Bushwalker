@@ -11,7 +11,7 @@ function App() {
   cacheUser(useAuth0)
 
   return (
-    <div className="app">
+    <div className="mobile-container">
       <Routes>
         <Route path="/" element={<Nav />} />
         <Route path="/" element={<Users />} />
