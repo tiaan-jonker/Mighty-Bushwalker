@@ -1,11 +1,12 @@
 import React from 'react'
 import TrackButton from './TrackButton'
 import Map from '../Map'
+import WeatherInfo from '../weather/WeatherInfo'
 
 function Track() {
   return (
     <section>
-      <div className="track-image-container">
+      <div className="page-image-container">
         <img
           src="images/placeholder-image.svg"
           alt="placeholder image of track"
@@ -23,6 +24,7 @@ function Track() {
         </div>
         <div>
           <Map />
+          <WeatherInfo />
         </div>
       </div>
     </section>
