@@ -46,11 +46,8 @@ function getCompletedTrackByUser(userId, db = connection) {
 module.exports = {
   getTrackById,
   listTracks,
-<<<<<<< HEAD
   addSavedTrack,
   addCompletedTrack,
-=======
   getSavedTrackByUser,
   getCompletedTrackByUser,
->>>>>>> fdbecfd622b0903f8f6ee82a875de134c198c659
 }
