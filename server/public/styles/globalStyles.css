@@ -15,3 +15,13 @@
 .app-name {
   font-size: 46px;
 }
+
+.page-container {
+  padding: 25px;
+}
+
+.page-image-container {
+  border-radius: 25px 25px 0px 0px;
+  height: 162px;
+  overflow: hidden;
+}
