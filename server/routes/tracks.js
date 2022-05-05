@@ -18,4 +18,17 @@ router.get('/', (req, res) => {
     })
 })
 
+router.get('/:id', (req, res) => {
+  const id = Number(req.params.id)
+  db.getTrackById(id)
+  .then((tracks) => {
+    res.json(tracks)
+    return null
+  })
+  .catch((err) => {
+    console.error(err)
+    res.status(500).json({ message: 'Something went wrong' })
+  })
+})
+
 module.exports = router
