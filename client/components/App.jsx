@@ -5,6 +5,7 @@ import Registration from './Registration'
 import { Routes, Route } from 'react-router-dom'
 import UserProfile from './user/UserProfile'
 import UserTracks from './user/UserTracks'
+import UserBadges from './user/UserBadges'
 import Track from './track/Track'
 import Nav from './Nav'
 
@@ -17,6 +18,7 @@ function App() {
         <Route path="/" element={<UserProfile />} />
         <Route path="/track" element={<Track />} />
         <Route path="/usertracks" element={<UserTracks />} />
+        <Route path="/userbadges" element={<UserBadges />} />
       </Routes>
       <Nav />
     </div>
