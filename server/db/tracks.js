@@ -19,7 +19,15 @@ function getTrackById(id, db = connection) {
     .first()
 }
 
+function getSavedTrackByUser(userId, db = connection) {
+  return db('saved_tracks')
+  .where('user_id', userId)
+  .join('track_data', 'track_data.id', 'saved_tracks.track_id' )
+  .select('track_id')
+}
+
 module.exports = {
   getTrackById,
   listTracks,
+  getSavedTrackByUser
 }
