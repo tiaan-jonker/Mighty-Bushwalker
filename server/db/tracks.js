@@ -14,7 +14,7 @@ function listTracks(db = connection) {
     'line',
     'difficulty'
   )
-}
+} //test written
 
 function addSavedTrack({ userId, trackId }, db = connection) {
   const savedTrack = { user_id: userId, track_id: trackId }

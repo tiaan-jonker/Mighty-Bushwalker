@@ -21,7 +21,7 @@ function getUserById(id, db = connection) {
     .where('id', id)
     .select('id', 'name', 'description', 'rank', 'xp')
     .first()
-}
+} //test written
 
 module.exports = {
   getUsers,
