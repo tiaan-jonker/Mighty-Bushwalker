@@ -1,21 +1,34 @@
 import React from 'react'
-import {
-  faCloud,
-  faBolt,
-  faCloudRain,
-  faCloudShowersHeavy,
-  faSnowflake,
-  faSun,
-  faSmog,
-} from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 function Weather({ weatherData }) {
+  const { description, temperature } = weatherData
+
+  const getIcon = () => {
+    switch (description) {
+      case 'Clouds':
+        return 'icons/cloudy.svg'
+      case 'Thunderstorm':
+        return 'icons/thunder.svg'
+      case 'Rain':
+        return 'icons/rain.svg'
+      case 'Drizzle':
+        return 'icons/drizzle.svg'
+      case 'Clear':
+        return 'icons/sunny.svg'
+    }
+  }
+
   return (
     <div>
-      <p>Today</p>
-      <FontAwesomeIcon icon={faCloud} />
-      <p>{weatherData.description}</p>
+      <div>
+        <p>Today</p>
+        <div className="weather-circle">
+          <img src={getIcon()} alt="" className="weather-icon" />
+        </div>
+        <p>
+          {description} / {temperature}&deg;C
+        </p>
+      </div>
     </div>
   )
 }
