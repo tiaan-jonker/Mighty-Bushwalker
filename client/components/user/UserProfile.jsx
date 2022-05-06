@@ -1,24 +1,36 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React, { useEffect, useState } from 'react'
+import { Link, useParams } from 'react-router-dom'
+import { getUser } from './userHelper'
 
 function UserProfile() {
+  const [user, setUser] = useState([])
+  const { id } = useParams()
+
+  useEffect(() => {
+    getUser(id)
+      .then((user) => {
+        return setUser(user)
+      })
+      .catch((err) => console.log(err))
+  }, [id])
+
   return (
     <section className="page-container">
       <h1 className="app-name">Bushwalk</h1>
       <div>
         <h2 className="user-intro">
-          Hello Alice, ready to level up your walking?
+          Hello {user.name}, ready to level up your walking?
         </h2>
       </div>
       {/* Replace with UserProfileStats component */}
       <div className="stats-container">
         <div className="stat-info">
-          <span className="circle"></span>
-          <p>Level 50</p>
+          <span className="circle">Rank</span>
+          <p>{user.rank}</p>
         </div>
         <div className="stat-info">
-          <span className="circle"></span>
-          <p>Level 50</p>
+          <span className="circle">XP</span>
+          <p>{user.xp} XP</p>
         </div>
         <div className="stat-info">
           <span className="circle"></span>
@@ -43,7 +55,8 @@ function UserProfile() {
               <img src="icons/arrow.svg" alt="" />
             </div>
           </Link>
-          <Link to="/userbadges">
+          {/* <Link to="/user/id/userbadges"> */}
+          <Link to={`/user/${id}/userbadges`}>
             <div className="user-link">
               <p>Badges earned</p>
               <img src="icons/arrow.svg" alt="" />
