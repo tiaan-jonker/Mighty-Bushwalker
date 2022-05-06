@@ -41,6 +41,8 @@ function generateUserTrackDataSeed() {
       })
     }
   }
+
+  return userTracks
 }
 
 module.exports = {
