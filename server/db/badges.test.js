@@ -26,6 +26,16 @@ test('getBadges returns a list of all badges', () => {
   })
 })
 
+test('getBadgesByUser returns badges earnt by user', () => {
+  return badges.getBadgesByUser('1', testDb).then((badge_data) => {
+    console.log(badge_data[0].name)
+    expect(badge_data[0].id).toBe(1)
+    expect(badge_data[0].name).toBe('Honorary Busher')
+    expect(badge_data[0].image).toBe('./images/bushwacker.jpg')
+    return null
+  })
+})
+
 // describe('getEventById', () => {
 //   it('returns the chosen Event', () => {
 //     return db.getEventById(3, testDb).then((event) => {
