@@ -1,0 +1,11 @@
+.map-container {
+  display: flex;
+  justify-content: center;
+}
+
+.map {
+  height: 250px;
+  width: 90%;
+  border: 2px solid var(--primary-green);
+  border-radius: 3%;
+}
