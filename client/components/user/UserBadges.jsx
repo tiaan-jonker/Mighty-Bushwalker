@@ -15,10 +15,8 @@ function ProfileBadgeList() {
   }, [id])
 
   useEffect(() => {
-    console.log(badges.badges)
+    console.log(badges)
   }, [badges])
-
-  const badgesToMap = badges.badges
 
   return (
     <section>
@@ -31,24 +29,13 @@ function ProfileBadgeList() {
       <div className="page-container">
         <h2 className="user-badges-intro">My badges</h2>
         <div className="badge-grid">
-          {/* {badgesToMap.map((badge) => {
-            return <h1>Hello</h1>
-          })} */}
-          {/* <div className="badge-container">
+          {badges.map((badge) => {
+            return (<div key={badge.id}className="badge-container">
             <span className="badge-circle"></span>
-            <p className="badge-title">Birdman</p>
+            <p className="badge-title">{badge.name}</p>
             <p className="badge-description">Completed 3 bird spotting walks</p>
-          </div>
-          <div className="badge-container">
-            <span className="badge-circle"></span>
-            <p className="badge-title">Birdman</p>
-            <p className="badge-description">Completed 3 bird spotting walks</p>
-          </div>
-          <div className="badge-container">
-            <span className="badge-circle"></span>
-            <p className="badge-title">Birdman</p>
-            <p className="badge-description">Completed 3 bird spotting walks</p>
-          </div> */}
+          </div>)
+          })}
         </div>
       </div>
     </section>
