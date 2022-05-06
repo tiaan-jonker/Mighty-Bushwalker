@@ -1,4 +1,3 @@
-const { faUpRightFromSquare } = require('@fortawesome/free-solid-svg-icons')
 const knex = require('knex')
 const config = require('./knexfile').test
 const testDb = knex(config)
@@ -20,7 +19,6 @@ afterAll(() => {
   return testDb.destroy()
 })
 
-// describe('getUserById', () => {
 test('getUserById returns the correct user', () => {
   return users.getUserById('1', testDb).then((user) => {
     expect(user.id).toBe(1)
@@ -37,7 +35,7 @@ test('addUser adds a user to the users table', () => {
     id: 3,
     auth0_id: 69,
     name: 'Purious Fube',
-    email: 'pfube@faUpRightFromSquare.com',
+    email: 'pfube@quare.com',
     description: 'great guy',
     rank: 'expert',
     xp: 9001,
@@ -48,56 +46,8 @@ test('addUser adds a user to the users table', () => {
   })
 })
 
-// describe('createUser', () => {
-//   it('creates a new user', () => {
-//     const user = {
-//       firstName: 'firstname',
-//       lastName: 'lastname',
-//       gardenId: 3,
-//       email: 'random@emailz.co',
-//       auth0Id: 'auth0|thisisfortesting',
-//     }
-//     return users
-//       .createUser(user, testDb)
-//       .then((ids) => users.getUserById(ids[0], testDb))
-//       .then((user) => {
-//         expect(user.id).not.toBeNull()
-//         expect(user.firstName).toBe('firstname')
-//         expect(user.lastName).toBe('lastname')
-//         expect(user.gardenId).toBe(3)
-//         expect(user.email).toBe('random@emailz.co')
-//         expect(user.auth0Id).toBe('auth0|thisisfortesting')
-//         return null
-//       })
-//   })
-// })
 
-// describe('userExists', () => {
-//   it('returns true if user exists', () => {
-//     return users
-//       .userExists('auth0|61414f84d35ac900717bc280', testDb)
-//       .then((exists) => {
-//         expect(exists).toBeTruthy()
-//         return null
-//       })
-//   })
-//   it('returns false if user not found', () => {
-//     return users
-//       .userExists('other-non-existent-user', testDb)
-//       .then((exists) => {
-//         expect(exists).toBeFalsy()
-//         return null
-//       })
-//   })
-// })
+test('getUsers returns a list of all users', () => {
 
-// describe('get users details by garden', () => {
-//   it('returns the details of the non admin users in related garden', () => {
-//     expect.assertions(2)
-//     return users.getUserDetailsByGarden('1', testDb).then((users) => {
-//       expect(users).toHaveLength(1)
-//       expect(users[0].is_admin).toBeFalsy()
-//       return null
-//     })
-//   })
-// })
+  return users.getUsers
+}
