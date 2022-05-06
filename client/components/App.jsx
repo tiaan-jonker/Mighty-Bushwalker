@@ -17,7 +17,7 @@ function App() {
       <Routes>
         <Route path="/user/:id" element={<UserProfile />} />
         <Route path="/track" element={<Track />} />
-        <Route path="/usertracks" element={<UserTracks />} />
+        <Route path="/user/:id/usertracks" element={<UserTracks />} />
         <Route path="/user/:id/userbadges" element={<UserBadges />} />
       </Routes>
       <Nav />

@@ -43,7 +43,7 @@ function UserProfile() {
       </div>
       <div>
         <div className="user-links-container">
-          <Link to="/usertracks">
+          <Link to={`/user/${id}/usertracks`}>
             <div className="user-link">
               <p>My tracks</p>
               <img src="icons/arrow.svg" alt="" />
@@ -55,7 +55,6 @@ function UserProfile() {
               <img src="icons/arrow.svg" alt="" />
             </div>
           </Link>
-          {/* <Link to="/user/id/userbadges"> */}
           <Link to={`/user/${id}/userbadges`}>
             <div className="user-link">
               <p>Badges earned</p>

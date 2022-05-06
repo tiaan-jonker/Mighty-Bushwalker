@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Link, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import { getUserBadges } from './userHelper'
 
 function ProfileBadgeList() {
@@ -13,10 +13,6 @@ function ProfileBadgeList() {
       })
       .catch((err) => console.log(err))
   }, [id])
-
-  useEffect(() => {
-    console.log(badges)
-  }, [badges])
 
   return (
     <section>

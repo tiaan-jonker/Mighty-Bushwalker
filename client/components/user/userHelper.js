@@ -1,9 +1,5 @@
 import requestor from '../../consume'
 
-// export function getUser(id) {
-//   return request.get(`${baseUrl}/users/${id}`).then((res) => res.body)
-// }
-
 export function getUser(id, consume = requestor) {
   return consume(`/users/${id}`)
     .then((res) => {
@@ -20,6 +16,17 @@ export function getUserBadges(id, consume = requestor) {
     .then((res) => {
       const badges = res.body
       return badges
+    })
+    .catch((error) => {
+      console.log(error.message)
+    })
+}
+
+export function getCompletedUserTracks(id, consume = requestor) {
+  return consume(`/tracks/completed/${id}`)
+    .then((res) => {
+      const completed = res.body
+      return completed
     })
     .catch((error) => {
       console.log(error.message)
