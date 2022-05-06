@@ -16,14 +16,14 @@ function listTracks(db = connection) {
   )
 }
 
-function addSavedTrack({ userId, trackId }, db = connection) {
+function updateSavedStatus({ userId, trackId, status }, db = connection) {
   const savedTrack = { user_id: userId, track_id: trackId }
-  return db('saved_tracks').insert(savedTrack)
+  return db('user_tracks').where(savedTrack).update('saved', status)
 }
 
-function addCompletedTrack({ userId, trackId }, db = connection) {
+function updateCompletedStatus({ userId, trackId, status }, db = connection) {
   const completedTrack = { user_id: userId, track_id: trackId }
-  return db('completed_tracks').insert(completedTrack)
+  return db('user_tracks').where(completedTrack).update('completed', status)
 }
 
 function getTrackById(id, db = connection) {
@@ -46,24 +46,34 @@ function getTrackById(id, db = connection) {
 }
 
 function getSavedTrackByUser(userId, db = connection) {
-  return db('saved_tracks')
-    .where('user_id', userId)
-    .join('track_data', 'track_data.id', 'saved_tracks.track_id')
+  const query = {
+    user_id: userId,
+    saved: 1,
+  }
+
+  return db('user_tracks')
+    .join('track_data', 'track_data.id', 'user_tracks.track_id')
     .select('track_id')
+    .where(query)
 }
 
 function getCompletedTrackByUser(userId, db = connection) {
-  return db('completed_tracks')
-    .where('user_id', userId)
-    .join('track_data', 'track_data.id', 'completed_tracks.track_id')
+  const query = {
+    user_id: userId,
+    completed: 1,
+  }
+
+  return db('user_tracks')
+    .join('track_data', 'track_data.id', 'user_tracks.track_id')
     .select('track_id')
+    .where(query)
 }
 
 module.exports = {
   getTrackById,
   listTracks,
-  addSavedTrack,
-  addCompletedTrack,
+  updateSavedStatus,
+  updateCompletedStatus,
   getSavedTrackByUser,
   getCompletedTrackByUser,
 }

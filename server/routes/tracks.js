@@ -24,37 +24,52 @@ router.get('/', (req, res) => {
     })
 })
 
-router.post('/saved', (req, res) => {
-  const { userId, trackId } = req.body
+router.patch('/saved', (req, res) => {
+  const { userId, trackId, status } = req.body
   const savedTrack = {
     userId,
     trackId,
+    status,
   }
-  db.addSavedTrack(savedTrack)
+  db.updateSavedStatus(savedTrack)
     .then(() => {
       res.sendStatus(201)
       return null
     })
     .catch((err) => {
       console.error(err)
-      res.status(500).json({ message: 'Unable to save track' })
+      res.status(500).json({ message: 'Unable to update track' })
     })
 })
 
-router.post('/completed', (req, res) => {
-  const { userId, trackId } = req.body
+router.patch('/completed', (req, res) => {
+  const { userId, trackId, status } = req.body
   const completedTrack = {
     userId,
     trackId,
+    status,
   }
-  db.addcompletedTrack(completedTrack)
+  db.updateCompletedStatus(completedTrack)
     .then(() => {
       res.sendStatus(201)
       return null
     })
     .catch((err) => {
       console.error(err)
-      res.status(500).json({ message: 'Unable to save track as completed' })
+      res.status(500).json({ message: 'Unable to update track' })
+    })
+})
+
+router.get('/saved/:userId', (req, res) => {
+  const userId = Number(req.params.userId)
+  db.getSavedTrackByUser(userId)
+    .then((tracks) => {
+      res.json(tracks)
+      return null
+    })
+    .catch((err) => {
+      console.error(err)
+      res.status(500).json({ message: 'Something went wrong' })
     })
 })
 
@@ -74,18 +89,6 @@ router.get('/:id', (req, res) => {
 })
 
 // Get saved track by user ID
-router.get('/saved/:userId', (req, res) => {
-  const userId = Number(req.params.userId)
-  db.getSavedTrackByUser(userId)
-    .then((tracks) => {
-      res.json(tracks)
-      return null
-    })
-    .catch((err) => {
-      console.error(err)
-      res.status(500).json({ message: 'Something went wrong' })
-    })
-})
 
 // Get completed tracks by user ID
 router.get('/completed/:userId', (req, res) => {
