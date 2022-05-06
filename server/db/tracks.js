@@ -50,7 +50,6 @@ function getSavedTrackByUser(userId, db = connection) {
     user_id: userId,
     saved: 1,
   }
-
   return db('user_tracks')
     .join('track_data', 'track_data.id', 'user_tracks.track_id')
     .select('track_id')
@@ -62,7 +61,18 @@ function getCompletedTrackByUser(userId, db = connection) {
     user_id: userId,
     completed: 1,
   }
+  return db('user_tracks')
+    .join('track_data', 'track_data.id', 'user_tracks.track_id')
+    .select('track_id')
+    .where(query)
+}
 
+function getOtherTrackByUser(userId, db = connection) {
+  const query = {
+    user_id: userId,
+    completed: 0,
+    saved: 0,
+  }
   return db('user_tracks')
     .join('track_data', 'track_data.id', 'user_tracks.track_id')
     .select('track_id')
@@ -76,4 +86,5 @@ module.exports = {
   updateCompletedStatus,
   getSavedTrackByUser,
   getCompletedTrackByUser,
+  getOtherTrackByUser,
 }

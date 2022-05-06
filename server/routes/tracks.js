@@ -24,6 +24,7 @@ router.get('/', (req, res) => {
     })
 })
 
+// Update status of whether a track is saved by user of not
 router.patch('/saved', (req, res) => {
   const { userId, trackId, status } = req.body
   const savedTrack = {
@@ -42,6 +43,7 @@ router.patch('/saved', (req, res) => {
     })
 })
 
+// update status of whether a track is completed by user of not
 router.patch('/completed', (req, res) => {
   const { userId, trackId, status } = req.body
   const completedTrack = {
@@ -57,19 +59,6 @@ router.patch('/completed', (req, res) => {
     .catch((err) => {
       console.error(err)
       res.status(500).json({ message: 'Unable to update track' })
-    })
-})
-
-router.get('/saved/:userId', (req, res) => {
-  const userId = Number(req.params.userId)
-  db.getSavedTrackByUser(userId)
-    .then((tracks) => {
-      res.json(tracks)
-      return null
-    })
-    .catch((err) => {
-      console.error(err)
-      res.status(500).json({ message: 'Something went wrong' })
     })
 })
 
@@ -89,11 +78,37 @@ router.get('/:id', (req, res) => {
 })
 
 // Get saved track by user ID
+router.get('/saved/:userId', (req, res) => {
+  const userId = Number(req.params.userId)
+  db.getSavedTrackByUser(userId)
+    .then((tracks) => {
+      res.json(tracks)
+      return null
+    })
+    .catch((err) => {
+      console.error(err)
+      res.status(500).json({ message: 'Something went wrong' })
+    })
+})
 
 // Get completed tracks by user ID
 router.get('/completed/:userId', (req, res) => {
   const userId = Number(req.params.userId)
   db.getCompletedTrackByUser(userId)
+    .then((tracks) => {
+      res.json(tracks)
+      return null
+    })
+    .catch((err) => {
+      console.error(err)
+      res.status(500).json({ message: 'Something went wrong' })
+    })
+})
+
+// Get other tracks (not completed nor saved) by user ID
+router.get('/other/:userId', (req, res) => {
+  const userId = Number(req.params.userId)
+  db.getOtherTrackByUser(userId)
     .then((tracks) => {
       res.json(tracks)
       return null
