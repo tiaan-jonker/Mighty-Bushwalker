@@ -17,7 +17,6 @@ function WeatherInfo() {
     fetchWeatherData()
       .then((weather) => {
         setWeatherData(weather)
-        console.log(weatherData)
       })
       .catch((err) => console.error(err))
 
@@ -52,6 +51,7 @@ function WeatherInfo() {
       .then((response) => handleResponse(response))
       .then((forecastWeather) => {
         if (Object.entries(forecastWeather).length) {
+          console.log(forecastWeather.list)
           return forecastWeather.list
             .filter((forecast) => forecast.dt_txt.match(/09:00:00/))
             .map(mapWeatherData)
@@ -91,13 +91,15 @@ function WeatherInfo() {
   }
 
   return (
-    <div>
-      <button className="weather-option-selection" onClick={weatherClick}>
-        Weather
-      </button>
-      <button className="weather-option-selection" onClick={suntimesClick}>
-        Daylight
-      </button>
+    <div className="temp">
+      <div className="options-container">
+        <button className="weather-option-selection" onClick={weatherClick}>
+          Weather
+        </button>
+        <button className="weather-option-selection" onClick={suntimesClick}>
+          Daylight
+        </button>
+      </div>
       {selected ? (
         <Weather weatherData={weatherData} />
       ) : (

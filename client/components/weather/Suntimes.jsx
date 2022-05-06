@@ -2,17 +2,21 @@ import React from 'react'
 
 function Suntimes({ weatherData }) {
   const { sunrise, sunset } = weatherData
-  
+
   return (
     <div className="suntimes-container">
       <div>
         <p>Sunrise</p>
-        <img src="icons/sunrise.svg" alt="" />
+        <div className="weather-circle">
+          <img src="icons/sunrise.svg" alt="" className="weather-icon" />
+        </div>
         <p>{sunrise}</p>
       </div>
       <div>
         <p>Sunset</p>
-        <img src="icons/sunset.svg" alt="" />
+        <div className="weather-circle">
+          <img src="icons/sunset.svg" alt="" className="weather-icon" />
+        </div>
         <p>{sunset}</p>
       </div>
     </div>

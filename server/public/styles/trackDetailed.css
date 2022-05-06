@@ -23,4 +23,36 @@
 
 .weather-option-selection {
   cursor: pointer;
+  background-color: transparent;
+}
+
+.options-container {
+  display: flex;
+  justify-content: space-evenly;
+  padding: 15px 0px;
+  background-color: rgb(142, 142, 142);
+}
+
+.temp {
+  margin-top: 200px;
+  margin-bottom: 200px;
+}
+
+.weather-circle {
+  height: 90px;
+  width: 90px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  margin-bottom: 10px;
+  position: relative;
+  background: linear-gradient(145deg, #e0e0e0, #bcbcbc);
+  box-shadow: 5px 5px 17px #868686, -5px -5px 17px #ffffff;
+}
+
+.weather-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
