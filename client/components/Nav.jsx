@@ -29,24 +29,22 @@ function Nav() {
   return (
     <nav className="nav-bar">
       <section className="nav-icons">
-        <div>
+        <div className="nav-icon-container">
           <Link to="/user/1">
-            <img src="icons/mountain-nav.svg" alt="" />
+            <img src="icons/profile.svg" alt="" className="nav-icon" />
+            <p>Profile</p>
           </Link>
         </div>
-        <div>
-          <Link to="/track">
-            <img src="icons/mountain-nav.svg" alt="" />
+        <div className="nav-icon-container">
+          <Link to="/usertracks">
+            <img src="icons/mountain-nav.svg" alt="" className="nav-icon" />
+            <p>My tracks</p>
           </Link>
         </div>
-        <div>
-          <Link to="/">
-            <img src="icons/mountain-nav.svg" alt="" />
-          </Link>
-        </div>
-        <div>
-          <Link to="/">
-            <img src="icons/mountain-nav.svg" alt="" />
+        <div className="nav-icon-container">
+          <Link to="/tracks">
+            <img src="icons/search.svg" alt="" className="nav-icon" />
+            <p>Explore</p>
           </Link>
         </div>
       </section>
