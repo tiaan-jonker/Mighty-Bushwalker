@@ -9,8 +9,8 @@ exports.seed = function (knex) {
       userTracks.push({
         user_id: i,
         track_id: j,
-        completed: false,
-        saved: false,
+        completed: 0,
+        saved: 0,
       })
     }
   }
