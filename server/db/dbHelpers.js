@@ -1,3 +1,23 @@
+function generateUserTrackData(userId) {
+  // each time a user is created we need to add a row for each combination of user_id and track_id with completed and saved set to zero (false)
+  // e.g. if there are 3 tracks and user is user #3
+  // [{user_id: 3, track_id: 1, ...}, {user_id: 3, track_id: 2, ...}, {user_id: 3, track_id: 3, ...}]
+  // then if the user completes track 2 we can find the row fo user_id = 3 and track_id = 2 and set completed to 1 (true)
+  const amountOfTracks = 20
+
+  const userTracks = []
+
+  for (let i = 1; i < amountOfTracks + 1; i++) {
+    userTracks.push({
+      user_id: userId,
+      track_id: i,
+      completed: 0,
+      saved: 0,
+    })
+  }
+
+  return userTracks
+}
 
 function generateUserTrackDataSeed() {
   // creates the seed data for user_tracks
@@ -24,5 +44,6 @@ function generateUserTrackDataSeed() {
 }
 
 module.exports = {
+  generateUserTrackData,
   generateUserTrackDataSeed,
 }
