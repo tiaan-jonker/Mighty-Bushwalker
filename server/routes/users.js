@@ -9,7 +9,9 @@ router.post('/', async (req, res) => {
   const user = { auth0Id, name, email, description }
 
   try {
-    await db.addUser(user)
+    const userId = await db.addUser(user)
+    console.log(userId)
+    await db.addNewUserTracks(userId[0])
     res.sendStatus(201)
   } catch (error) {
     console.error(error)
