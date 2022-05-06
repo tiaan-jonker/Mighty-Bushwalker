@@ -15,10 +15,10 @@ function App() {
   return (
     <div className="mobile-container">
       <Routes>
-        <Route path="/" element={<UserProfile />} />
+        <Route path="/user/:id" element={<UserProfile />} />
         <Route path="/track" element={<Track />} />
         <Route path="/usertracks" element={<UserTracks />} />
-        <Route path="/userbadges" element={<UserBadges />} />
+        <Route path="/user/:id/userbadges" element={<UserBadges />} />
       </Routes>
       <Nav />
     </div>
