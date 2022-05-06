@@ -1,7 +1,7 @@
-import React, { useState } from 'react'
+import React from 'react'
 
 function Weather({ weatherData }) {
-  const { description, currentTemperature } = weatherData
+  const { description, temperature } = weatherData
 
   const getIcon = () => {
     switch (description) {
@@ -20,13 +20,15 @@ function Weather({ weatherData }) {
 
   return (
     <div>
-      <p>Today</p>
-      <div className="weather-circle">
-        <img src={getIcon()} alt="" className="weather-icon" />
+      <div>
+        <p>Today</p>
+        <div className="weather-circle">
+          <img src={getIcon()} alt="" className="weather-icon" />
+        </div>
+        <p>
+          {description} / {temperature}&deg;C
+        </p>
       </div>
-      <p>
-        {description} / {currentTemperature}
-      </p>
     </div>
   )
 }

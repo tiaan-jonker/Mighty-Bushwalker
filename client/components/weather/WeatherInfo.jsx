@@ -64,7 +64,7 @@ function WeatherInfo() {
       date: weatherData.dt * 1000,
       description: weatherData.weather[0].main,
       icon: weatherData.weather[0].icon,
-      currentTemperature: Math.round(weatherData.main.temp),
+      temperature: Math.round(weatherData.main.temp),
       sunrise: new Date(weatherData.sys.sunrise * 1000).toLocaleTimeString([], {
         hour: '2-digit',
         minute: '2-digit',
@@ -91,7 +91,7 @@ function WeatherInfo() {
   }
 
   return (
-    <div className="temp">
+    <div>
       <div className="options-container">
         <button className="weather-option-selection" onClick={weatherClick}>
           Weather
@@ -101,7 +101,7 @@ function WeatherInfo() {
         </button>
       </div>
       {selected ? (
-        <Weather weatherData={weatherData} />
+        <Weather forecastData={forecastData} weatherData={weatherData} />
       ) : (
         <Suntimes weatherData={weatherData} />
       )}
