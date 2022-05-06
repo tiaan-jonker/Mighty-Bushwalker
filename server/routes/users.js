@@ -10,7 +10,6 @@ router.post('/', async (req, res) => {
 
   try {
     const userId = await db.addUser(user)
-    console.log(userId)
     await db.addNewUserTracks(userId[0])
     res.sendStatus(201)
   } catch (error) {
