@@ -1,0 +1,18 @@
+.user-track-intro {
+  font-size: 22px;
+  margin-bottom: 20px;
+}
+
+.user-track-link {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 10px;
+  border: 2px solid black;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.user-track-link > p {
+  font-size: 24px;
+}
