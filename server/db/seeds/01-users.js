@@ -1,3 +1,5 @@
+// if you add more users please make sure to up the amount of tracks in generateUserTrackDataSeed function in db/dbHelpers.js file the to reflect this
+
 exports.seed = function (knex) {
   return knex('users')
     .del()

@@ -1,3 +1,5 @@
+// if you add more tracks please make sure to up the amount of tracks in generateUserTrackDataSeed and generateUserTrackData functions in db/dbHelpers.js file the to reflect this
+
 exports.seed = function (knex) {
   return knex('track_data')
     .del()

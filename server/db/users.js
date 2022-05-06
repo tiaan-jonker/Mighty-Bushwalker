@@ -1,4 +1,5 @@
 const connection = require('./connection')
+const { generateUserTrackData } = require('./dbHelpers')
 
 function getUsers(db = connection) {
   return db('users').select(
@@ -23,8 +24,14 @@ function getUserById(id, db = connection) {
     .first()
 }
 
+function addNewUserTracks(userId, db = connection) {
+  const newUserTracks = generateUserTrackData(userId)
+  return db('user_tracks').insert(newUserTracks)
+}
+
 module.exports = {
   getUsers,
   addUser,
   getUserById,
+  addNewUserTracks,
 }
