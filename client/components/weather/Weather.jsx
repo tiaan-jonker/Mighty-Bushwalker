@@ -1,21 +1,12 @@
-import React from 'react'
-import {
-  faCloud,
-  faBolt,
-  faCloudRain,
-  faCloudShowersHeavy,
-  faSnowflake,
-  faSun,
-  faSmog,
-} from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import React, { useState } from 'react'
 
 function Weather({ weatherData }) {
+  const { description, currentTemperature } = weatherData
+
   return (
     <div>
       <p>Today</p>
-      <FontAwesomeIcon icon={faCloud} />
-      <p>{weatherData.description}</p>
+      <p>{description}</p>
     </div>
   )
 }

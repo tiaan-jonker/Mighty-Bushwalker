@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import Weather from './Weather'
-import Forecast from './Forecast'
+import Suntimes from './Suntimes'
 import { WEATHER_API_KEY } from '../../../weather'
 
 function WeatherInfo() {
   const [weatherData, setWeatherData] = useState([])
   const [forecastData, setForecastData] = useState([])
+  const [selected, setSelected] = useState(true)
 
   const lat = '-36.212791'
   const lon = '175.402013'
@@ -16,12 +17,12 @@ function WeatherInfo() {
     fetchWeatherData()
       .then((weather) => {
         setWeatherData(weather)
+        console.log(weatherData)
       })
       .catch((err) => console.error(err))
 
     fetchForecastWeatherData()
       .then((forecast) => {
-        console.log(forecast)
         setForecastData(forecast)
       })
       .catch((err) => console.error(err))
@@ -50,7 +51,6 @@ function WeatherInfo() {
     return fetch(forecastUrl)
       .then((response) => handleResponse(response))
       .then((forecastWeather) => {
-        console.log(forecastWeather)
         if (Object.entries(forecastWeather).length) {
           return forecastWeather.list
             .filter((forecast) => forecast.dt_txt.match(/09:00:00/))
@@ -65,12 +65,14 @@ function WeatherInfo() {
       description: weatherData.weather[0].main,
       icon: weatherData.weather[0].icon,
       currentTemperature: Math.round(weatherData.main.temp),
-      sunrise: new Date(weatherData.sys.sunrise * 1000).toLocaleTimeString(
-        'en-IN'
-      ),
-      sunset: new Date(weatherData.sys.sunset * 1000).toLocaleTimeString(
-        'en-IN'
-      ),
+      sunrise: new Date(weatherData.sys.sunrise * 1000).toLocaleTimeString([], {
+        hour: '2-digit',
+        minute: '2-digit',
+      }),
+      sunset: new Date(weatherData.sys.sunset * 1000).toLocaleTimeString([], {
+        hour: '2-digit',
+        minute: '2-digit',
+      }),
     }
 
     if (weatherData.dt) {
@@ -80,9 +82,27 @@ function WeatherInfo() {
     return mapped
   }
 
+  const weatherClick = () => {
+    setSelected(true)
+  }
+
+  const suntimesClick = () => {
+    setSelected(false)
+  }
+
   return (
     <div>
-      <Weather weatherData={weatherData} />
+      <button className="weather-option-selection" onClick={weatherClick}>
+        Weather
+      </button>
+      <button className="weather-option-selection" onClick={suntimesClick}>
+        Daylight
+      </button>
+      {selected ? (
+        <Weather weatherData={weatherData} />
+      ) : (
+        <Suntimes weatherData={weatherData} />
+      )}
     </div>
   )
 }
