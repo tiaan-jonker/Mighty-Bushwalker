@@ -1,7 +1,19 @@
 const connection = require('./connection')
 
 function listTracks(db = connection) {
-  return db('track_data').select()
+  return db('track_data').select(
+    'id',
+    'asset_id as assetId',
+    'name',
+    'length',
+    'days',
+    'hours',
+    'return',
+    'lon',
+    'lat',
+    'line',
+    'difficulty'
+  )
 }
 
 function addSavedTrack({ userId, trackId }, db = connection) {
@@ -19,12 +31,16 @@ function getTrackById(id, db = connection) {
     .where('id', id)
     .select(
       'id',
+      'asset_id as assetId',
       'name',
       'length',
-      'duration',
-      'route_type as routeType',
-      'location',
-      'location_coords as locationCoords'
+      'days',
+      'hours',
+      'return',
+      'lon',
+      'lat',
+      'line',
+      'difficulty'
     )
     .first()
 }
