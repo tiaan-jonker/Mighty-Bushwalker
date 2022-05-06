@@ -32,3 +32,14 @@ export function getCompletedUserTracks(id, consume = requestor) {
       console.log(error.message)
     })
 }
+
+export function getSavedUserTracks(id, consume = requestor) {
+  return consume(`/tracks/saved/${id}`)
+    .then((res) => {
+      const completed = res.body
+      return completed
+    })
+    .catch((error) => {
+      console.log(error.message)
+    })
+}

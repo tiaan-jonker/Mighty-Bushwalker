@@ -17,7 +17,7 @@ function App() {
     <div className="mobile-container">
       <Routes>
         <Route path="/user/:id" element={<UserProfile />} />
-        <Route path="/track" element={<Track />} />
+        <Route path="/track/:id" element={<Track />} />
         <Route path="/tracks" element={<Tracks />} />
         <Route path="/user/:id/usertracks" element={<UserTracks />} />
         <Route path="/user/:id/userbadges" element={<UserBadges />} />
