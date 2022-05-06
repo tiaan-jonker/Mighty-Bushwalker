@@ -30,7 +30,7 @@ function Nav() {
     <nav className="nav-bar">
       <section className="nav-icons">
         <div>
-          <Link to="/">
+          <Link to="/user/1">
             <img src="icons/mountain-nav.svg" alt="" />
           </Link>
         </div>
