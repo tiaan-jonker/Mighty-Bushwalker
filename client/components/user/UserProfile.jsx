@@ -49,7 +49,7 @@ function UserProfile() {
               <img src="icons/arrow.svg" alt="" />
             </div>
           </Link>
-          <Link to="/">
+          <Link to="/tracks">
             <div className="user-link">
               <p>Explore other tracks</p>
               <img src="icons/arrow.svg" alt="" />

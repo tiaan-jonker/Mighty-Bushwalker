@@ -7,6 +7,7 @@ import UserProfile from './user/UserProfile'
 import UserTracks from './user/UserTracks'
 import UserBadges from './user/UserBadges'
 import Track from './track/Track'
+import Tracks from './tracks/TracksList'
 import Nav from './Nav'
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
       <Routes>
         <Route path="/user/:id" element={<UserProfile />} />
         <Route path="/track" element={<Track />} />
+        <Route path="/tracks" element={<Tracks />} />
         <Route path="/usertracks" element={<UserTracks />} />
         <Route path="/user/:id/userbadges" element={<UserBadges />} />
       </Routes>

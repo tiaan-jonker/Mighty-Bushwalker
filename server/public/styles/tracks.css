@@ -1,0 +1,29 @@
+.track-list {
+  list-style: none;
+}
+
+.track-list-name {
+  font-size: 24px;
+}
+
+.track-link-item {
+  padding: 15px 10px;
+  border: 2px solid black;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.track-difficulty {
+  color: #eee;
+  font-size: 12px;
+  padding: 5px 15px;
+  border-radius: 5px;
+}
+
+.track-other-details {
+  display: flex;
+}
+
+.track-other-details > p {
+  font-size: 12px;
+}
