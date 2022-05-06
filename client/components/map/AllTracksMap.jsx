@@ -1,16 +1,25 @@
-import React from 'react'
-
+import React, { useEffect, useState } from 'react'
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
 
-const startPosition = [-36.212791, 175.402013]
-
 function AllTrackMap() {
-  return (
+  const [lat, setLat] = useState(0)
+  const [long, setLong] = useState(0)
+
+  useEffect(() => {
+    navigator.geolocation.getCurrentPosition(function (position) {
+      setLat(position.coords.latitude)
+      setLong(position.coords.longitude)
+    })
+  }, [lat, long])
+
+  const startPosition = [lat, long]
+
+  const mapComponent = (
     <>
       <div className="map-container">
         <MapContainer
           className="map"
-          center={[-36.217476, 175.393967]} // This will change - with the long and lat passed in from the track
+          center={[lat, long]} // This will change - with the long and lat passed in from the track
           zoom={11}
           scrollWheelZoom={true}
         >
@@ -22,6 +31,8 @@ function AllTrackMap() {
       </div>
     </>
   )
+
+  return <>{lat !== 0 && long !== 0 ? mapComponent : null}</>
 }
 
 export default AllTrackMap
