@@ -1,7 +1,7 @@
 exports.up = function (knex) {
   return knex.schema.createTable('track_data', (table) => {
     table.increments('id').primary()
-    table.string('assetId')
+    table.string('asset_id')
     table.string('name')
     table.integer('days')
     table.float('hours')
