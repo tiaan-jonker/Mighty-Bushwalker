@@ -1,3 +1,4 @@
+const { faUpRightFromSquare } = require('@fortawesome/free-solid-svg-icons')
 const knex = require('knex')
 const config = require('./knexfile').test
 const testDb = knex(config)
@@ -28,6 +29,22 @@ test('getUserById returns the correct user', () => {
     expect(user.rank).toBe('Bush Lord')
     expect(user.xp).toBe(1000)
     return null
+  })
+})
+
+test('addUser adds a user to the users table', () => {
+  const newUser = {
+    id: 3,
+    auth0_id: 69,
+    name: 'Purious Fube',
+    email: 'pfube@faUpRightFromSquare.com',
+    description: 'great guy',
+    rank: 'expert',
+    xp: 9001,
+  }
+  return users.addUser(newUser, testDb).then((users) => {
+    console.log(users)
+    expect(users[2]).toBe('Purious Fube')
   })
 })
 
