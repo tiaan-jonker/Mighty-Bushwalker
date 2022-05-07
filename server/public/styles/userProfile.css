@@ -4,7 +4,8 @@
 }
 
 .user-intro-sub {
-  font-size: 22px;
+  font-size: 20px;
+  margin-bottom: 20px;
 }
 
 .user-links-container {
@@ -62,7 +63,6 @@
 .stats-container {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 40px;
 }
 
 .stat-info {
@@ -76,11 +76,33 @@
   text-align: center;
 }
 
-.circle {
-  height: 70px;
-  width: 70px;
-  background-color: #bbb;
-  border-radius: 50%;
-  display: inline-block;
-  margin-bottom: 10px;
+.stat-rectangle {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 110px;
+  width: 90px;
+  padding: 10px;
+  border-radius: 20px;
+  background-color: #effcf4;
+}
+
+.stat-icon {
+  height: 30px;
+  width: 100%;
+  margin-left: -20px;
+}
+
+.stat-description {
+  font-size: 10px;
+  font-weight: 300;
+}
+
+.user-stat {
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.xp-container {
+  padding: 30px 0px;
 }

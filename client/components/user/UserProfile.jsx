@@ -16,28 +16,36 @@ function UserProfile() {
 
   return (
     <section className="page-container">
-      <div className="">
+      <div>
         <h2 className="user-intro">Hello {user.name},</h2>
         <h3 className="user-intro-sub">ready to level up your walking?</h3>
       </div>
       {/* Replace with UserProfileStats component */}
       <div className="stats-container">
         <div className="stat-info">
-          <span className="circle">Rank</span>
-          <p>{user.rank}</p>
+          <span className="stat-rectangle">
+            <img src="/icons/trophy.svg" alt="" className="stat-icon" />
+            <div className="stat-description">Hiking level</div>
+            <div className="user-stat">{user.rank}</div>
+          </span>
         </div>
         <div className="stat-info">
-          <span className="circle">XP</span>
-          <p>{user.xp} XP</p>
+          <span className="stat-rectangle">
+            <img src="/icons/hiker.svg" alt="" className="stat-icon" />
+            <div className="stat-description">Hiking level</div>
+            <div className="user-stat">{user.rank}</div>
+          </span>
         </div>
         <div className="stat-info">
-          <span className="circle"></span>
-          <p>Level 50</p>
+          <span className="stat-rectangle">
+            <img src="/icons/compass.svg" alt="" className="stat-icon" />
+            <div className="stat-description">Hiking level</div>
+            <div className="user-stat">{user.rank}</div>
+          </span>
         </div>
-        <div className="stat-info">
-          <span className="circle"></span>
-          <p>Level 50</p>
-        </div>
+      </div>
+      <div className="xp-container">
+        <p>XP bar placeholder</p>
       </div>
       <div className="user-links-container">
         <div className="link-one">
