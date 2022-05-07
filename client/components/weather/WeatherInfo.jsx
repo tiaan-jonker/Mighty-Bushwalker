@@ -2,11 +2,12 @@ import React, { useState, useEffect } from 'react'
 import Weather from './Weather'
 import Suntimes from './Suntimes'
 import { WEATHER_API_KEY } from '../../../weather'
+import { Box, Tab } from '@mui/material'
+import { TabContext, TabList, TabPanel } from '@mui/lab'
 
 function WeatherInfo() {
   const [weatherData, setWeatherData] = useState([])
   const [forecastData, setForecastData] = useState([])
-  const [selected, setSelected] = useState(true)
 
   const lat = '-36.212791'
   const lon = '175.402013'
@@ -82,30 +83,33 @@ function WeatherInfo() {
     return mapped
   }
 
-  const weatherClick = () => {
-    setSelected(true)
-  }
+  const [value, setValue] = React.useState('1')
 
-  const suntimesClick = () => {
-    setSelected(false)
+  const handleChange = (event, newValue) => {
+    setValue(newValue)
   }
 
   return (
-    <div>
-      <div className="options-container">
-        <button className="weather-option-selection" onClick={weatherClick}>
-          Weather
-        </button>
-        <button className="weather-option-selection" onClick={suntimesClick}>
-          Daylight
-        </button>
-      </div>
-      {selected ? (
-        <Weather forecastData={forecastData} weatherData={weatherData} />
-      ) : (
-        <Suntimes weatherData={weatherData} />
-      )}
-    </div>
+    <Box sx={{ width: '100%', typography: 'body1' }} className="weather-area">
+      <TabContext value={value}>
+        <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+          <TabList
+            onChange={handleChange}
+            centered
+            aria-label="lab API tabs example"
+          >
+            <Tab label="Weather" value="1" />
+            <Tab label="Daylight" value="2" />
+          </TabList>
+        </Box>
+        <TabPanel value="1">
+          <Weather forecastData={forecastData} weatherData={weatherData} />
+        </TabPanel>
+        <TabPanel value="2">
+          <Suntimes weatherData={weatherData} />
+        </TabPanel>
+      </TabContext>
+    </Box>
   )
 }
 

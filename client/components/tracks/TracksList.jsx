@@ -1,18 +1,37 @@
 import React, { useState, useEffect } from 'react'
-import { getAllTracks } from './tracksHelper'
+import { calculateDistanceBetweenPoints, getAllTracks } from './tracksHelper'
 
 import TrackItem from './TrackItem'
 import AllTracksMap from '../map/AllTracksMap'
 
 function Track() {
   const [allTracks, setAllTracks] = useState([])
+  const [coords, setCoords] = useState([])
+
+  // get location
+  // then add new location
+  //
 
   useEffect(() => {
-    getAllTracks().then((tracks) => {
-      setAllTracks(tracks)
-      console.log(tracks)
-      return null
-    })
+    getAllTracks()
+      .then((tracks) => {
+        navigator.geolocation.getCurrentPosition(function (position) {
+          const coords = position.coords
+          const updatedTracks = tracks.map((track) => {
+            const distanceAway = calculateDistanceBetweenPoints(
+              coords.latitude,
+              coords.longitude,
+              track.lat,
+              track.lon
+            ).toFixed(1)
+
+            return { ...track, distanceAway }
+          })
+          setAllTracks(updatedTracks)
+          return null
+        })
+      })
+      .catch((err) => console.log(err))
   }, [])
 
   const randomNumGenerator = () => {
@@ -23,7 +42,7 @@ function Track() {
     <section className="page-container">
       <h2 className="tracks-intro">Explore</h2>
       <p className="tracks-sub">All trails available to hike</p>
-      <AllTracksMap />
+      <AllTracksMap tracks={allTracks} />
       {allTracks.map((trackData) => (
         <ul key={trackData.id} className="track-list">
           <div className="track-link-item">

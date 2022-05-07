@@ -1,8 +1,9 @@
 .nav-bar {
-  position: absolute;
-  width: 100%;
+  position: fixed;
+  width: 375px;
   height: 70px;
-  bottom: 0;
+  bottom: 78px;
+  border-radius: 0px 0px 25px 25px;
   background-color: rgb(39, 63, 69);
 }
 
