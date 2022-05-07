@@ -1,6 +1,6 @@
 import React from 'react'
 
-function TrackItem({ trackData }) {
+function TrackItem({ trackData, randomNum }) {
   const { id, name, difficulty, days, hours, lat, lon, length } = trackData
 
   const getBackgroundColor = () => {
@@ -37,7 +37,11 @@ function TrackItem({ trackData }) {
             </p>
           </div>
         </div>
-        <img src="/images/bg/bg-1.webp" alt="" className="track-banner-img" />
+        <img
+          src={`/images/bg/bg-${randomNum()}.webp`}
+          alt=""
+          className="track-banner-img"
+        />
       </div>
     </li>
   )
