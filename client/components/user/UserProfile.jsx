@@ -16,11 +16,9 @@ function UserProfile() {
 
   return (
     <section className="page-container">
-      <h1 className="app-name">Bushwalk</h1>
-      <div>
-        <h2 className="user-intro">
-          Hello {user.name}, ready to level up your walking?
-        </h2>
+      <div className="">
+        <h2 className="user-intro">Hello {user.name},</h2>
+        <h3 className="user-intro-sub">ready to level up your walking?</h3>
       </div>
       {/* Replace with UserProfileStats component */}
       <div className="stats-container">
@@ -41,27 +39,43 @@ function UserProfile() {
           <p>Level 50</p>
         </div>
       </div>
-      <div>
-        <div className="user-links-container">
-          <Link to="/usertracks">
-            <div className="user-link">
-              <p>My tracks</p>
-              <img src="icons/arrow.svg" alt="" />
+      <div className="user-links-container">
+        <div className="link-one">
+          <div className="link-container">
+            <div className="link-text-container">
+              <div className="link-text">Explore</div>
+              <img src="/icons/arrow.svg" alt="" />
             </div>
-          </Link>
-          <Link to="/tracks">
-            <div className="user-link">
-              <p>Explore other tracks</p>
-              <img src="icons/arrow.svg" alt="" />
+            <Link to="/tracks">
+              <img
+                src="/images/explore-img.png"
+                alt=""
+                className="user-img-one"
+              />
+            </Link>
+          </div>
+        </div>
+        <div className="link-two">
+          <div className="link-container">
+            <div className="link-text-container">
+              <div className="link-text">My tracks</div>
+              <img src="/icons/arrow.svg" alt="" />
             </div>
-          </Link>
-          {/* <Link to="/user/id/userbadges"> */}
-          <Link to={`/user/${id}/userbadges`}>
-            <div className="user-link">
-              <p>Badges earned</p>
-              <img src="icons/arrow.svg" alt="" />
+            <Link to="/usertracks">
+              <img src="/images/mybadges-img.png" alt="" className="user-img" />
+            </Link>
+          </div>
+        </div>
+        <div className="link-three">
+          <div className="link-container">
+            <div className="link-text-container">
+              <div className="link-text">My badges</div>
+              <img src="/icons/arrow.svg" alt="" />
             </div>
-          </Link>
+            <Link to={`/user/${id}/userbadges`}>
+              <img src="/images/mytracks-img.png" alt="" className="user-img" />
+            </Link>
+          </div>
         </div>
       </div>
     </section>
