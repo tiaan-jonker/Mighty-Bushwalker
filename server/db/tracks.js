@@ -53,7 +53,7 @@ function getSavedTrackByUser(userId, db = connection) {
   }
   return db('user_tracks')
     .join('track_data', 'track_data.id', 'user_tracks.track_id')
-    .select('track_id')
+    .select('id')
     .where(query)
 }
 
@@ -65,7 +65,7 @@ function getCompletedTrackByUser(userId, db = connection) {
   }
   return db('user_tracks')
     .join('track_data', 'track_data.id', 'user_tracks.track_id')
-    .select('track_id')
+    .select('id')
     .where(query)
 }
 
@@ -78,7 +78,7 @@ function getOtherTrackByUser(userId, db = connection) {
   return db('user_tracks')
     .join('track_data', 'track_data.id', 'user_tracks.track_id')
     .select(
-      'user_tracks.track_id',
+      'track_data.id',
       'track_data.name',
       'track_data.length',
       'track_data.difficulty',
