@@ -94,7 +94,10 @@ function getUserTrackByUser(userId, db = connection) {
   const query = {
     user_id: userId,
   }
-  return db('user_tracks').select('track_id', 'saved', 'completed').where(query)
+  return db('user_tracks')
+    .join('track_data', 'track_data.id', 'user_tracks.track_id')
+    .select('track_id', 'name', 'saved', 'completed')
+    .where(query)
 }
 
 module.exports = {

@@ -79,7 +79,7 @@ function Nav() {
           </NavLink>
         </div>
         <div className="nav-icon-container">
-          <NavLink to="/usertracks" onClick={tracksClick}>
+          <NavLink to="user/1/usertracks" onClick={tracksClick}>
             <svg
               width="40"
               height="40"

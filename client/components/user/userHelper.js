@@ -22,19 +22,8 @@ export function getUserBadges(id, consume = requestor) {
     })
 }
 
-export function getCompletedUserTracks(id, consume = requestor) {
-  return consume(`/tracks/completed/${id}`)
-    .then((res) => {
-      const completed = res.body
-      return completed
-    })
-    .catch((error) => {
-      console.log(error.message)
-    })
-}
-
-export function getSavedUserTracks(id, consume = requestor) {
-  return consume(`/tracks/saved/${id}`)
+export function getUserTracks(id, consume = requestor) {
+  return consume(`/tracks/userTracks/${id}`)
     .then((res) => {
       const completed = res.body
       return completed
