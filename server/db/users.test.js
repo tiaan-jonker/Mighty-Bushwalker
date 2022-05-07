@@ -46,8 +46,6 @@ test('addUser adds a user to the users table', () => {
   })
 })
 
-
-test('getUsers returns a list of all users', () => {
-
-  return users.getUsers
-}
+// test('getUsers returns a list of all users', () => {
+//   return users.getUsers
+// })
