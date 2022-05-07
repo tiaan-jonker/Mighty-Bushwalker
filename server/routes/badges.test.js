@@ -4,9 +4,9 @@ const server = require('../server')
 const db = require('../db/badges')
 const dbUsers = require('../db/users')
 // const auth0 = require('../routes/auth')
-const log = require('../logger')
+// const log = require('../logger')
 
-jest.mock('../logger')
+// jest.mock('../logger')
 jest.mock('../db/badges')
 jest.mock('../db/users')
 // jest.mock('../routes/auth')
@@ -92,8 +92,6 @@ describe('GET /api/v1/badges', () => {
       .expect('Content-Type', /json/)
       .expect(500)
       .then((res) => {
-        // expect(log).toHaveBeenCalledWith('mock getBadges error')
-        console.log(res.body)
         expect(res.body.message).toBe('Unable to retrieve badges')
         return null
       })
