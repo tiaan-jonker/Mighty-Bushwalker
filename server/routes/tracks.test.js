@@ -120,3 +120,93 @@ describe('GET /api/v1/tracks/:id', () => {
     )
   })
 })
+
+//testing PATCH routes
+
+describe('PATCH /api/v1/tracks/saved', () => {
+  db.updateSavedStatus.mockImplementation((mockTrack) => {
+    return Promise.resolve(mockTrack)
+  })
+
+  it('updates track to saved if its status is 1', () => {
+    // expect.assertions(6)
+    db.updateEvent.mockImplementation((updatedEvent) => {
+      expect(updatedEvent.description).toMatch('best event')
+      expect(updatedEvent.id).toBe(2)
+      expect(updatedEvent.title).toBe('cooler event')
+      expect(updatedEvent.volunteersNeeded).toBe(1000)
+      expect(updatedEvent.date).toBe('2021-01-01')
+      return Promise.resolve({
+        id: 2,
+        title: 'cooler event',
+        date: '2021-01-01',
+        volunteersNeeded: 1000,
+        description: 'the best event ever',
+      })
+    })
+    return request(server)
+      .patch('/api/v1/events/2')
+      .set(testAuthAdminHeader)
+      .send({
+        id: 2,
+        title: 'cooler event',
+        date: '2021-01-01',
+        volunteersNeeded: 1000,
+        description: 'the best event ever',
+      })
+      .expect('Content-Type', /json/)
+      .expect(200)
+      .then((res) => {
+        expect(res.body.title).toBe('cooler event')
+        return null
+      })
+
+    it('updates track to unsaved if status is 0', () => {
+      expect.assertions(6)
+      db.updateEvent.mockImplementation((updatedEvent) => {
+        expect(updatedEvent.description).toMatch('best event')
+        expect(updatedEvent.id).toBe(2)
+        expect(updatedEvent.title).toBe('cooler event')
+        expect(updatedEvent.volunteersNeeded).toBe(1000)
+        expect(updatedEvent.date).toBe('2021-01-01')
+        return Promise.resolve({
+          id: 2,
+          title: 'cooler event',
+          date: '2021-01-01',
+          volunteersNeeded: 1000,
+          description: 'the best event ever',
+        })
+      })
+      return request(server)
+        .patch('/api/v1/events/2')
+        .set(testAuthAdminHeader)
+        .send({
+          id: 2,
+          title: 'cooler event',
+          date: '2021-01-01',
+          volunteersNeeded: 1000,
+          description: 'the best event ever',
+        })
+        .expect('Content-Type', /json/)
+        .expect(200)
+        .then((res) => {
+          expect(res.body.title).toBe('cooler event')
+          return null
+        })
+
+      it('Test for 500 response and expect a json error object during db error', () => {
+        db.setVolunteerAttendance.mockImplementation(() =>
+          Promise.reject(new Error('Db operation error'))
+        )
+        return request(server)
+          .patch('/api/v1/volunteers')
+          .set(mockAuthAdminHeader)
+          .expect('Content-Type', /json/)
+          .then((res) => {
+            expect(res.status).toBe(500)
+            return null
+          })
+      })
+    })
+  })
+})
