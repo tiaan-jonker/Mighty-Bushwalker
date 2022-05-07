@@ -27,6 +27,11 @@ function Track() {
 
             return { ...track, distanceAway }
           })
+
+          updatedTracks.sort((a, b) => {
+            return a.distanceAway - b.distanceAway
+          })
+
           setAllTracks(updatedTracks)
           return null
         })

@@ -20,11 +20,26 @@ router.post('/', async (req, res) => {
 
 // GET /api/v1/users/:userId
 
-router.get('/:id', (req, res) => {
-  const id = Number(req.params.id)
-  db.getUserById(id)
-    .then((users) => {
-      res.json(users)
+// router.get('/:id', (req, res) => {
+//   const id = Number(req.params.id)
+//   db.getUserById(id)
+//     .then((users) => {
+//       res.json(users)
+//       return null
+//     })
+//     .catch((err) => {
+//       console.error(err)
+//       res.status(500).json({ message: 'Something went wrong' })
+//     })
+// })
+
+// Get by auth0Id
+
+router.get('/:auth0Id', (req, res) => {
+  const auth0Id = req.params.auth0Id
+  db.getUsersByAuthId(auth0Id)
+    .then((user) => {
+      res.json(user)
       return null
     })
     .catch((err) => {
