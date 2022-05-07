@@ -4,13 +4,15 @@
   margin: 0 auto;
   margin-top: 25px;
   width: 375px;
-  min-height: 812px;
+  height: 812px;
   border: 1px solid black;
   border-radius: 25px;
   color: #273f45;
-  background: linear-gradient(192.13deg, #8ce8ae -63.39%, #ffffff 100%);
+  /* background: linear-gradient(192.13deg, #8ce8ae -63.39%, #ffffff 100%); */
+  background: linear-gradient(192.13deg, #78d8de -63.39%, #ffffff 100%);
   position: relative;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: scroll;
 }
 
 .app-name {
