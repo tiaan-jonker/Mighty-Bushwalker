@@ -4,7 +4,7 @@ const server = require('../server')
 const db = require('../db/badges')
 const dbUsers = require('../db/users')
 // const auth0 = require('../routes/auth')
-const log = require('../logger')
+// const log = require('../logger')
 
 jest.mock('../logger')
 jest.mock('../db/badges')
@@ -19,6 +19,10 @@ const mockBadges = [
   {
     user_id: 2,
     badge_id: 2,
+  },
+  {
+    user_id: 3,
+    badge_id: 3,
   },
 ]
 
@@ -70,20 +74,19 @@ describe('GET /api/v1/badges/:userId', () => {
       expect(userId).toBe(1)
       return Promise.resolve(mockBadges)
     })
-    dbUsers.getUserById.mockImplementation(() => Promise.resolve({ id: 1 }))
     return request(server)
       .get('/api/v1/badges/1')
       .expect('Content-Type', /json/)
       .expect(200)
       .then((res) => {
-        console.log(res.body)
-        expect(res.body).toHaveLength(2)
+        // console.log(res.body)
+        expect(res.body).toHaveLength(3)
         return null
       })
   })
 
   it('responds with 500 and correct error object on DB error', () => {
-    db.getBadgesByUser.mockImplementation((userId) =>
+    db.getBadgesByUser.mockImplementation(() =>
       Promise.reject(new Error('mock getBadgesByUser error'))
     )
     return request(server)

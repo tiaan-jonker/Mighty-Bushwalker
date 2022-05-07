@@ -11,7 +11,7 @@ router.get('/', async (req, res) => {
     const badges = await db.getBadges()
     res.json(badges)
   } catch (error) {
-    console.error(error)
+    console.error(error.message)
     res.status(500).json({ message: 'Unable to retrieve badges' })
   }
 })
@@ -23,7 +23,7 @@ router.get('/:userId', async (req, res) => {
     const badges = await db.getBadgesByUser(userId)
     res.json(badges)
   } catch (error) {
-    console.error(error)
+    console.error(error.message)
     res.status(500).json({ message: 'Unable to retrieve badges for this user' })
   }
 })
