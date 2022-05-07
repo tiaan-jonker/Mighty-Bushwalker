@@ -44,18 +44,18 @@ test('listTracks returns a list of all tracks', () => {
 //potentially revisit 'return' as the bool is a bit screwy and also fill in tracks.line
 //
 
-test('addSavedTrack saves a track to the saved tracks list', () => {
-  return tracks.addSavedTrack(testDB)
-})
+// test('addSavedTrack saves a track to the saved tracks list', () => {
+//   return tracks.addSavedTrack(testDB)
+// })
 
-test('addCompletedTrack adds an already saved track to the completed tracks list', () => {
-  return tracks.addCompletedTrack(testDB)
-})
+// test('addCompletedTrack adds an already saved track to the completed tracks list', () => {
+//   return tracks.addCompletedTrack(testDB)
+// })
 
-test('getSavedTrackByUser returns all the saved tracks for a user', () => {
-  return tracks.getSavedTrackByUser('1', testDB)
-})
+// test('getSavedTrackByUser returns all the saved tracks for a user', () => {
+//   return tracks.getSavedTrackByUser('1', testDB)
+// })
 
-test('getCompletedTrackByUser returns all the completed tracks for a user', () => {
-  return tracks.getSavedTrackByUser('1', testDB)
-})
+// test('getCompletedTrackByUser returns all the completed tracks for a user', () => {
+//   return tracks.getSavedTrackByUser('1', testDB)
+// })

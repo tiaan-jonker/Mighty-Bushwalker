@@ -119,4 +119,18 @@ router.get('/other/:userId', (req, res) => {
     })
 })
 
+// get user_tracks data (saved / closed)
+router.get('/userTracks/:userId', (req, res) => {
+  const userId = Number(req.params.userId)
+  db.getUserTrackByUser(userId)
+    .then((tracks) => {
+      res.json(tracks)
+      return null
+    })
+    .catch((err) => {
+      console.error(err)
+      res.status(500).json({ message: 'Something went wrong' })
+    })
+})
+
 module.exports = router
