@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 
 function TrackItem({ trackData, randomNum }) {
-  const { id, name, difficulty, days, hours, lat, lon, length } = trackData
+  const { id, name, difficulty, days, hours, lat, lon, length, distanceAway } =
+    trackData
 
   const getBackgroundColor = () => {
     switch (difficulty) {
@@ -33,7 +34,7 @@ function TrackItem({ trackData, randomNum }) {
           </div>
           <div className="track-other-details">
             <p>
-              {length} km • Est. {hours}hrs
+              Length: {length}km • Est. {hours}hrs • {distanceAway}km Away
             </p>
           </div>
         </div>
