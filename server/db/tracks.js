@@ -77,7 +77,16 @@ function getOtherTrackByUser(userId, db = connection) {
   }
   return db('user_tracks')
     .join('track_data', 'track_data.id', 'user_tracks.track_id')
-    .select('track_id')
+    .select(
+      'user_tracks.track_id',
+      'user_tracks.name',
+      'user_tracks.length',
+      'user_tracks.diffuculty',
+      'user_tracks.days',
+      'user_tracks.hours',
+      'user_tracks.lat',
+      'user_tracks.lon'
+    )
     .where(query)
 }
 
