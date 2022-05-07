@@ -9,3 +9,15 @@
   border: 2px solid var(--primary-green);
   border-radius: 3%;
 }
+
+.all-map-container {
+  display: flex;
+  justify-content: center;
+}
+
+.all-map {
+  height: 250px;
+  width: 500px;
+  border: 2px solid var(--primary-green);
+  border-radius: 3%;
+}
