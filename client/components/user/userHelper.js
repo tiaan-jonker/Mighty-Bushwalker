@@ -3,7 +3,7 @@ import requestor from '../../consume'
 export function getUser(id, consume = requestor) {
   return consume(`/users/${id}`)
     .then((res) => {
-      const user = res.body
+      const user = res.body[0]
       return user
     })
     .catch((error) => {

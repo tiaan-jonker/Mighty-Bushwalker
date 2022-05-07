@@ -1,10 +1,14 @@
+import { useAuth0 } from '@auth0/auth0-react'
 import React, { useEffect, useState } from 'react'
-import { Link, useParams } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import { getUser } from './userHelper'
+import { getLogoutFn } from '../../auth0-utils'
 
 function UserProfile() {
-  const [user, setUser] = useState([])
+  const [user, setUser] = useState({})
   const { id } = useParams()
+  const logout = getLogoutFn(useAuth0)
+  const Navigate = useNavigate
 
   useEffect(() => {
     getUser(id)
@@ -13,6 +17,13 @@ function UserProfile() {
       })
       .catch((err) => console.log(err))
   }, [id])
+
+  console.log(user)
+  function handleLogout(event) {
+    event.preventDefault()
+    logout()
+    Navigate('/')
+  }
 
   return (
     <section className="page-container">
@@ -86,6 +97,7 @@ function UserProfile() {
           </div>
         </div>
       </div>
+      <button onClick={handleLogout}>x</button>
     </section>
   )
 }

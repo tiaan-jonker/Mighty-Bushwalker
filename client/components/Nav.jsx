@@ -1,31 +1,8 @@
 import React, { useEffect, useState } from 'react'
-// import { useAuth0 } from '@auth0/auth0-react'
-// import { getLoginFn, getLogoutFn, getRegisterFn } from '../auth0-utils'
-// import { IfAuthenticated, IfNotAuthenticated } from './Authenticated'
-// import { useSelector } from 'react-redux'
+
 import { NavLink } from 'react-router-dom'
 
 function Nav() {
-  // const user = useSelector((state) => state.user)
-  // const login = getLoginFn(useAuth0)
-  // const logout = getLogoutFn(useAuth0)
-  // const register = getRegisterFn(useAuth0)
-
-  // function handleLogin(event) {
-  //   event.preventDefault()
-  //   login()
-  // }
-
-  // function handleLogoff(event) {
-  //   event.preventDefault()
-  //   logout()
-  // }
-
-  // function handleRegister(event) {
-  //   event.preventDefault()
-  //   register()
-  // }
-
   const [navSelected, setNavSelected] = useState('profile')
 
   // profile, tracks, explore

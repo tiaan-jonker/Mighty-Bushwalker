@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import TrackButton from './TrackButton'
-import Map from './Map'
+import TrackMap from '../map/TrackMap'
 import WeatherInfo from '../weather/WeatherInfo'
 import { useParams } from 'react-router-dom'
 import { getTrack } from './trackHelper'
@@ -37,7 +37,7 @@ function Track() {
           </p>
         </div>
         <div>
-          <Map track={track} />
+          <TrackMap track={track} />
           <WeatherInfo />
         </div>
       </div>
