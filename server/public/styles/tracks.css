@@ -2,20 +2,23 @@
   list-style: none;
 }
 
+.track-name-difficulty-container {
+  display: flex;
+  justify-content: space-between;
+}
+
 .track-list-name {
-  font-size: 24px;
+  font-size: 18px;
 }
 
 .track-link-item {
-  padding: 15px 10px;
-  border: 2px solid black;
   border-radius: 10px;
   margin-bottom: 20px;
 }
 
 .track-difficulty {
   color: #eee;
-  font-size: 12px;
+  font-size: 11px;
   padding: 5px 15px;
   border-radius: 5px;
 }
@@ -26,4 +29,26 @@
 
 .track-other-details > p {
   font-size: 12px;
+}
+
+.track-banner {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.track-banner-img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  object-position: bottom;
+}
+
+.track-banner-info {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  padding: 10px;
+  background-color: rgb(39, 63, 69);
+  color: #eee;
 }
