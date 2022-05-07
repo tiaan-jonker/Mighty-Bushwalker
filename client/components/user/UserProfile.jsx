@@ -16,51 +16,74 @@ function UserProfile() {
 
   return (
     <section className="page-container">
-      <h1 className="app-name">Bushwalk</h1>
       <div>
-        <h2 className="user-intro">
-          Hello {user.name}, ready to level up your walking?
-        </h2>
+        <h2 className="user-intro">Hello {user.name},</h2>
+        <h3 className="user-intro-sub">ready to level up your walking?</h3>
       </div>
       {/* Replace with UserProfileStats component */}
       <div className="stats-container">
         <div className="stat-info">
-          <span className="circle">Rank</span>
-          <p>{user.rank}</p>
+          <span className="stat-rectangle">
+            <img src="/icons/trophy.svg" alt="" className="stat-icon" />
+            <div className="stat-description">Hiking level</div>
+            <div className="user-stat">{user.rank}</div>
+          </span>
         </div>
         <div className="stat-info">
-          <span className="circle">XP</span>
-          <p>{user.xp} XP</p>
+          <span className="stat-rectangle">
+            <img src="/icons/hiker.svg" alt="" className="stat-icon" />
+            <div className="stat-description">Hiking level</div>
+            <div className="user-stat">{user.rank}</div>
+          </span>
         </div>
         <div className="stat-info">
-          <span className="circle"></span>
-          <p>Level 50</p>
-        </div>
-        <div className="stat-info">
-          <span className="circle"></span>
-          <p>Level 50</p>
+          <span className="stat-rectangle">
+            <img src="/icons/compass.svg" alt="" className="stat-icon" />
+            <div className="stat-description">Hiking level</div>
+            <div className="user-stat">{user.rank}</div>
+          </span>
         </div>
       </div>
-      <div>
-        <div className="user-links-container">
-          <Link to={`/user/${id}/usertracks`}>
-            <div className="user-link">
-              <p>My tracks</p>
-              <img src="icons/arrow.svg" alt="" />
+      <div className="xp-container">
+        <p>XP bar placeholder</p>
+      </div>
+      <div className="user-links-container">
+        <div className="link-one">
+          <div className="link-container">
+            <div className="link-text-container">
+              <div className="link-text">Explore</div>
+              <img src="/icons/arrow.svg" alt="" />
             </div>
-          </Link>
-          <Link to="/tracks">
-            <div className="user-link">
-              <p>Explore other tracks</p>
-              <img src="icons/arrow.svg" alt="" />
+            <Link to="/tracks">
+              <img
+                src="/images/explore-img.png"
+                alt=""
+                className="user-img-one"
+              />
+            </Link>
+          </div>
+        </div>
+        <div className="link-two">
+          <div className="link-container">
+            <div className="link-text-container">
+              <div className="link-text">My tracks</div>
+              <img src="/icons/arrow.svg" alt="" />
             </div>
-          </Link>
-          <Link to={`/user/${id}/userbadges`}>
-            <div className="user-link">
-              <p>Badges earned</p>
-              <img src="icons/arrow.svg" alt="" />
+            <Link to={`/user/${id}/usertracks`}>
+              <img src="/images/mybadges-img.png" alt="" className="user-img" />
+            </Link>
+          </div>
+        </div>
+        <div className="link-three">
+          <div className="link-container">
+            <div className="link-text-container">
+              <div className="link-text">My badges</div>
+              <img src="/icons/arrow.svg" alt="" />
             </div>
-          </Link>
+            <Link to={`/user/${id}/userbadges`}>
+              <img src="/images/mytracks-img.png" alt="" className="user-img" />
+            </Link>
+          </div>
         </div>
       </div>
     </section>
