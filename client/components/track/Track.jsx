@@ -20,10 +20,7 @@ function Track() {
   return (
     <section>
       <div className="page-image-container">
-        <img
-          src="images/placeholder-image.svg"
-          alt="placeholder image of track"
-        />
+        <img src="/images/bg/bg-1.webp" alt="placeholder image of track" />
       </div>
       <div className="track-content-container">
         <h2 className="track-name">{track.name}</h2>
