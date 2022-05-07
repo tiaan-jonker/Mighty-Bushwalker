@@ -3,31 +3,41 @@ import React from 'react'
 function Weather({ weatherData }) {
   const { description, temperature } = weatherData
 
+  console.log(description)
+
   const getIcon = () => {
     switch (description) {
       case 'Clouds':
-        return 'icons/cloudy.svg'
+        return '/icons/weather/cloud.png'
       case 'Thunderstorm':
-        return 'icons/thunder.svg'
+        return '/icons/weather/thunderstorm.png'
       case 'Rain':
-        return 'icons/rain.svg'
+        return '/icons/weather/rain.png'
       case 'Drizzle':
-        return 'icons/drizzle.svg'
+        return '/icons/weather/rain.png'
       case 'Clear':
-        return 'icons/sunny.svg'
+        return '/icons/weather/sunny.png'
     }
   }
 
   return (
     <div>
-      <div>
-        <p>Today</p>
-        <div className="weather-circle">
+      <div className="weather-container">
+        <div className="weather-rectangle">
+          <p className="weather-day">Today</p>
           <img src={getIcon()} alt="" className="weather-icon" />
+          <p className="weather-temp">{temperature}&deg;C</p>
         </div>
-        <p>
-          {description} / {temperature}&deg;C
-        </p>
+        <div className="weather-rectangle">
+          <p className="weather-day">Today</p>
+          <img src={getIcon()} alt="" className="weather-icon" />
+          <p className="weather-temp">{temperature}&deg;C</p>
+        </div>
+        <div className="weather-rectangle">
+          <p className="weather-day">Today</p>
+          <img src={getIcon()} alt="" className="weather-icon" />
+          <p className="weather-temp">{temperature}&deg;C</p>
+        </div>
       </div>
     </div>
   )
