@@ -7,7 +7,8 @@
   min-height: 812px;
   border: 1px solid black;
   border-radius: 25px;
-  background-color: #eee;
+  color: #273f45;
+  background: linear-gradient(192.13deg, #8ce8ae -63.39%, #ffffff 100%);
   position: relative;
   overflow: hidden;
 }

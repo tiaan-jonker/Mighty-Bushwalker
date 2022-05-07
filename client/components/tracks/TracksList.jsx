@@ -34,13 +34,23 @@ function Track() {
       .catch((err) => console.log(err))
   }, [])
 
+  const randomNumGenerator = () => {
+    return Math.floor(Math.random() * 14)
+  }
+
   return (
     <section className="page-container">
+      <h2 className="tracks-intro">Explore</h2>
+      <p className="tracks-sub">All trails available to hike</p>
       <AllTracksMap tracks={allTracks} />
       {allTracks.map((trackData) => (
         <ul key={trackData.id} className="track-list">
           <div className="track-link-item">
-            <TrackItem trackData={trackData} />
+            <TrackItem
+              trackData={trackData}
+              const
+              randomNum={randomNumGenerator}
+            />
           </div>
         </ul>
       ))}
