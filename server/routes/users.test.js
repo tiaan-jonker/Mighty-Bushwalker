@@ -2,7 +2,10 @@ const request = require('supertest')
 const server = require('../server')
 const db = require('../db/users')
 
+const { generateUserTrackData } = require('../db/dbHelpers')
+
 jest.mock('../db/users')
+jest.mock('../db/dbHelpers')
 
 // Arrange
 // Act
@@ -41,4 +44,19 @@ test('GET /:auth0id returns users by auth0id', () => {
     })
 })
 
-
+test('POST /addNewUserTracks adds new track', () => {
+  expect.assertions()
+  db.addNewUserTracks = jest.fn()
+  db.addNewUserTracks.mockImplementation(() => {
+    return Promise.resolve()
+  })
+  const newTrack = generateUserTrackData()
+  return request(server)
+    .post('/api/v1/users')
+    .send(newTrack)
+    .expect(201)
+    .then((response) => {
+      expect(response.status).toBe(201)
+      return null
+    })
+})
