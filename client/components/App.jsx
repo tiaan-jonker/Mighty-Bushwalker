@@ -9,6 +9,7 @@ import UserBadges from './user/UserBadges'
 import Track from './track/Track'
 import Tracks from './tracks/TracksList'
 import Nav from './Nav'
+import Landing from './Landing'
 import Tabs from './Tabs'
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
   return (
     <div className="mobile-container">
       <Routes>
+        <Route path="/" element={<Landing />} />
         <Route path="/user/:id" element={<UserProfile />} />
         <Route path="/track/:id" element={<Track />} />
         <Route path="/tracks" element={<Tracks />} />
