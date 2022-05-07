@@ -65,9 +65,9 @@ describe('GET /api/v1/badges', () => {
 
 describe('GET /api/v1/badges/:userId', () => {
   it("responds with user's badges", () => {
-    expect.assertions(1)
+    expect.assertions(2)
     db.getBadgesByUser.mockImplementation((userId) => {
-      expect(userId).toBe(2)
+      expect(userId).toBe(1)
       return Promise.resolve(mockBadges)
     })
     dbUsers.getUserById.mockImplementation(() => Promise.resolve({ id: 1 }))
@@ -77,23 +77,23 @@ describe('GET /api/v1/badges/:userId', () => {
       .expect(200)
       .then((res) => {
         console.log(res.body)
-        expect(res.body).toHaveLength(1)
+        expect(res.body).toHaveLength(2)
         return null
       })
   })
 
-  // it('responds with 500 and correct error object on DB error', () => {
-  //   db.getGardenById.mockImplementation(() =>
-  //     Promise.reject(new Error('mock getGardenById error'))
-  //   )
-  //   return request(server)
-  //     .get('/api/v1/gardens/999')
-  //     .expect('Content-Type', /json/)
-  //     .expect(500)
-  //     .then((res) => {
-  //       expect(log).toHaveBeenCalledWith('mock getGardenById error')
-  //       expect(res.body.error.title).toBe('Unable to retrieve garden')
-  //       return null
-  //     })
-  // })
+  it('responds with 500 and correct error object on DB error', () => {
+    db.getBadgesByUser.mockImplementation((userId) =>
+      Promise.reject(new Error('mock getBadgesByUser error'))
+    )
+    return request(server)
+      .get('/api/v1/badges/999')
+      .expect('Content-Type', /json/)
+      .expect(500)
+      .then((res) => {
+        // expect(log).toHaveBeenCalledWith('mock getBadgesByUser error')
+        expect(res.body.message).toBe('Unable to retrieve badges for this user')
+        return null
+      })
+  })
 })
