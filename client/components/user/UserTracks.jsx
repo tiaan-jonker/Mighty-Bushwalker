@@ -31,15 +31,17 @@ function UserTracks() {
         <h2 className="user-track-intro">Completed and Saved Tracks</h2>
         {userTracks.map((track) => {
           return (
-            <div key={track.track_id}>
-              <Link to={`/track/${track.track_id}`}>
-                <div className="user-track-link">
-                  <p>{track.name}</p>
-                  {/* <p>completed</p> */}
-                  <img src="icons/arrow.svg" alt="" />
-                </div>
-              </Link>
-            </div>
+            (track.completed == 1 || track.saved == 1) && (
+              <div key={track.track_id}>
+                <Link to={`/track/${track.track_id}`}>
+                  <div className="user-track-link">
+                    <p>{track.name}</p>
+                    {/* <p>completed</p> */}
+                    <img src="icons/arrow.svg" alt="" />
+                  </div>
+                </Link>
+              </div>
+            )
           )
         })}
       </div>

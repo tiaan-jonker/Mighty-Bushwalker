@@ -11,6 +11,12 @@ function getUsers(db = connection) {
   )
 }
 
+function getUsersByAuthId(auth0Id, db = connection) {
+  return db('users')
+    .where('auth0_id', auth0Id)
+    .select('auth0_id as id', 'name', 'email', 'description')
+}
+
 function addUser(input, db = connection) {
   const { auth0Id, name, email, description } = input
   const user = {
@@ -39,4 +45,5 @@ module.exports = {
   addUser,
   getUserById,
   addNewUserTracks,
+  getUsersByAuthId,
 }
