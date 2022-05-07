@@ -1,7 +1,10 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
+
+import { calculateDistanceBetweenPoints } from './tracksHelper'
 
 function TrackItem({ trackData }) {
-  const { id, name, difficulty, days, hours, lat, lon, length } = trackData
+  const { id, name, difficulty, days, hours, lat, lon, length, distanceAway } =
+    trackData
 
   const getBackgroundColor = () => {
     switch (difficulty) {
@@ -29,7 +32,7 @@ function TrackItem({ trackData }) {
       </span>
       <div className="track-other-details">
         <p>
-          Length: {length}km • Est. {hours}hrs
+          Length: {length}km • Est. {hours}hrs • {distanceAway}km Away
         </p>
       </div>
     </li>
