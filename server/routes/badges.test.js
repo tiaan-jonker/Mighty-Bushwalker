@@ -4,7 +4,6 @@ const server = require('../server')
 const db = require('../db/badges')
 const dbUsers = require('../db/users')
 // const auth0 = require('../routes/auth')
-const log = require('../logger')
 
 jest.mock('../logger')
 jest.mock('../db/badges')
@@ -83,7 +82,7 @@ describe('GET /api/v1/badges/:userId', () => {
   })
 
   it('responds with 500 and correct error object on DB error', () => {
-    db.getBadgesByUser.mockImplementation((userId) =>
+    db.getBadgesByUser.mockImplementation(() =>
       Promise.reject(new Error('mock getBadgesByUser error'))
     )
     return request(server)
