@@ -39,7 +39,7 @@ router.patch('/saved', (req, res) => {
       return null
     })
     .catch((err) => {
-      console.error(err)
+      console.error(err.message)
       res.status(500).json({ message: 'Unable to update track' })
     })
 })
@@ -58,7 +58,7 @@ router.patch('/completed', (req, res) => {
       return null
     })
     .catch((err) => {
-      console.error(err)
+      console.error(err.message)
       res.status(500).json({ message: 'Unable to update track' })
     })
 })
@@ -87,7 +87,7 @@ router.get('/saved/:userId', (req, res) => {
       return null
     })
     .catch((err) => {
-      console.error(err)
+      console.error(err.message)
       res.status(500).json({ message: 'Something went wrong' })
     })
 })
@@ -101,7 +101,7 @@ router.get('/completed/:userId', (req, res) => {
       return null
     })
     .catch((err) => {
-      console.error(err)
+      console.error(err.message)
       res.status(500).json({ message: 'Something went wrong' })
     })
 })
@@ -115,7 +115,7 @@ router.get('/other/:userId', (req, res) => {
       return null
     })
     .catch((err) => {
-      console.error(err)
+      console.error(err.message)
       res.status(500).json({ message: 'Something went wrong' })
     })
 })
@@ -129,7 +129,7 @@ router.get('/userTracks/:userId', (req, res) => {
       return null
     })
     .catch((err) => {
-      console.error(err)
+      console.error(err.message)
       res.status(500).json({ message: 'Something went wrong' })
     })
 })

@@ -88,7 +88,7 @@ describe('GET /api/v1/tracks', () => {
 
 describe('GET /api/v1/tracks/:id', () => {
   it('responds with data for a single track', () => {
-    // expect.assertions(2)
+    // expect.assertions(4)
     db.getTrackById.mockImplementation((id) => {
       expect(id).toBe(1)
       return Promise.resolve(mockTrack)
@@ -105,6 +105,7 @@ describe('GET /api/v1/tracks/:id', () => {
   })
 
   it('responds with 500 and correct error object on DB error', () => {
+    // expect.assertions(2)
     db.getTrackById.mockImplementation(() =>
       Promise.reject(new Error('mock getTrackById error'))
     )
@@ -122,91 +123,129 @@ describe('GET /api/v1/tracks/:id', () => {
 })
 
 //testing PATCH routes
+//check to see if 'updateSavedStatus is written how we want it to be
 
+//could we use 'getSavedTrackByUser' for something? I stuck it in.
+//I thought it could prove the test better.
 describe('PATCH /api/v1/tracks/saved', () => {
-  db.updateSavedStatus.mockImplementation((mockTrack) => {
-    return Promise.resolve(mockTrack)
-  })
+  it('updates saved status in user_tracks table', () => {
+    db.updateSavedStatus.mockImplementation((mockUserTracks) =>
+      Promise.resolve(mockUserTracks)
+    )
+    db.getSavedTrackByUser.mockImplementation((mockUserTracks) =>
+      Promise.resolve(mockUserTracks)
+    )
+    return (
+      request(server)
+        .patch('/api/v1/tracks/saved')
+        // .expect('Content-Type', /json/)
+        .expect(201)
+        .then((res) => {
+          // console.log('NEWRESINNIT', res)
+          expect(res.text).toBe('Created')
 
-  it('updates track to saved if its status is 1', () => {
-    // expect.assertions(6)
-    db.updateEvent.mockImplementation((updatedEvent) => {
-      expect(updatedEvent.description).toMatch('best event')
-      expect(updatedEvent.id).toBe(2)
-      expect(updatedEvent.title).toBe('cooler event')
-      expect(updatedEvent.volunteersNeeded).toBe(1000)
-      expect(updatedEvent.date).toBe('2021-01-01')
-      return Promise.resolve({
-        id: 2,
-        title: 'cooler event',
-        date: '2021-01-01',
-        volunteersNeeded: 1000,
-        description: 'the best event ever',
-      })
+          return null
+        })
+    )
+  })
+})
+it('responds with 500 and correct error object on DB error', () => {
+  db.updateSavedStatus.mockImplementation(() =>
+    Promise.reject(new Error('Db operation error'))
+  )
+  return request(server)
+    .patch('/api/v1/tracks/saved')
+    .expect('Content-Type', /json/)
+    .then((res) => {
+      expect(res.status).toBe(500)
+      // console.log('LOG!', res)
+      expect(res.body.message).toBe('Unable to update track')
+      return null
+    })
+})
+
+describe('PATCH /api/v1/tracks/completed', () => {
+  it('updates completed status in user_tracks table', () => {
+    db.updateCompletedStatus.mockImplementation((mockUserTracks) =>
+      Promise.resolve(mockUserTracks)
+    )
+    db.getSavedTrackByUser.mockImplementation((mockUserTracks) =>
+      Promise.resolve(mockUserTracks)
+    )
+    return (
+      request(server)
+        .patch('/api/v1/tracks/completed')
+        // .expect('Content-Type', /json/)
+        .expect(201)
+        .then((res) => {
+          // console.log('NEWRESINNIT', res)
+          expect(res.text).toBe('Created')
+
+          return null
+        })
+    )
+  })
+})
+it('responds with 500 and correct error object on DB error', () => {
+  db.updateCompletedStatus.mockImplementation(() =>
+    Promise.reject(new Error('Db operation error'))
+  )
+  return request(server)
+    .patch('/api/v1/tracks/completed')
+    .expect('Content-Type', /json/)
+    .then((res) => {
+      expect(res.status).toBe(500)
+      // console.log('LOG!', res)
+      expect(res.body.message).toBe('Unable to update track')
+      return null
+    })
+})
+
+const mockUserTracks = [
+  {
+    userId: 1,
+    trackId: 1,
+    completed: 0,
+    saved: 0,
+  },
+  {
+    userId: 2,
+    trackId: 2,
+    completed: 1,
+    saved: 1,
+  },
+]
+
+describe('GET /api/v1/tracks/saved/:userId', () => {
+  it('responds with all the tracks a user has saved', () => {
+    // expect.assertions(2)
+    db.getSavedTrackByUser.mockImplementation((mockUserTracks) => {
+      expect(mockUserTracks).toBe(1)
+      return Promise.resolve(mockUserTracks)
     })
     return request(server)
-      .patch('/api/v1/events/2')
-      .set(testAuthAdminHeader)
-      .send({
-        id: 2,
-        title: 'cooler event',
-        date: '2021-01-01',
-        volunteersNeeded: 1000,
-        description: 'the best event ever',
-      })
+      .get('/api/v1/tracks/saved/1')
       .expect('Content-Type', /json/)
       .expect(200)
       .then((res) => {
-        expect(res.body.title).toBe('cooler event')
+        console.log(res)
+        expect(res.body).toBe(1)
         return null
       })
+  })
 
-    it('updates track to unsaved if status is 0', () => {
-      expect.assertions(6)
-      db.updateEvent.mockImplementation((updatedEvent) => {
-        expect(updatedEvent.description).toMatch('best event')
-        expect(updatedEvent.id).toBe(2)
-        expect(updatedEvent.title).toBe('cooler event')
-        expect(updatedEvent.volunteersNeeded).toBe(1000)
-        expect(updatedEvent.date).toBe('2021-01-01')
-        return Promise.resolve({
-          id: 2,
-          title: 'cooler event',
-          date: '2021-01-01',
-          volunteersNeeded: 1000,
-          description: 'the best event ever',
-        })
+  it('responds with 500 and correct error object on DB error', () => {
+    db.getSavedTrackByUser.mockImplementation(() =>
+      Promise.reject(new Error('mock getSavedTrackByUser error'))
+    )
+    return request(server)
+      .get('/api/v1/tracks/saved/999')
+      .expect('Content-Type', /json/)
+      .expect(500)
+      .then((res) => {
+        // expect(log).toHaveBeenCalledWith('mock getBadgesByUser error')
+        expect(res.body.message).toBe('Something went wrong')
+        return null
       })
-      return request(server)
-        .patch('/api/v1/events/2')
-        .set(testAuthAdminHeader)
-        .send({
-          id: 2,
-          title: 'cooler event',
-          date: '2021-01-01',
-          volunteersNeeded: 1000,
-          description: 'the best event ever',
-        })
-        .expect('Content-Type', /json/)
-        .expect(200)
-        .then((res) => {
-          expect(res.body.title).toBe('cooler event')
-          return null
-        })
-
-      it('Test for 500 response and expect a json error object during db error', () => {
-        db.setVolunteerAttendance.mockImplementation(() =>
-          Promise.reject(new Error('Db operation error'))
-        )
-        return request(server)
-          .patch('/api/v1/volunteers')
-          .set(mockAuthAdminHeader)
-          .expect('Content-Type', /json/)
-          .then((res) => {
-            expect(res.status).toBe(500)
-            return null
-          })
-      })
-    })
   })
 })
