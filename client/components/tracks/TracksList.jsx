@@ -21,6 +21,8 @@ function Track() {
 
   return (
     <section className="page-container">
+      <h2 className="tracks-intro">Explore</h2>
+      <p className="tracks-sub">All trails available to hike</p>
       <AllTracksMap />
       {allTracks.map((trackData) => (
         <ul key={trackData.id} className="track-list">

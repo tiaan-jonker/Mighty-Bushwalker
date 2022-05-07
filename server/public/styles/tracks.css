@@ -1,3 +1,13 @@
+.tracks-intro {
+  font-size: 32px;
+  font-weight: 700;
+}
+
+.tracks-sub {
+  font-size: 14px;
+  font-weight: 300;
+}
+
 .track-list {
   list-style: none;
 }
