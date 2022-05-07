@@ -1,11 +1,24 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React, { useEffect, useState } from 'react'
+import { Link, useParams } from 'react-router-dom'
+import { getUserTracks } from './userHelper'
 
 // TODO:
 // --> .map to map out saved / completed tracks associated with user id
 // --> that includes the names and if completed to have a 'date completed'
 
 function UserTracks() {
+  const [userTracks, setUserTracks] = useState([{ track_id: 0 }])
+
+  const { id } = useParams()
+
+  useEffect(() => {
+    getUserTracks(id)
+      .then((tracks) => {
+        return setUserTracks(tracks)
+      })
+      .catch((err) => console.log(err.message))
+  }, [id])
+
   return (
     <section>
       <div className="page-image-container">
@@ -16,21 +29,19 @@ function UserTracks() {
       </div>
       <div className="page-container">
         <h2 className="user-track-intro">Completed and Saved Tracks</h2>
-        {/* use .map to render out all tracks for user by id */}
-        <div>
-          <Link to="/track">
-            <div className="user-track-link">
-              <p>Hauturu Highpoint Track</p>
-              <img src="icons/arrow.svg" alt="" />
+        {userTracks.map((track) => {
+          return (
+            <div key={track.track_id}>
+              <Link to={`/track/${track.track_id}`}>
+                <div className="user-track-link">
+                  <p>{track.name}</p>
+                  {/* <p>completed</p> */}
+                  <img src="icons/arrow.svg" alt="" />
+                </div>
+              </Link>
             </div>
-          </Link>
-          <Link to="/track">
-            <div className="user-track-link">
-              <p>Hauturu Highpoint Track</p>
-              <img src="icons/arrow.svg" alt="" />
-            </div>
-          </Link>
-        </div>
+          )
+        })}
       </div>
     </section>
   )

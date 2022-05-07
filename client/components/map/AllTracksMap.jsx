@@ -15,10 +15,10 @@ function AllTrackMap() {
   const startPosition = [lat, long]
 
   const mapComponent = (
-    <>
-      <div className="map-container">
+    <div>
+      <div className="all-map-container">
         <MapContainer
-          className="map"
+          className="all-map"
           center={[lat, long]} // This will change - with the long and lat passed in from the track
           zoom={11}
           scrollWheelZoom={true}
@@ -29,7 +29,7 @@ function AllTrackMap() {
           </Marker>
         </MapContainer>
       </div>
-    </>
+    </div>
   )
 
   return <>{lat !== 0 && long !== 0 ? mapComponent : null}</>
