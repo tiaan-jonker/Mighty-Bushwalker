@@ -69,7 +69,7 @@ function UserProfile() {
               <div className="link-text">My tracks</div>
               <img src="/icons/arrow.svg" alt="" />
             </div>
-            <Link to="/usertracks">
+            <Link to={`/user/${id}/usertracks`}>
               <img src="/images/mybadges-img.png" alt="" className="user-img" />
             </Link>
           </div>

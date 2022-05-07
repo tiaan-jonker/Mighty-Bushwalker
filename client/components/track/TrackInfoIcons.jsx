@@ -1,7 +1,8 @@
 import React from 'react'
 
-function TrackInfoIcons() {
-  return <div>TrackInfoIcons</div>
+function TrackInfoIcons(props) {
+  const { track } = props
+  return <div>{track.length}km</div>
 }
 
 export default TrackInfoIcons
