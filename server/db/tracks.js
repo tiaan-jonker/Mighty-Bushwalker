@@ -45,6 +45,7 @@ function getTrackById(id, db = connection) {
     .first()
 }
 
+// possibly redundant
 function getSavedTrackByUser(userId, db = connection) {
   const query = {
     user_id: userId,
@@ -52,10 +53,11 @@ function getSavedTrackByUser(userId, db = connection) {
   }
   return db('user_tracks')
     .join('track_data', 'track_data.id', 'user_tracks.track_id')
-    .select('track_id')
+    .select('id')
     .where(query)
 }
 
+// possibly redundant
 function getCompletedTrackByUser(userId, db = connection) {
   const query = {
     user_id: userId,
@@ -63,7 +65,7 @@ function getCompletedTrackByUser(userId, db = connection) {
   }
   return db('user_tracks')
     .join('track_data', 'track_data.id', 'user_tracks.track_id')
-    .select('track_id')
+    .select('id')
     .where(query)
 }
 
@@ -75,8 +77,24 @@ function getOtherTrackByUser(userId, db = connection) {
   }
   return db('user_tracks')
     .join('track_data', 'track_data.id', 'user_tracks.track_id')
-    .select('track_id')
+    .select(
+      'track_data.id',
+      'track_data.name',
+      'track_data.length',
+      'track_data.difficulty',
+      'track_data.days',
+      'track_data.hours',
+      'track_data.lat',
+      'track_data.lon'
+    )
     .where(query)
+}
+
+function getUserTrackByUser(userId, db = connection) {
+  const query = {
+    user_id: userId,
+  }
+  return db('user_tracks').select('track_id', 'saved', 'completed').where(query)
 }
 
 module.exports = {
@@ -87,4 +105,5 @@ module.exports = {
   getSavedTrackByUser,
   getCompletedTrackByUser,
   getOtherTrackByUser,
+  getUserTrackByUser,
 }
