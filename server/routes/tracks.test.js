@@ -40,6 +40,20 @@ const mockTracks = [
   },
 ]
 
+const mockTrack = {
+  id: 1,
+  assetId: 666,
+  name: 'trackie mctrackinson',
+  length: '666',
+  days: '100',
+  hours: '2400',
+  return: true,
+  lon: 80,
+  lat: 50,
+  line: '[80, 50]',
+  difficulty: 'impossible',
+}
+
 describe('GET /api/v1/tracks', () => {
   it('responds with track_data on res body', () => {
     db.listTracks.mockImplementation(() => Promise.resolve(mockTracks))
@@ -72,36 +86,37 @@ describe('GET /api/v1/tracks', () => {
   })
 })
 
-// describe('GET /api/v1/badges/:userId', () => {
-//   it("responds with user's badges", () => {
-//     expect.assertions(2)
-//     db.getBadgesByUser.mockImplementation((userId) => {
-//       expect(userId).toBe(1)
-//       return Promise.resolve(mockBadges)
-//     })
-//     dbUsers.getUserById.mockImplementation(() => Promise.resolve({ id: 1 }))
-//     return request(server)
-//       .get('/api/v1/badges/1')
-//       .expect('Content-Type', /json/)
-//       .expect(200)
-//       .then((res) => {
-//         // console.log(res.body)
-//         expect(res.body).toHaveLength(2)
-//         return null
-//       })
-//   })
+describe('GET /api/v1/tracks/:id', () => {
+  it('responds with data for a single track', () => {
+    // expect.assertions(2)
+    db.getTrackById.mockImplementation((id) => {
+      expect(id).toBe(1)
+      return Promise.resolve(mockTrack)
+    })
+    return request(server)
+      .get('/api/v1/tracks/1')
+      .expect('Content-Type', /json/)
+      .expect(200)
+      .then((res) => {
+        console.log(res.body)
+        expect(res.body.assetId).toBe(666)
+        return null
+      })
+  })
 
-//   it('responds with 500 and correct error object on DB error', () => {
-//     db.getBadgesByUser.mockImplementation(() =>
-//       Promise.reject(new Error('mock getBadgesByUser error'))
-//     )
-//     return request(server)
-//       .get('/api/v1/badges/999')
-//       .expect('Content-Type', /json/)
-//       .expect(500)
-//       .then((res) => {
-//         // expect(log).toHaveBeenCalledWith('mock getBadgesByUser error')
-//         expect(res.body.message).toBe('Unable to retrieve badges for this user')
-//         return null
-//       })
-//   })
+  it('responds with 500 and correct error object on DB error', () => {
+    db.getTrackById.mockImplementation(() =>
+      Promise.reject(new Error('mock getTrackById error'))
+    )
+    return (
+      request(server)
+        .get('/api/v1/tracks/1')
+        // .expect('Content-Type', json)
+        .expect(500)
+        .then((res) => {
+          expect(res.body.message).toBe('Something went wrong')
+          return null
+        })
+    )
+  })
+})
