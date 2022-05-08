@@ -6,6 +6,7 @@ import weather from './weather'
 import weatherIcon from './weatherIcon'
 import forecast from './forecast'
 import waiting from './waiting'
+import userLon from './userLon'
 
 export default combineReducers({
   user,
@@ -13,5 +14,6 @@ export default combineReducers({
   weather,
   forecast,
   weatherIcon,
+  userLon,
   waiting,
 })

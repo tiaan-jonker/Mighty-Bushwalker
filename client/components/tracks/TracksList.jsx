@@ -6,6 +6,7 @@ import AllTracksMap from '../map/AllTracksMap'
 import TrackFilterModal from './TrackFilterModal'
 import { fetchMapAndProductData } from '../../actions/tracks'
 import { randomNumGenForImage } from '../../utils'
+import { getUserLon } from '../../apis/location'
 
 function Track() {
   const [allTracks, setAllTracks] = useState([])
@@ -31,7 +32,7 @@ function Track() {
     getAllTracks()
       .then((tracks) => {
         navigator.geolocation.getCurrentPosition(function (position) {
-          const coords = position.coords
+          const coords = position.coords.longitude
           const updatedTracks = tracks.map((track) => {
             const distanceAway = calculateDistanceBetweenPoints(
               coords.latitude,
