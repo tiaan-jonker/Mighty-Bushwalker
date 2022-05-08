@@ -30,7 +30,10 @@ function Landing() {
         <div className="login-container">
           <div className="col-xs-12 col-sm-4 col-sm-offset-4 login-box">
             <div className="login-header">
-              <img src="https://res.cloudinary.com/dt7wm4h23/image/upload/v1651913955/Group_2_u0xxru.svg" />
+              <img
+                alt="The Mighty Bush Logo"
+                src="https://res.cloudinary.com/dt7wm4h23/image/upload/v1651913955/Group_2_u0xxru.svg"
+              />
               <h3>BUSHWALK</h3>
             </div>
             <div className="button-container">
