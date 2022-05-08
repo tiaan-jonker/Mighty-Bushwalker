@@ -54,6 +54,7 @@
     "knex": "^1.0.3",
     "leaflet": "^1.8.0",
     "pg": "^8.7.1",
+    "react-icons": "^4.3.1",
     "react-leaflet": "^4.0.0",
     "superagent": "7.1.1"
   },
