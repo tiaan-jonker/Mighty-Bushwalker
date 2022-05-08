@@ -52,7 +52,7 @@ function TrackMap(props) {
             return (
               <Polyline
                 key={index}
-                pathOptions={{ color: 'black' }}
+                pathOptions={{ color: 'var(--primary-green)' }}
                 positions={path}
               ></Polyline>
             )
