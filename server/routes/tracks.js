@@ -26,11 +26,11 @@ router.get('/', (req, res) => {
 
 // Update status of whether a track is saved by user of not
 router.patch('/saved', (req, res) => {
-  const { userId, trackId, status } = req.body
+  const { userId, trackId } = req.body
   const savedTrack = {
     userId,
     trackId,
-    status,
+    status: 1,
   }
   db.updateSavedStatus(savedTrack)
     .then(() => {
@@ -70,7 +70,9 @@ router.patch('/completed', (req, res) => {
     status: 1,
   }
   db.updateCompletedStatus(completedTrack)
-  db.addXp(points)
+    .then(() => {
+      return db.addXp(userId, points)
+    })
     .then(() => {
       res.sendStatus(201)
       return null
@@ -89,7 +91,9 @@ router.patch('/uncompleted', (req, res) => {
     status: 0,
   }
   db.updateCompletedStatus(completedTrack)
-  db.removeXp(points)
+    .then(() => {
+      return db.removeXp(userId, points)
+    })
     .then(() => {
       res.sendStatus(200)
       return null

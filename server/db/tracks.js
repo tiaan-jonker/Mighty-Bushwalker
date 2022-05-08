@@ -26,12 +26,12 @@ function updateCompletedStatus({ userId, trackId, status }, db = connection) {
   return db('user_tracks').where(completedTrack).update('completed', status)
 }
 
-function addXp({ userId, newxp }, db = connection) {
-  return db('users').where('id', userId).increment('xp', newxp)
+function addXp(userId, points, db = connection) {
+  return db('users').where('id', userId).increment('xp', points)
 }
 
-function removeXp({ userId, newxp }, db = connection) {
-  return db('users').where('id', userId).decrement('xp', newxp)
+function removeXp(userId, points, db = connection) {
+  return db('users').where('id', userId).decrement('xp', points)
 }
 
 function getTrackById(id, db = connection) {
