@@ -1,6 +1,6 @@
 import { useAuth0 } from '@auth0/auth0-react'
 import React, { useEffect, useState } from 'react'
-import { Link, useLocation, useNavigate, useParams } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import { getUser } from './userHelper'
 import { getLogoutFn } from '../../auth0-utils'
 import UserStats from './UserStats.jsx'
@@ -19,7 +19,6 @@ function UserProfile({ placeholderUser }) {
       .catch((err) => console.log(err))
   }, [id])
 
-  console.log(user)
   function handleLogout(event) {
     event.preventDefault()
     logout()
