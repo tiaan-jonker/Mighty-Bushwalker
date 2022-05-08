@@ -1,15 +1,17 @@
 import React from 'react'
 import { NavLink, useLocation } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 
-function Nav({ placeholderUser }) {
+function Nav() {
+  const user = useSelector((state) => state.user)
   const location = decodeURI(useLocation().pathname)
 
   const profilePath = (location) => {
-    return location === `/user/${placeholderUser.id}` ? 'act' : 'dea'
+    return location === `/user/${user.id}` ? 'act' : 'dea'
   }
 
   const trackPath = (location) => {
-    return location === `/user/${placeholderUser.id}/usertracks` ? 'act' : 'dea'
+    return location === `/user/${user.id}/usertracks` ? 'act' : 'dea'
   }
 
   const explorePath = (location) => {
@@ -20,7 +22,7 @@ function Nav({ placeholderUser }) {
     <nav className="nav-bar">
       <section className="nav-icons">
         <div className="nav-icon-container">
-          <NavLink to={`/user/${placeholderUser.id}`}>
+          <NavLink to={`/user/${user.id}`}>
             <img
               src={`/icons/nav/profile-${profilePath(location)}.svg`}
               alt="my profile navigation link"
@@ -28,7 +30,7 @@ function Nav({ placeholderUser }) {
           </NavLink>
         </div>
         <div className="nav-icon-container">
-          <NavLink to={`user/${placeholderUser.id}/usertracks`}>
+          <NavLink to={`user/${user.id}/usertracks`}>
             <img
               src={`/icons/nav/track-${trackPath(location)}.svg`}
               alt="my tracks navigation link"
