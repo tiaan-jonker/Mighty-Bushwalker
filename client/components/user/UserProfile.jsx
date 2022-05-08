@@ -1,24 +1,16 @@
 import { useAuth0 } from '@auth0/auth0-react'
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
-import { getUser } from './userHelper'
 import { getLogoutFn } from '../../auth0-utils'
 import UserStats from './UserStats.jsx'
+import { useSelector } from 'react-redux'
 import { capitaliseFirstLetter } from '../../utils'
 
-function UserProfile({ placeholderUser }) {
-  const [user, setUser] = useState({})
+function UserProfile() {
+  const user = useSelector((state) => state.user)
   const { id } = useParams()
   const logout = getLogoutFn(useAuth0)
   const Navigate = useNavigate
-
-  useEffect(() => {
-    getUser(placeholderUser.auth0Id)
-      .then((user) => {
-        return setUser(user)
-      })
-      .catch((err) => console.log(err))
-  }, [id])
 
   function handleLogout(event) {
     event.preventDefault()
