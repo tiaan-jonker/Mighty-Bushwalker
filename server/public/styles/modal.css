@@ -1,3 +1,24 @@
+.modal-btn {
+  padding: 10px 15px;
+  background-color: #f4f4f4;
+  box-shadow: 0px 0px 5px 2px rgba(75, 75, 75, 0.3);
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+.filter-icon {
+  width: 20px;
+  height: 20px;
+}
+
+.modal-btn-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: rgb(39, 63, 69);
+  width: 70px;
+}
+
 .darkBG {
   background-color: rgba(0, 0, 0, 0.6);
   width: 100vw;

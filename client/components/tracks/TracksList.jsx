@@ -1,12 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import { calculateDistanceBetweenPoints, getAllTracks } from './tracksHelper'
-import { useSelector, useDispatch } from 'react-redux'
 import TrackItem from './TrackItem'
 import AllTracksMap from '../map/AllTracksMap'
 import TrackFilterModal from './TrackFilterModal'
-import { fetchMapAndProductData } from '../../actions/tracks'
 import { randomNumGenForImage } from '../../utils'
-import { getUserLon } from '../../apis/location'
 
 function Track() {
   const [allTracks, setAllTracks] = useState([])
@@ -19,9 +16,11 @@ function Track() {
   const [lengthFilter, setLengthFilter] = useState(['Short', 'Medium', 'Long'])
   const [isOpenModal, setIsOpenModal] = useState(false)
   const [showMore, setShowMore] = useState(2)
+  const [showButtonText, setShowButtonText] = useState(false)
 
   const handleClick = () => {
-    setShowMore(filteredTracks.length)
+    setShowMore((prevState) => (prevState === 2 ? filteredTracks.length : 2))
+    setShowButtonText((prevState) => !prevState)
   }
 
   const handleModal = () => {
@@ -100,7 +99,12 @@ function Track() {
         <h2 className="tracks-intro">Explore</h2>
         <p className="tracks-sub">All trails available to hike</p>
         <AllTracksMap tracks={filteredTracks} />
-        <button onClick={handleModal}>Open Modal</button>
+        <button onClick={handleModal} className="modal-btn">
+          <div className="modal-btn-container">
+            <img src="/icons/filter.svg" alt="" className="filter-icon" />
+            <p>Filters</p>
+          </div>
+        </button>
 
         {filteredTracks.slice(0, showMore).map((trackData) => (
           <ul key={trackData.id} className="track-list">
@@ -113,7 +117,7 @@ function Track() {
           </ul>
         ))}
         <button onClick={handleClick} style={{ marginBottom: '50px' }}>
-          Show more
+          {showButtonText ? 'Show less' : 'Show more'}
         </button>
       </div>
     </section>
