@@ -1,21 +1,11 @@
-import React, { useEffect, useState } from 'react'
-import { Link, useParams } from 'react-router-dom'
-import { getUserTracks } from './userHelper'
+import React from 'react'
+import { Link } from 'react-router-dom'
 import { truncatedName, randomNumGenForImage } from '../../utils'
 import TrackImg from './TrackImg'
+import { useSelector } from 'react-redux'
 
 function UserTracks() {
-  const [userTracks, setUserTracks] = useState([{ track_id: 0 }])
-
-  const { id } = useParams()
-
-  useEffect(() => {
-    getUserTracks(id)
-      .then((tracks) => {
-        return setUserTracks(tracks)
-      })
-      .catch((err) => console.log(err.message))
-  }, [id])
+  const userTracks = useSelector((state) => state.tracks)
 
   return (
     <section>
@@ -27,8 +17,8 @@ function UserTracks() {
         {userTracks.map((track) => {
           return (
             (track.completed == 1 || track.saved == 1) && (
-              <div key={track.track_id} className="user-track-banner">
-                <Link to={`/track/${track.track_id}`}>
+              <div key={track.id} className="user-track-banner">
+                <Link to={`/track/${track.id}`}>
                   {/* <Link to={`/track/1`}> */}
                   <div className="track-banner">
                     {track.completed ? (
