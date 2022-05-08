@@ -43,15 +43,34 @@ router.patch('/saved', (req, res) => {
     })
 })
 
+router.patch('/unsaved', (req, res) => {
+  const { userId, trackId } = req.body
+  const savedTrack = {
+    userId,
+    trackId,
+    status: 0,
+  }
+  db.updateSavedStatus(savedTrack)
+    .then(() => {
+      res.sendStatus(200)
+      return null
+    })
+    .catch((err) => {
+      console.error(err)
+      res.status(500).json({ message: 'Unable to unsave track' })
+    })
+})
+
 // update status of whether a track is completed by user of not
 router.patch('/completed', (req, res) => {
-  const { userId, trackId, status } = req.body
+  const { userId, trackId, points } = req.body
   const completedTrack = {
     userId,
     trackId,
-    status,
+    status: 1,
   }
   db.updateCompletedStatus(completedTrack)
+  db.addXp(points)
     .then(() => {
       res.sendStatus(201)
       return null
@@ -59,6 +78,25 @@ router.patch('/completed', (req, res) => {
     .catch((err) => {
       console.error(err)
       res.status(500).json({ message: 'Unable to update track' })
+    })
+})
+
+router.patch('/uncompleted', (req, res) => {
+  const { userId, trackId, points } = req.body
+  const completedTrack = {
+    userId,
+    trackId,
+    status: 0,
+  }
+  db.updateCompletedStatus(completedTrack)
+  db.removeXp(points)
+    .then(() => {
+      res.sendStatus(200)
+      return null
+    })
+    .catch((err) => {
+      console.error(err)
+      res.status(500).json({ message: 'Unable to mark track as uncompleted' })
     })
 })
 
