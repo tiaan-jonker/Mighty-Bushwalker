@@ -1,11 +1,10 @@
-import React, { useState } from 'react'
+import React from 'react'
 import Weather from './Weather'
 import Suntimes from './Suntimes'
 import { Box, Tab } from '@mui/material'
 import { TabContext, TabList, TabPanel } from '@mui/lab'
 
 function WeatherInfo() {
-  const [forecastData, setForecastData] = useState([])
   const [value, setValue] = React.useState('1')
 
   const handleChange = (event, newValue) => {
@@ -26,7 +25,7 @@ function WeatherInfo() {
           </TabList>
         </Box>
         <TabPanel value="1">
-          <Weather forecastData={forecastData} />
+          <Weather />
         </TabPanel>
         <TabPanel value="2">
           <Suntimes />
