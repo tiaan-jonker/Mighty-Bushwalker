@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import TrackItem from './TrackItem'
 import AllTracksMap from '../map/AllTracksMap'
 import TrackFilters from './TrackFilters'
+import TrackFilterModal from './TrackFilterModal'
 import { fetchMapAndProductData } from '../../actions/tracks'
 import { randomNumGenForImage } from '../../utils'
 
@@ -16,10 +17,15 @@ function Track() {
     'Advanced',
   ])
   const [lengthFilter, setLengthFilter] = useState(['Short', 'Medium', 'Long'])
+  const [isOpenModal, setIsOpenModal] = useState(false)
   const [showMore, setShowMore] = useState(2)
 
   const handleClick = () => {
     setShowMore(filteredTracks.length)
+  }
+
+  const handleModal = () => {
+    setIsOpenModal(true)
   }
 
   useEffect(() => {
@@ -81,32 +87,32 @@ function Track() {
     setLengthFilter(newValue)
   }
 
-  const randomNumGenerator = () => {
-    return Math.floor(Math.random() * 14)
-  }
-
   return (
     <section className="page-container">
-      <h2 className="tracks-intro">Explore</h2>
-      <p className="tracks-sub">All trails available to hike</p>
-      <AllTracksMap tracks={filteredTracks} />
-      <TrackFilters
-        difficultyFilterDetails={{ updateDifficultyFilter, difficultyFilter }}
-        lengthFilterDetails={{ updateLengthFilter, lengthFilter }}
-      />
-      {filteredTracks.slice(0, showMore).map((trackData) => (
-        <ul key={trackData.id} className="track-list">
-          <div className="track-link-item">
-            <TrackItem
-              trackData={trackData}
-              randomNum={randomNumGenForImage}
-            />
-          </div>
-        </ul>
-      ))}
-      <button onClick={handleClick} style={{ marginBottom: '50px' }}>
-        Show more
-      </button>
+      {isOpenModal && <TrackFilterModal setIsOpenModal={setIsOpenModal} />}
+      <div className={isOpenModal ? 'modal-display-none' : ''}>
+        <h2 className="tracks-intro">Explore</h2>
+        <p className="tracks-sub">All trails available to hike</p>
+        <AllTracksMap tracks={filteredTracks} />
+        <button onClick={handleModal}>Open Modal</button>
+        <TrackFilters
+          difficultyFilterDetails={{ updateDifficultyFilter, difficultyFilter }}
+          lengthFilterDetails={{ updateLengthFilter, lengthFilter }}
+        />
+        {filteredTracks.slice(0, showMore).map((trackData) => (
+          <ul key={trackData.id} className="track-list">
+            <div className="track-link-item">
+              <TrackItem
+                trackData={trackData}
+                randomNum={randomNumGenForImage}
+              />
+            </div>
+          </ul>
+        ))}
+        <button onClick={handleClick} style={{ marginBottom: '50px' }}>
+          Show more
+        </button>
+      </div>
     </section>
   )
 }
