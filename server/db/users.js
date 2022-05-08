@@ -14,7 +14,16 @@ function getUsers(db = connection) {
 function getUsersByAuthId(auth0Id, db = connection) {
   return db('users')
     .where('auth0_id', auth0Id)
-    .select('auth0_id as id', 'name', 'email', 'description')
+    .select(
+      'auth0_id as id',
+      'name',
+      'email',
+      'description',
+      'id',
+      'description',
+      'rank',
+      'xp'
+    )
 }
 
 function addUser(input, db = connection) {
