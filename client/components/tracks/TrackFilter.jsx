@@ -1,9 +1,7 @@
-import React, { useState } from 'react'
+import React from 'react'
 
-function TrackFilter({ filter, updateFilter, filterName }) {
-  const [filterItems, setFilterItems] = useState(['Select All', ...filter])
-  const [filterOptions, setFilterOptions] = useState([...filter])
-  const [showFilter, setShowFilter] = useState(false)
+function TrackFilter({ filter, updateFilter, filterName, filterOptions }) {
+  const filterItems = ['Select All', ...filterOptions]
 
   function handleSelect(filterValueClicked, isSelected) {
     switch (filterValueClicked) {
@@ -21,37 +19,31 @@ function TrackFilter({ filter, updateFilter, filterName }) {
     }
   }
 
-  function handleClick() {
-    setShowFilter((prevState) => !prevState)
-  }
-
   return (
     <div>
       <div>
-        <button onClick={handleClick}>{filterName}</button>
+        <p className="filter-text">{filterName}</p>
       </div>
-      {showFilter && (
-        <div>
-          {filterItems.map((filterValue, index) => {
-            const isSelected =
-              filterValue === 'Select All'
-                ? filter.length === 3
-                : filter.includes(filterValue)
-            return (
-              <div key={index}>
-                <label>{filterValue}</label>‍
-                <input
-                  type="checkbox"
-                  checked={isSelected}
-                  onChange={() => {
-                    handleSelect(filterValue, isSelected)
-                  }}
-                />
-              </div>
-            )
-          })}
-        </div>
-      )}
+      <div>
+        {filterItems.map((filterValue, index) => {
+          const isSelected =
+            filterValue === 'Select All'
+              ? filter.length === 3
+              : filter.includes(filterValue)
+          return (
+            <div key={index}>
+              <label className="filter-text">{filterValue}</label>‍
+              <input
+                type="checkbox"
+                checked={isSelected}
+                onChange={() => {
+                  handleSelect(filterValue, isSelected)
+                }}
+              />
+            </div>
+          )
+        })}
+      </div>
     </div>
   )
 }
