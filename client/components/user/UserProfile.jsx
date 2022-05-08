@@ -4,6 +4,7 @@ import { Link, useNavigate, useParams } from 'react-router-dom'
 import { getUser } from './userHelper'
 import { getLogoutFn } from '../../auth0-utils'
 import UserStats from './UserStats.jsx'
+import { capitaliseFirstLetter } from '../../utils'
 
 function UserProfile({ placeholderUser }) {
   const [user, setUser] = useState({})
