@@ -17,8 +17,6 @@ function Track() {
       .catch((err) => console.log(err))
   }, [id])
 
-  console.log(id)
-
   return (
     <section>
       <div className="page-image-container">
