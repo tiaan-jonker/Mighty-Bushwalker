@@ -8,6 +8,7 @@ exports.up = function (knex) {
     table.float('length')
     table.boolean('return')
     table.string('difficulty')
+    table.integer('points')
     table.float('lon')
     table.float('lat')
     table.string('line')
