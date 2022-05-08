@@ -7,6 +7,8 @@ import { randomNumGenForImage } from '../../utils'
 
 function Track() {
   const [allTracks, setAllTracks] = useState([])
+
+  // FILTER STATES
   const [filteredTracks, setFilteredTracks] = useState([])
   const [difficultyFilter, setDifficultyFilter] = useState([
     'Easy',
@@ -14,10 +16,13 @@ function Track() {
     'Advanced',
   ])
   const [lengthFilter, setLengthFilter] = useState(['Short', 'Medium', 'Long'])
+
+  // MODAL AND SHOW BUTTON STATES
   const [isOpenModal, setIsOpenModal] = useState(false)
   const [showMore, setShowMore] = useState(2)
   const [showButtonText, setShowButtonText] = useState(false)
 
+  // MODAL AND SHOW BUTTON LOGIC
   const handleClick = () => {
     setShowMore((prevState) => (prevState === 2 ? filteredTracks.length : 2))
     setShowButtonText((prevState) => !prevState)
@@ -27,6 +32,7 @@ function Track() {
     setIsOpenModal(true)
   }
 
+  // GET TRACKS AND GEOLOCATION
   useEffect(() => {
     getAllTracks()
       .then((tracks) => {
@@ -62,7 +68,7 @@ function Track() {
       .catch((err) => console.log(err))
   }, [])
 
-  // Filter Tracks by Difficulty
+  // FILTER TRACKS BY DIFFICULTY
   useEffect(() => {
     const newFilteredTracks = allTracks.filter((track) =>
       difficultyFilter.includes(track.difficulty)
@@ -74,7 +80,7 @@ function Track() {
     setDifficultyFilter(newValue)
   }
 
-  // Filter Tracks by Length
+  // FILTER TRACKS BY LENGTH
   useEffect(() => {
     const newFilteredTracks = allTracks.filter((track) =>
       lengthFilter.includes(track.lengthCategory)
@@ -95,6 +101,7 @@ function Track() {
           lengthFilterDetails={{ updateLengthFilter, lengthFilter }}
         />
       )}
+
       <div className={isOpenModal ? 'modal-display-none' : ''}>
         <h2 className="tracks-intro">Explore</h2>
         <p className="tracks-sub">All trails available to hike</p>
