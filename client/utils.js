@@ -5,3 +5,4 @@ export function truncatedName(str) {
 export function randomNumGenForImage() {
   return Math.floor(Math.random() * 14)
 }
+
