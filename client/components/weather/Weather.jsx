@@ -5,6 +5,7 @@ import { fetchForecast } from '../../actions/forecast'
 
 function Weather() {
   const weather = useSelector((state) => state.weather)
+  const weatherIcon = useSelector((state) => state.weatherIcon)
   const forecast = useSelector((state) => state.forecast)
   const dispatch = useDispatch()
 
@@ -13,8 +14,10 @@ function Weather() {
     dispatch(fetchForecast())
   }, [])
 
-  const getIcon = () => {
-    switch (weather.description) {
+  const getIcon = async () => {
+    const weatherIconState = await weatherIcon
+
+    switch (weatherIconState) {
       case 'Clouds':
         return '/icons/weather/cloud.png'
       case 'Thunderstorm':
@@ -39,7 +42,11 @@ function Weather() {
         {forecast.slice(0, 2).map((forecastData, index) => (
           <div key={index} className="weather-rectangle">
             <p className="weather-day">Tomorrow</p>
-            <img src={getIcon()} alt="" className="weather-icon" />
+            <img
+              src="/icons/weather/rain.png"
+              alt=""
+              className="weather-icon"
+            />
             <p className="weather-temp">{forecastData.temperature}&deg;C</p>
           </div>
         ))}
