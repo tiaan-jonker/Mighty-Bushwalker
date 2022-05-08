@@ -19,7 +19,6 @@ function UserProfile({ placeholderUser }) {
       .catch((err) => console.log(err))
   }, [id])
 
-  console.log(user)
   function handleLogout(event) {
     event.preventDefault()
     logout()
