@@ -1,10 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { getUserTracks } from './userHelper'
-
-// TODO:
-// --> .map to map out saved / completed tracks associated with user id
-// --> that includes the names and if completed to have a 'date completed'
+import { truncatedName } from '../../utils'
 
 function UserTracks() {
   const [userTracks, setUserTracks] = useState([{ track_id: 0 }])
@@ -32,12 +29,31 @@ function UserTracks() {
         {userTracks.map((track) => {
           return (
             (track.completed == 1 || track.saved == 1) && (
-              <div key={track.track_id}>
-                <Link to={`/track/${track.track_id}`}>
-                  <div className="user-track-link">
-                    <p>{track.name}</p>
-                    {/* <p>completed</p> */}
-                    <img src="icons/arrow.svg" alt="" />
+              <div key={track.track_id} className='user-track-banner'>
+                <Link to={`/track/${track.trackId}`}>
+                  {/* <Link to={`/track/1`}> */}
+                  <div className="track-banner">
+                    <div className="track-banner-info">
+                      <div className="track-name-difficulty-container">
+                        <h2 className="track-list-name">
+                          {truncatedName(track.name)}
+                        </h2>
+                        <span
+                          className="track-difficulty"
+                          // style={{ backgroundColor: getBackgroundColor() }}
+                        >
+                          Difficult
+                        </span>
+                      </div>
+                      <div className="track-other-details">
+                        <p>Length: 58km • Est. 8hrs • 20km Away</p>
+                      </div>
+                    </div>
+                    <img
+                      src={`/images/bg/bg-1.webp`}
+                      alt=""
+                      className="track-banner-img"
+                    />
                   </div>
                 </Link>
               </div>
