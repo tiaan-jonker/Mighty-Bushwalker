@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { truncatedName } from '../../utils'
 
 function TrackItem({ trackData, randomNum }) {
   const { id, name, difficulty, days, hours, lat, lon, length, distanceAway } =
@@ -15,9 +16,9 @@ function TrackItem({ trackData, randomNum }) {
     }
   }
 
-  function truncatedName(str) {
-    return str.length > 20 ? str.slice(0, 20 - 1) + '…' : str
-  }
+  // function truncatedName(str) {
+  //   return str.length > 20 ? str.slice(0, 20 - 1) + '…' : str
+  // }
 
   return (
     <li className="">

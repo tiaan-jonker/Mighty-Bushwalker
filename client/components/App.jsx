@@ -10,7 +10,6 @@ import Track from './track/Track'
 import Tracks from './tracks/TracksList'
 import Nav from './Nav'
 import Landing from './Landing'
-import Tabs from './Tabs'
 
 function App() {
   cacheUser(useAuth0)
@@ -41,7 +40,6 @@ function App() {
           path="/user/:id/userbadges"
           element={<UserBadges placeholderUser={placeholderUser} />}
         />
-        <Route path="/random" element={<Tabs />} />
       </Routes>
       <Nav placeholderUser={placeholderUser} />
     </div>
