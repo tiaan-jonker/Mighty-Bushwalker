@@ -32,3 +32,15 @@ export function getUserTracks(id, consume = requestor) {
       console.log(error.message)
     })
 }
+
+export function getAmountOfTracksCompleted(tracks) {
+  return tracks.filter((track) => track.completed).length
+}
+
+export function getDistanceHiked(tracks) {
+  const completedTracks = tracks.filter((track) => track.completed)
+  const distanceHiked = completedTracks.reduce((accumulator, track) => {
+    return accumulator + track.length
+  }, 0)
+  return distanceHiked
+}
