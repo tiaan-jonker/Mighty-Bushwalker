@@ -45,6 +45,7 @@ function getTrackById(id, db = connection) {
       'days',
       'hours',
       'return',
+      'points',
       'lon',
       'lat',
       'line',

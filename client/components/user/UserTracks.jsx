@@ -52,7 +52,7 @@ function UserTracks() {
                         </span>
                       </div>
                       <div className="track-other-details">
-                        <p>Length: 58km • Est. 8hrs • 20km Away • </p>
+                        <p>Length: 58km • Est. 8hrs • 20km Away</p>
                       </div>
                     </div>
                     <TrackImg randomNum={randomNumGenForImage} />

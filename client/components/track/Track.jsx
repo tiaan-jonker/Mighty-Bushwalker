@@ -5,19 +5,21 @@ import WeatherInfo from '../weather/WeatherInfo'
 import { useParams } from 'react-router-dom'
 import { getTrack } from './trackHelper'
 import TrackInfoIcons from './TrackInfoIcons'
+import TrackButtonCompleted from './TrackButtonCompleted'
 
 function Track() {
   const [track, setTrack] = useState([])
   const { id } = useParams()
   useEffect(() => {
     getTrack(id)
-      .then((user) => {
-        return setTrack(user)
+      .then((track) => {
+        return setTrack(track)
       })
       .catch((err) => console.log(err))
   }, [id])
 
   console.log(id)
+  console.log('track yooo', track)
 
   return (
     <section>
@@ -26,7 +28,10 @@ function Track() {
       </div>
       <div className="track-content-container">
         <h2 className="track-name">{track.name}</h2>
-        <TrackButton />
+        <div className="track-banner">
+          {track.completed ? <TrackButton /> : <TrackButtonCompleted />}
+        </div>
+
         <TrackInfoIcons track={track} />
         <div>
           <p>
