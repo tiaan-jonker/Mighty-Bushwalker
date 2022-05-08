@@ -53,7 +53,7 @@ function Track() {
             <TrackItem
               trackData={trackData}
               const
-              randomNum={randomNumGenForImage()}
+              randomNum={randomNumGenForImage}
             />
           </div>
         </ul>
