@@ -10,10 +10,19 @@ import { renderWithRedux } from '../test-utils'
 // import { getIsAuthenticated, getLogoutFn } from '../auth0-utils'
 import Nav from './Nav'
 
+import { cacheUser, getIsAuthenticated } from '../auth0-utils'
+
 jest.mock('../auth0-utils')
+jest.mock('@auth0/auth0-react', () => ({
+  withAuthenticationRequired: jest
+    .fn()
+    .mockImplementation((Nav, ignore) => Nav),
+}))
 
 describe('<Nav />', () => {
-  it('Renders Profile, My Tracks, Explore text', () => {
+  it('if logged in, renders Profile, My Tracks, Explore text', () => {
+    getIsAuthenticated.mockImplementation(() => true)
+    cacheUser.mockImplementation()
     renderWithRedux(<Nav />)
     screen.debug()
     const profileText = screen.getByText('Profile')
@@ -24,8 +33,10 @@ describe('<Nav />', () => {
     expect(exploreText.textContent).toBe('Explore')
   })
 })
-it('logo renders good', () => {
+it('if logged in, logo renders good', () => {
   renderWithRedux(<Nav xmlns="http://www.w3.org/2000/svg" />)
   const navImage1 = screen.getByAltText(/Profile/i)
   expect(navImage1.xmlns).toContain('http://www.w3.org/2000/svg')
 })
+
+afterEach(() => jest.clearAllMocks())
