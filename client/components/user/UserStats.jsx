@@ -9,15 +9,21 @@ function UserStats({ user }) {
   const [userTracks, setUserTracks] = useState([{ track_id: 0 }])
   const [tracksCompleted, setTracksCompleted] = useState(0)
   const [distanceHiked, setDistanceHiked] = useState(0)
+  const [rankPercent, setRankPercent] = useState(0)
+  const nextLevel = 4000
 
   useEffect(() => {
     getUserTracks(user.id)
       .then((tracks) => {
         setTracksCompleted(getAmountOfTracksCompleted(tracks))
         setDistanceHiked(getDistanceHiked(tracks))
+
         return setUserTracks(tracks)
       })
       .catch((err) => console.log(err.message))
+
+    setRankPercent((user.xp / nextLevel) * 100)
+    console.log(rankPercent)
   }, [user.id])
 
   return (
@@ -46,7 +52,19 @@ function UserStats({ user }) {
         </div>
       </div>
       <div className="xp-container">
-        <p>XP bar placeholder</p>
+        <div
+          className="xp-bar-container"
+          style={{ width: `10em`, height: '2em', backgroundColor: 'white' }}
+        >
+          <div
+            className="xp-bar"
+            style={{
+              width: `${rankPercent}%`,
+              height: '100%',
+              backgroundColor: 'navy',
+            }}
+          ></div>
+        </div>
       </div>
     </>
   )

@@ -32,7 +32,7 @@ function Track() {
     getAllTracks()
       .then((tracks) => {
         navigator.geolocation.getCurrentPosition(function (position) {
-          const coords = position.coords.longitude
+          const coords = position.coords
           const updatedTracks = tracks.map((track) => {
             const distanceAway = calculateDistanceBetweenPoints(
               coords.latitude,
