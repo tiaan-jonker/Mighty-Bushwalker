@@ -3,16 +3,23 @@ import { calculateDistanceBetweenPoints, getAllTracks } from './tracksHelper'
 import { useSelector, useDispatch } from 'react-redux'
 import TrackItem from './TrackItem'
 import AllTracksMap from '../map/AllTracksMap'
+import TrackFilters from './TrackFilters'
 import { fetchMapAndProductData } from '../../actions/tracks'
 import { randomNumGenForImage } from '../../utils'
 
 function Track() {
   const [allTracks, setAllTracks] = useState([])
-  const [coords, setCoords] = useState([])
+  const [filteredTracks, setFilteredTracks] = useState([])
+  const [difficultyFilter, setDifficultyFilter] = useState([
+    'Easy',
+    'Intermediate',
+    'Advanced',
+  ])
+  const [lengthFilter, setLengthFilter] = useState(['Short', 'Medium', 'Long'])
   const [showMore, setShowMore] = useState(2)
 
   const handleClick = () => {
-    setShowMore(allTracks.length)
+    setShowMore(filteredTracks.length)
   }
 
   useEffect(() => {
@@ -28,31 +35,70 @@ function Track() {
               track.lon
             ).toFixed(1)
 
-            return { ...track, distanceAway }
+            let lengthCategory = 'Long'
+            if (track.length < 5) {
+              lengthCategory = 'Short'
+            } else if (track.length < 12) {
+              lengthCategory = 'Medium'
+            }
+
+            return { ...track, distanceAway, lengthCategory }
           })
 
           updatedTracks.sort((a, b) => {
             return a.distanceAway - b.distanceAway
           })
 
-          setAllTracks(updatedTracks)
+          setAllTracks(updatedTracks) //
+          setFilteredTracks(updatedTracks) // creates display version of tracks which we filter the values out of
           return null
         })
       })
       .catch((err) => console.log(err))
   }, [])
 
+  // Filter Tracks by Difficulty
+  useEffect(() => {
+    const newFilteredTracks = allTracks.filter((track) =>
+      difficultyFilter.includes(track.difficulty)
+    )
+    setFilteredTracks(newFilteredTracks)
+  }, [difficultyFilter])
+
+  function updateDifficultyFilter(newValue) {
+    setDifficultyFilter(newValue)
+  }
+
+  // Filter Tracks by Length
+  useEffect(() => {
+    const newFilteredTracks = allTracks.filter((track) =>
+      lengthFilter.includes(track.lengthCategory)
+    )
+    setFilteredTracks(newFilteredTracks)
+  }, [lengthFilter])
+
+  function updateLengthFilter(newValue) {
+    setLengthFilter(newValue)
+  }
+
+  const randomNumGenerator = () => {
+    return Math.floor(Math.random() * 14)
+  }
+
   return (
     <section className="page-container">
       <h2 className="tracks-intro">Explore</h2>
       <p className="tracks-sub">All trails available to hike</p>
-      <AllTracksMap tracks={allTracks} />
-      {allTracks.slice(0, showMore).map((trackData) => (
+      <AllTracksMap tracks={filteredTracks} />
+      <TrackFilters
+        difficultyFilterDetails={{ updateDifficultyFilter, difficultyFilter }}
+        lengthFilterDetails={{ updateLengthFilter, lengthFilter }}
+      />
+      {filteredTracks.slice(0, showMore).map((trackData) => (
         <ul key={trackData.id} className="track-list">
           <div className="track-link-item">
             <TrackItem
               trackData={trackData}
-              const
               randomNum={randomNumGenForImage}
             />
           </div>
