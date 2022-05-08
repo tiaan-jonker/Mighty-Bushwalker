@@ -4,6 +4,7 @@ import { Link, useNavigate, useParams } from 'react-router-dom'
 import { getLogoutFn } from '../../auth0-utils'
 import UserStats from './UserStats.jsx'
 import { useSelector } from 'react-redux'
+import { capitaliseFirstLetter } from '../../utils'
 
 function UserProfile() {
   const user = useSelector((state) => state.user)

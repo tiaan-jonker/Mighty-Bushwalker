@@ -1,6 +1,7 @@
+import { fetchMapAndTrackDataSuccess } from './actions/tracks'
 import { setUser } from './actions/user'
 import { getUserRoles } from './apis/users'
-import { getUser } from './components/user/userHelper'
+import { getUser, getUserTracks } from './components/user/userHelper'
 import store from './store'
 
 const emptyUser = {
@@ -14,8 +15,28 @@ const emptyUser = {
   xp: 0,
 }
 
+const emptyTrack = [
+  {
+    id: 0,
+    asset_id: '',
+    name: '',
+    days: 0,
+    hours: 0,
+    length: 0,
+    return: false,
+    difficulty: '',
+    lon: 0,
+    lat: 0,
+    line: [[0, 0]],
+  },
+]
+
 function saveUser(user = emptyUser) {
   store.dispatch(setUser(user))
+}
+
+function saveTracks(tracks = emptyTrack) {
+  store.dispatch(fetchMapAndTrackDataSuccess(tracks))
 }
 
 export async function cacheUser(useAuth0) {
@@ -35,6 +56,8 @@ export async function cacheUser(useAuth0) {
         id: userData.id,
         xp: userData.xp,
       }
+      const tracks = await getUserTracks(userData.id)
+      saveTracks(tracks)
       saveUser(userToSave)
     } catch (err) {
       console.error(err)
