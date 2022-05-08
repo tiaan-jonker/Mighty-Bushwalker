@@ -63,3 +63,20 @@
   background-color: rgb(39, 63, 69);
   color: #eee;
 }
+
+.status-indicator {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  padding: 5px 15px;
+  color: #eee;
+  border-radius: 10px;
+}
+
+.completed {
+  background-color: rgba(99, 176, 181, 0.9);
+}
+
+.saved {
+  background-color: rgba(116, 189, 143, 0.9);
+}

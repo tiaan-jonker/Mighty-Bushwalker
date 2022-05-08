@@ -31,6 +31,14 @@ function UserTracks() {
                 <Link to={`/track/${track.track_id}`}>
                   {/* <Link to={`/track/1`}> */}
                   <div className="track-banner">
+                    {track.completed ? (
+                      <span className="status-indicator completed">
+                        Completed
+                      </span>
+                    ) : (
+                      <span className="status-indicator saved">Saved</span>
+                    )}
+
                     <div className="track-banner-info">
                       <div className="track-name-difficulty-container">
                         <h2 className="track-list-name">
