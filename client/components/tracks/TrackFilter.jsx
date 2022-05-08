@@ -1,8 +1,7 @@
-import React, { useState } from 'react'
+import React from 'react'
 
-function TrackFilter({ filter, updateFilter, filterName }) {
-  const [filterItems, setFilterItems] = useState(['Select All', ...filter])
-  const [filterOptions, setFilterOptions] = useState([...filter])
+function TrackFilter({ filter, updateFilter, filterName, filterOptions }) {
+  const filterItems = ['Select All', ...filterOptions]
 
   function handleSelect(filterValueClicked, isSelected) {
     switch (filterValueClicked) {
