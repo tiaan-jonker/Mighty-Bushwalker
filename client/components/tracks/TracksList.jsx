@@ -3,7 +3,6 @@ import { calculateDistanceBetweenPoints, getAllTracks } from './tracksHelper'
 import { useSelector, useDispatch } from 'react-redux'
 import TrackItem from './TrackItem'
 import AllTracksMap from '../map/AllTracksMap'
-import TrackFilters from './TrackFilters'
 import TrackFilterModal from './TrackFilterModal'
 import { fetchMapAndProductData } from '../../actions/tracks'
 import { randomNumGenForImage } from '../../utils'
@@ -89,16 +88,19 @@ function Track() {
 
   return (
     <section className="page-container">
-      {isOpenModal && <TrackFilterModal setIsOpenModal={setIsOpenModal} />}
+      {isOpenModal && (
+        <TrackFilterModal
+          setIsOpenModal={setIsOpenModal}
+          difficultyFilterDetails={{ updateDifficultyFilter, difficultyFilter }}
+          lengthFilterDetails={{ updateLengthFilter, lengthFilter }}
+        />
+      )}
       <div className={isOpenModal ? 'modal-display-none' : ''}>
         <h2 className="tracks-intro">Explore</h2>
         <p className="tracks-sub">All trails available to hike</p>
         <AllTracksMap tracks={filteredTracks} />
         <button onClick={handleModal}>Open Modal</button>
-        <TrackFilters
-          difficultyFilterDetails={{ updateDifficultyFilter, difficultyFilter }}
-          lengthFilterDetails={{ updateLengthFilter, lengthFilter }}
-        />
+
         {filteredTracks.slice(0, showMore).map((trackData) => (
           <ul key={trackData.id} className="track-list">
             <div className="track-link-item">

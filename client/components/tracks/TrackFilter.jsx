@@ -28,7 +28,7 @@ function TrackFilter({ filter, updateFilter, filterName }) {
   return (
     <div>
       <div>
-        <button onClick={handleClick}>{filterName}</button>
+        <button onClick={handleClick} className='filter-text'>{filterName}</button>
       </div>
       {showFilter && (
         <div>
@@ -39,7 +39,7 @@ function TrackFilter({ filter, updateFilter, filterName }) {
                 : filter.includes(filterValue)
             return (
               <div key={index}>
-                <label>{filterValue}</label>‍
+                <label className='filter-text'>{filterValue}</label>‍
                 <input
                   type="checkbox"
                   checked={isSelected}

@@ -9,7 +9,7 @@
   filter: blur(2px);
 }
 
-.centered {
+.modal-centered {
   position: fixed;
   top: 50%;
   left: 50%;
@@ -19,7 +19,6 @@
 
 .modal {
   width: 250px;
-  height: 170px;
   background: white;
   color: white;
   z-index: 10;
@@ -33,6 +32,7 @@
   overflow: hidden;
   border-top-left-radius: 16px;
   border-top-right-radius: 16px;
+  font-size: 24px;
 }
 
 .heading {
@@ -49,19 +49,6 @@
   font-size: 14px;
   color: #2c3e50;
   text-align: center;
-}
-
-.modalActions {
-  position: absolute;
-  bottom: 2px;
-  margin-bottom: 10px;
-  width: 100%;
-}
-
-.actionsContainer {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
 }
 
 .closeBtn {
@@ -83,19 +70,10 @@
   margin-right: -7px;
 }
 
-.cancelBtn {
-  margin-top: 10px;
-  cursor: pointer;
-  font-weight: 500;
-  padding: 11px 28px;
-  border-radius: 12px;
-  font-size: 0.8rem;
-  border: none;
-  color: #2c3e50;
-  background: #fcfcfc;
-  transition: all 0.25s ease;
-}
-
 .modal-display-none {
   display: none;
+}
+
+.filter-text {
+  color: #273f45;
 }
