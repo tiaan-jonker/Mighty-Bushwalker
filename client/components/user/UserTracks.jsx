@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { getUserTracks } from './userHelper'
-import { truncatedName } from '../../utils'
+import { truncatedName, randomNumGenForImage } from '../../utils'
+import TrackImg from './TrackImg'
 
 function UserTracks() {
   const [userTracks, setUserTracks] = useState([{ track_id: 0 }])
@@ -29,7 +30,7 @@ function UserTracks() {
         {userTracks.map((track) => {
           return (
             (track.completed == 1 || track.saved == 1) && (
-              <div key={track.track_id} className='user-track-banner'>
+              <div key={track.track_id} className="user-track-banner">
                 <Link to={`/track/${track.trackId}`}>
                   {/* <Link to={`/track/1`}> */}
                   <div className="track-banner">
@@ -49,11 +50,7 @@ function UserTracks() {
                         <p>Length: 58km • Est. 8hrs • 20km Away</p>
                       </div>
                     </div>
-                    <img
-                      src={`/images/bg/bg-1.webp`}
-                      alt=""
-                      className="track-banner-img"
-                    />
+                    <TrackImg randomNum={randomNumGenForImage} />
                   </div>
                 </Link>
               </div>

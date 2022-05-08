@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import TrackItem from './TrackItem'
 import AllTracksMap from '../map/AllTracksMap'
 import { fetchMapAndProductData } from '../../actions/tracks'
+import { randomNumGenForImage } from '../../utils'
 
 function Track() {
   const [allTracks, setAllTracks] = useState([])
@@ -41,10 +42,6 @@ function Track() {
       .catch((err) => console.log(err))
   }, [])
 
-  const randomNumGenerator = () => {
-    return Math.floor(Math.random() * 14)
-  }
-
   return (
     <section className="page-container">
       <h2 className="tracks-intro">Explore</h2>
@@ -56,7 +53,7 @@ function Track() {
             <TrackItem
               trackData={trackData}
               const
-              randomNum={randomNumGenerator}
+              randomNum={randomNumGenForImage()}
             />
           </div>
         </ul>
