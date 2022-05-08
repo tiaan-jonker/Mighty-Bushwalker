@@ -116,8 +116,14 @@ function Track() {
             </div>
           </ul>
         ))}
-        <button onClick={handleClick} style={{ marginBottom: '50px' }}>
-          {showButtonText ? 'Show less' : 'Show more'}
+        <button
+          onClick={handleClick}
+          className="modal-btn"
+          style={{ marginBottom: '50px' }}
+        >
+          <div className="modal-btn-show-container">
+            {showButtonText ? 'Show less' : 'Show more'}
+          </div>
         </button>
       </div>
     </section>

@@ -19,6 +19,14 @@
   width: 70px;
 }
 
+.modal-btn-show-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: rgb(39, 63, 69);
+  width: 85px;
+}
+
 .darkBG {
   background-color: rgba(0, 0, 0, 0.6);
   width: 100vw;
