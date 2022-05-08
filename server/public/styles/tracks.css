@@ -1,11 +1,12 @@
 .tracks-intro {
-  font-size: 32px;
+  font-size: 38px;
   font-weight: 700;
 }
 
 .tracks-sub {
-  font-size: 14px;
+  font-size: 18px;
   font-weight: 300;
+  margin-bottom: 15px;
 }
 
 .track-list {
@@ -22,7 +23,7 @@
 }
 
 .track-link-item {
-  border-radius: 10px;
+  border-radius: 15px;
   margin-bottom: 20px;
 }
 
@@ -30,7 +31,7 @@
   color: #eee;
   font-size: 11px;
   padding: 5px 15px;
-  border-radius: 5px;
+  border-radius: 8px;
 }
 
 .track-other-details {
@@ -43,7 +44,7 @@
 
 .track-banner {
   position: relative;
-  border-radius: 20px;
+  border-radius: 5px;
   overflow: hidden;
 }
 
@@ -61,4 +62,21 @@
   padding: 10px;
   background-color: rgb(39, 63, 69);
   color: #eee;
+}
+
+.status-indicator {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  padding: 5px 15px;
+  color: #eee;
+  border-radius: 10px;
+}
+
+.completed {
+  background-color: rgba(99, 176, 181, 0.9);
+}
+
+.saved {
+  background-color: rgba(116, 189, 143, 0.9);
 }

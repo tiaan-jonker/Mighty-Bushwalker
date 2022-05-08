@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react'
-
 import { NavLink } from 'react-router-dom'
 
-function Nav() {
+function Nav({ placeholderUser }) {
   const [navSelected, setNavSelected] = useState('profile')
 
   // profile, tracks, explore
@@ -35,7 +34,7 @@ function Nav() {
     <nav className="nav-bar">
       <section className="nav-icons">
         <div className="nav-icon-container">
-          <NavLink to="/user/1" onClick={profileClick}>
+          <NavLink to={`/user/${placeholderUser.id}`} onClick={profileClick}>
             <svg
               width="40"
               height="40"
