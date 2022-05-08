@@ -31,7 +31,8 @@ function UserTracks() {
           return (
             (track.completed == 1 || track.saved == 1) && (
               <div key={track.track_id} className="user-track-banner">
-                <Link to={`/track/${track.trackId}`}>
+
+                <Link to={`/track/${track.track_id}`}>
                   {/* <Link to={`/track/1`}> */}
                   <div className="track-banner">
                     <div className="track-banner-info">
