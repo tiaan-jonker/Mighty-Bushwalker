@@ -1,4 +1,4 @@
-import { getAllTracks } from '../components/tracks/tracksHelper'
+import { getUserTracks } from '../components/user/userHelper'
 
 export const FETCH_MAP_TRACKS_PENDING = 'FETCH_MAP_TRACKS_PENDING'
 export const FETCH_MAP_TRACKS_SUCCESS = 'FETCH_MAP_TRACKS_SUCCESS'
@@ -16,10 +16,10 @@ export function fetchMapAndTrackDataSuccess(tracks) {
   }
 }
 
-export function fetchMapAndProductData() {
+export function fetchMapAndTrackData() {
   return (dispatch) => {
     dispatch(fetchMapAndTrackDataPending())
-    return getAllTracks().then((tracks) => {
+    return getUserTracks().then((tracks) => {
       dispatch(fetchMapAndTrackDataSuccess(tracks))
       return null
     })
