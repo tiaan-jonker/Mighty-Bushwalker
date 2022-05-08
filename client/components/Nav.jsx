@@ -23,20 +23,23 @@ function Nav({ placeholderUser }) {
           <NavLink to={`/user/${placeholderUser.id}`}>
             <img
               src={`/icons/nav/profile-${profilePath(location)}.svg`}
-              alt=""
+              alt="my profile navigation link"
             />
           </NavLink>
         </div>
         <div className="nav-icon-container">
           <NavLink to={`user/${placeholderUser.id}/usertracks`}>
-            <img src={`/icons/nav/track-${trackPath(location)}.svg`} alt="" />
+            <img
+              src={`/icons/nav/track-${trackPath(location)}.svg`}
+              alt="my tracks navigation link"
+            />
           </NavLink>
         </div>
         <div className="nav-icon-container">
           <NavLink to="/tracks">
             <img
               src={`/icons/nav/explore-${explorePath(location)}.svg`}
-              alt=""
+              alt="explore more tracks navigation link"
             />
           </NavLink>
         </div>
