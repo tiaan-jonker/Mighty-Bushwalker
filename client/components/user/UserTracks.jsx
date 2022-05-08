@@ -3,16 +3,33 @@ import { Link, useParams } from 'react-router-dom'
 import { getUserTracks } from './userHelper'
 import { truncatedName, randomNumGenForImage } from '../../utils'
 import TrackImg from './TrackImg'
+import { calculateDistanceBetweenPoints } from '../tracks/tracksHelper'
 
 function UserTracks() {
   const [userTracks, setUserTracks] = useState([{ track_id: 0 }])
 
   const { id } = useParams()
 
+  function getDistance(tracks) {
+    navigator.geolocation.getCurrentPosition(function (position) {
+      const coords = position.coords
+      const updatedTracks = tracks.map((track) => {
+        const distanceAway = calculateDistanceBetweenPoints(
+          coords.latitude,
+          coords.longitude,
+          track.lat,
+          track.lon
+        ).toFixed(1)
+        return { ...track, distanceAway }
+      })
+      return setUserTracks(updatedTracks)
+    })
+  }
+
   useEffect(() => {
     getUserTracks(id)
       .then((tracks) => {
-        return setUserTracks(tracks)
+        return getDistance(tracks)
       })
       .catch((err) => console.log(err.message))
   }, [id])
@@ -52,7 +69,10 @@ function UserTracks() {
                         </span>
                       </div>
                       <div className="track-other-details">
-                        <p>Length: 58km • Est. 8hrs • 20km Away</p>
+                        <p>
+                          Length: {track.length}km • Est. {track.hours}hrs •{' '}
+                          {track.points}pts • {track.distanceAway}km away
+                        </p>
                       </div>
                     </div>
                     <TrackImg randomNum={randomNumGenForImage} />

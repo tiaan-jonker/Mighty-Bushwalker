@@ -105,7 +105,18 @@ function getUserTrackByUser(userId, db = connection) {
   }
   return db('user_tracks')
     .join('track_data', 'track_data.id', 'user_tracks.track_id')
-    .select('track_id', 'name', 'saved', 'completed', 'track_data.length')
+    .select(
+      'track_id',
+      'name',
+      'saved',
+      'completed',
+      'points',
+      'hours',
+      'difficulty',
+      'lat',
+      'lon',
+      'track_data.length'
+    )
     .where(query)
 }
 
