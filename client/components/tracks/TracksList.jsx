@@ -99,7 +99,6 @@ function Track() {
           <div className="track-link-item">
             <TrackItem
               trackData={trackData}
-              const
               randomNum={randomNumGenForImage}
             />
           </div>
