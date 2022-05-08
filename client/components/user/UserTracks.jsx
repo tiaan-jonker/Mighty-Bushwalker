@@ -19,22 +19,26 @@ function UserTracks() {
 
   return (
     <section>
-      <div className="page-image-container">
-        <img
-          src="images/placeholder-image.svg"
-          alt="placeholder image of track"
-        />
-      </div>
-      <div className="page-container">
-        <h2 className="user-track-intro">Completed and Saved Tracks</h2>
+      <div className="page-container mg-bottom-50">
+        <div>
+          <h2 className="user-intro">My tracks</h2>
+          <h3 className="user-intro-sub">Saved and completed tracks</h3>
+        </div>
         {userTracks.map((track) => {
           return (
             (track.completed == 1 || track.saved == 1) && (
               <div key={track.track_id} className="user-track-banner">
-
                 <Link to={`/track/${track.track_id}`}>
                   {/* <Link to={`/track/1`}> */}
                   <div className="track-banner">
+                    {track.completed ? (
+                      <span className="status-indicator completed">
+                        Completed
+                      </span>
+                    ) : (
+                      <span className="status-indicator saved">Saved</span>
+                    )}
+
                     <div className="track-banner-info">
                       <div className="track-name-difficulty-container">
                         <h2 className="track-list-name">
