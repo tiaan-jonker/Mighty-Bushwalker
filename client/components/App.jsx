@@ -14,17 +14,34 @@ import Landing from './Landing'
 function App() {
   cacheUser(useAuth0)
 
+  const placeholderUser = {
+    id: 1,
+    auth0Id: 'auth0|61414f84d35ac900717bc280',
+  }
+
   return (
     <div className="mobile-container">
       <Routes>
-        <Route path="/" element={<Landing />} />
-        <Route path="/user/:id" element={<UserProfile />} />
+        <Route
+          path="/"
+          element={<Landing placeholderUser={placeholderUser} />}
+        />
+        <Route
+          path="/user/:id"
+          element={<UserProfile placeholderUser={placeholderUser} />}
+        />
         <Route path="/track/:id" element={<Track />} />
         <Route path="/tracks" element={<Tracks />} />
-        <Route path="/user/:id/usertracks" element={<UserTracks />} />
-        <Route path="/user/:id/userbadges" element={<UserBadges />} />
+        <Route
+          path="/user/:id/usertracks"
+          element={<UserTracks placeholderUser={placeholderUser} />}
+        />
+        <Route
+          path="/user/:id/userbadges"
+          element={<UserBadges placeholderUser={placeholderUser} />}
+        />
       </Routes>
-      <Nav />
+      <Nav placeholderUser={placeholderUser} />
     </div>
   )
 }

@@ -24,7 +24,7 @@ function AllTrackMap({ tracks }) {
           scrollWheelZoom={true}
         >
           <TileLayer url="https://api.mapbox.com/styles/v1/clemenware/cl2sqqm2s000i14nzde71lqaj/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoiY2xlbWVud2FyZSIsImEiOiJjbDJzcWpsMG0wMHFnM2pvYXVmNTh0dnE3In0.Gi3RGqZv_HHyNk8Es6Aojw" />
-          <Marker position={startPosition}>
+          <Marker position={startPosition} >
             <Popup>Your Location</Popup>
           </Marker>
           {tracks.map((track) => (

@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import { calculateDistanceBetweenPoints, getAllTracks } from './tracksHelper'
-
+import { useSelector, useDispatch } from 'react-redux'
 import TrackItem from './TrackItem'
 import AllTracksMap from '../map/AllTracksMap'
-import TrackFilter from './TrackFilter'
 import TrackFilters from './TrackFilters'
+import { fetchMapAndProductData } from '../../actions/tracks'
+import { randomNumGenForImage } from '../../utils'
 
 function Track() {
   const [allTracks, setAllTracks] = useState([])
@@ -15,6 +16,11 @@ function Track() {
     'Advanced',
   ])
   const [lengthFilter, setLengthFilter] = useState(['Short', 'Medium', 'Long'])
+  const [showMore, setShowMore] = useState(2)
+
+  const handleClick = () => {
+    setShowMore(filteredTracks.length)
+  }
 
   useEffect(() => {
     getAllTracks()
@@ -88,17 +94,20 @@ function Track() {
         difficultyFilterDetails={{ updateDifficultyFilter, difficultyFilter }}
         lengthFilterDetails={{ updateLengthFilter, lengthFilter }}
       />
-      {filteredTracks.map((trackData) => (
+      {filteredTracks.slice(0, showMore).map((trackData) => (
         <ul key={trackData.id} className="track-list">
           <div className="track-link-item">
             <TrackItem
               trackData={trackData}
               const
-              randomNum={randomNumGenerator}
+              randomNum={randomNumGenForImage()}
             />
           </div>
         </ul>
       ))}
+      <button onClick={handleClick} style={{ marginBottom: '50px' }}>
+        Show more
+      </button>
     </section>
   )
 }

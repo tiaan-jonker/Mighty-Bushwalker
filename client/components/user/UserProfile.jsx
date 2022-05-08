@@ -1,17 +1,17 @@
 import { useAuth0 } from '@auth0/auth0-react'
 import React, { useEffect, useState } from 'react'
-import { Link, useNavigate, useParams } from 'react-router-dom'
+import { Link, useLocation, useNavigate, useParams } from 'react-router-dom'
 import { getUser } from './userHelper'
 import { getLogoutFn } from '../../auth0-utils'
 
-function UserProfile() {
+function UserProfile({ placeholderUser }) {
   const [user, setUser] = useState({})
   const { id } = useParams()
   const logout = getLogoutFn(useAuth0)
   const Navigate = useNavigate
 
   useEffect(() => {
-    getUser(id)
+    getUser(placeholderUser.auth0Id)
       .then((user) => {
         return setUser(user)
       })

@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from 'react'
-import { useAuth0 } from '@auth0/auth0-react'
+import { useAuth0, User } from '@auth0/auth0-react'
 import { getLoginFn, getRegisterFn } from '../auth0-utils'
 import { IfAuthenticated, IfNotAuthenticated } from './Authenticated'
 import { useSelector } from 'react-redux'
 import { Navigate } from 'react-router-dom'
+import { getUser } from '../components/user/userHelper'
 
 function Landing() {
-  const user = useSelector((state) => state.user)
+  // const user = useSelector((state) => state.user)
   const login = getLoginFn(useAuth0)
   const register = getRegisterFn(useAuth0)
+  const [user, setUser] = useState({})
 
   function handleLogin(event) {
     event.preventDefault()
@@ -19,12 +21,19 @@ function Landing() {
     event.preventDefault()
     register()
   }
+
+  useEffect(() => {
+    getUser('auth0|61414f84d35ac900717bc280')
+      .then((user) => {
+        return setUser(user)
+      })
+      .catch((err) => console.log(err))
+  }, [])
+
   return (
     <>
       <IfAuthenticated>
-        {user.auth0Id != '' && (
-          <Navigate to={`/user/${user.auth0Id}`} id={user.auth0Id} />
-        )}
+        <Navigate to={`/user/${user.id}`} />
       </IfAuthenticated>
       <IfNotAuthenticated>
         <div className="login-container">
