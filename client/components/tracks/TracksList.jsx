@@ -16,9 +16,11 @@ function Track() {
   const [lengthFilter, setLengthFilter] = useState(['Short', 'Medium', 'Long'])
   const [isOpenModal, setIsOpenModal] = useState(false)
   const [showMore, setShowMore] = useState(2)
+  const [showButtonText, setShowButtonText] = useState(false)
 
   const handleClick = () => {
-    setShowMore(filteredTracks.length)
+    setShowMore((prevState) => (prevState === 2 ? filteredTracks.length : 2))
+    setShowButtonText((prevState) => !prevState)
   }
 
   const handleModal = () => {
@@ -115,7 +117,7 @@ function Track() {
           </ul>
         ))}
         <button onClick={handleClick} style={{ marginBottom: '50px' }}>
-          Show more
+          {showButtonText ? 'Show less' : 'Show more'}
         </button>
       </div>
     </section>
