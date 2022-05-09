@@ -2,57 +2,11 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { truncatedName, randomNumGenForImage } from '../../utils'
 import TrackImg from './TrackImg'
-<<<<<<< HEAD
-import { calculateDistanceBetweenPoints } from '../tracks/tracksHelper'
-||||||| merged common ancestors
-=======
+// import { calculateDistanceBetweenPoints } from '../tracks/tracksHelper'
 import { useSelector } from 'react-redux'
->>>>>>> e194684e5b99bec86c753ef3894ad5d9fb972476
 
 function UserTracks() {
-<<<<<<< HEAD
-  const [userTracks, setUserTracks] = useState([{ track_id: 0 }])
-
-  const { id } = useParams()
-
-  function getDistance(tracks) {
-    navigator.geolocation.getCurrentPosition(function (position) {
-      const coords = position.coords
-      const updatedTracks = tracks.map((track) => {
-        const distanceAway = calculateDistanceBetweenPoints(
-          coords.latitude,
-          coords.longitude,
-          track.lat,
-          track.lon
-        ).toFixed(1)
-        return { ...track, distanceAway }
-      })
-      return setUserTracks(updatedTracks)
-    })
-  }
-
-  useEffect(() => {
-    getUserTracks(id)
-      .then((tracks) => {
-        return getDistance(tracks)
-      })
-      .catch((err) => console.log(err.message))
-  }, [id])
-||||||| merged common ancestors
-  const [userTracks, setUserTracks] = useState([{ track_id: 0 }])
-
-  const { id } = useParams()
-
-  useEffect(() => {
-    getUserTracks(id)
-      .then((tracks) => {
-        return setUserTracks(tracks)
-      })
-      .catch((err) => console.log(err.message))
-  }, [id])
-=======
   const userTracks = useSelector((state) => state.tracks)
->>>>>>> e194684e5b99bec86c753ef3894ad5d9fb972476
 
   return (
     <section>
@@ -91,7 +45,7 @@ function UserTracks() {
                       <div className="track-other-details">
                         <p>
                           Length: {track.length}km • Est. {track.hours}hrs •{' '}
-                          {track.points}pts • {track.distanceAway}km away
+                          {track.points}pts • 80 km away
                         </p>
                       </div>
                     </div>
