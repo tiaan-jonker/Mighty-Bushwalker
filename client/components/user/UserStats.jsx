@@ -52,18 +52,20 @@ function UserStats({ user }) {
         </div>
       </div>
       <div className="xp-container">
-        <div
-          className="xp-bar-container"
-          style={{ width: `10em`, height: '2em', backgroundColor: 'white' }}
-        >
+        <div className='xp-top'>
+          <p className='total-xp-text'>Total XP</p>
+          <p>Next Level 20</p>
+        </div>
+        <div className="xp-bar-container">
           <div
             className="xp-bar"
             style={{
               width: `${rankPercent}%`,
-              height: '100%',
-              backgroundColor: 'navy',
             }}
           ></div>
+        </div>
+        <div className='xp-bottom'>
+          <p>2100 / 2700 XP</p>
         </div>
       </div>
     </>

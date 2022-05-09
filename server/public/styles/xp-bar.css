@@ -1,0 +1,34 @@
+.xp-container {
+  padding: 15px 0px;
+}
+
+.xp-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.xp-bottom {
+  margin-top: 3px;
+  font-size: 16px;
+  font-weight: 300;
+}
+
+.total-xp-text {
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.xp-bar-container {
+  width: 100%;
+  height: 15px;
+  border-radius: 15px;
+  background-color: rgb(39, 63, 69, 0.2);
+  overflow: hidden;
+}
+
+.xp-bar {
+  height: 100%;
+  background-color: #273f45;
+  border-radius: 15px;
+}

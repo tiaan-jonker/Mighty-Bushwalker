@@ -19,7 +19,7 @@ function UserTracks() {
 
   return (
     <section>
-      <div className="page-container mg-bottom-50">
+      <div className="page-container mg-bottom-50 container-bg-green">
         <div>
           <h2 className="user-intro">My tracks</h2>
           <h3 className="user-intro-sub">Saved and completed tracks</h3>

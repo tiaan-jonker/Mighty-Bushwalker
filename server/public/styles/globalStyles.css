@@ -8,8 +8,6 @@
   border: 1px solid black;
   border-radius: 25px;
   color: #273f45;
-  /* background: linear-gradient(192.13deg, #8ce8ae -63.39%, #ffffff 100%); */
-  background: linear-gradient(192.13deg, #78d8de -63.39%, #ffffff 100%);
   position: relative;
   overflow-x: hidden;
   overflow-y: scroll;
@@ -21,6 +19,14 @@
 
 .page-container {
   padding: 25px;
+}
+
+.container-bg-green {
+  background: linear-gradient(192.13deg, #8ce8ae -63.39%, #ffffff 100%);
+}
+
+.container-bg-blue {
+  background: linear-gradient(192.13deg, #78d8de -63.39%, #ffffff 100%);
 }
 
 .page-image-container {

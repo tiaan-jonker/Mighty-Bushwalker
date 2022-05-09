@@ -27,10 +27,10 @@ function UserProfile({ placeholderUser }) {
   }
 
   return (
-    <section className="page-container">
+    <section className="page-container container-bg-green">
       <div>
         <h2 className="user-intro">Hello {user.name},</h2>
-        <h3 className="user-intro-sub">ready to level up your walking?</h3>
+        <h3 className="user-intro-sub">Ready to level up your walking?</h3>
       </div>
       <UserStats user={user} />
       <div className="user-links-container">
