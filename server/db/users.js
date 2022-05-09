@@ -1,16 +1,6 @@
 const connection = require('./connection')
 const { generateUserTrackData } = require('./dbHelpers')
 
-function getUsers(db = connection) {
-  return db('users').select(
-    'id',
-    'auth0_id as auth0Id',
-    'name',
-    'email',
-    'description'
-  )
-}
-
 function getUsersByAuthId(auth0Id, db = connection) {
   return db('users')
     .where('auth0_id', auth0Id)
@@ -39,6 +29,14 @@ function addUser(input, db = connection) {
   return db('users').insert(user)
 }
 
+function addNewUserTracks(userId, db = connection) {
+  const newUserTracks = generateUserTrackData(userId)
+  return db('user_tracks').insert(newUserTracks)
+}
+
+//
+//** UNUSED  **//
+
 function getUserById(id, db = connection) {
   return db('users')
     .where('id', id)
@@ -46,9 +44,14 @@ function getUserById(id, db = connection) {
     .first()
 }
 
-function addNewUserTracks(userId, db = connection) {
-  const newUserTracks = generateUserTrackData(userId)
-  return db('user_tracks').insert(newUserTracks)
+function getUsers(db = connection) {
+  return db('users').select(
+    'id',
+    'auth0_id as auth0Id',
+    'name',
+    'email',
+    'description'
+  )
 }
 
 module.exports = {

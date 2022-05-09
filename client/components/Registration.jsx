@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router'
+import { fetchMapAndTrackDataSuccess } from '../actions/tracks'
+import { setUser } from '../actions/user'
 import { addUser } from '../apis/users'
 import { getUser, getUserTracks } from './user/userHelper'
-import { setUser } from '../actions/user'
-import { fetchMapAndTrackDataSuccess } from '../actions/tracks'
 
 function Registration() {
   const dispatch = useDispatch()
@@ -48,7 +48,6 @@ function Registration() {
       console.log(form)
       await addUser(form)
       const userData = await getUser(user.auth0Id)
-      console.log(userData)
       dispatch(setUser(userData))
       const trackdata = await getUserTracks(userData.id)
       dispatch(fetchMapAndTrackDataSuccess(trackdata))

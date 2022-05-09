@@ -3,7 +3,7 @@ import { truncatedName } from '../../utils'
 import { Link } from 'react-router-dom'
 
 function TrackItem({ trackData, randomNum }) {
-  const { id, name, difficulty, days, hours, lat, lon, length, distanceAway } =
+  const { id, name, difficulty, hours, points, length, distanceAway } =
     trackData
 
   const getBackgroundColor = () => {
@@ -41,6 +41,7 @@ function TrackItem({ trackData, randomNum }) {
               </p>
             </div>
           </div>
+          <div className="points-container">{points} XP</div>
           <img
             src={`/images/bg/bg-${randomNum()}.webp`}
             alt=""

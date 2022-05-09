@@ -6,6 +6,7 @@ import TrackFilterModal from './TrackFilterModal'
 import { randomNumGenForImage } from '../../utils'
 import { useSelector } from 'react-redux'
 import WaitCircular from '../WaitIndicator/WaitCircular'
+import { updateTrackStatus } from '../track/trackHelper'
 
 function Track() {
   const tracks = useSelector((state) => state.tracks)
@@ -60,12 +61,15 @@ function Track() {
         return { ...track, distanceAway, lengthCategory }
       })
 
-      updatedTracks.sort((a, b) => {
+      const unsavedTracks = updatedTracks.filter(
+        (track) => !track.completed && !track.saved
+      )
+
+      unsavedTracks.sort((a, b) => {
         return a.distanceAway - b.distanceAway
       })
-
-      setAllTracks(updatedTracks) //
-      setFilteredTracks(updatedTracks) // creates display version of tracks which we filter the values out of
+      setAllTracks(unsavedTracks) //
+      setFilteredTracks(unsavedTracks) // creates display version of tracks which we filter the values out of
       setLoading(false)
     })
   }, [tracks])
@@ -78,10 +82,6 @@ function Track() {
     setFilteredTracks(newFilteredTracks)
   }, [difficultyFilter])
 
-  function updateDifficultyFilter(newValue) {
-    setDifficultyFilter(newValue)
-  }
-
   // FILTER TRACKS BY LENGTH
   useEffect(() => {
     const newFilteredTracks = allTracks.filter((track) =>
@@ -90,17 +90,13 @@ function Track() {
     setFilteredTracks(newFilteredTracks)
   }, [lengthFilter])
 
-  function updateLengthFilter(newValue) {
-    setLengthFilter(newValue)
-  }
-
   return (
     <section className="page-container">
       {isOpenModal && (
         <TrackFilterModal
           setIsOpenModal={setIsOpenModal}
-          difficultyFilterDetails={{ updateDifficultyFilter, difficultyFilter }}
-          lengthFilterDetails={{ updateLengthFilter, lengthFilter }}
+          difficultyFilterDetails={{ setDifficultyFilter, difficultyFilter }}
+          lengthFilterDetails={{ setLengthFilter, lengthFilter }}
         />
       )}
 

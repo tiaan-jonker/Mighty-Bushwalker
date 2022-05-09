@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import TrackButton from './TrackButton'
+import TrackButtonSave from './TrackButtonSave'
 import TrackMap from '../map/TrackMap'
 import WeatherInfo from '../weather/WeatherInfo'
 import { useParams } from 'react-router-dom'
@@ -7,6 +7,7 @@ import { getTrack } from './trackHelper'
 import TrackInfoIcons from './TrackInfoIcons'
 import TrackButtonCompleted from './TrackButtonCompleted'
 import { useSelector } from 'react-redux'
+import TrackButtonComplete from './TrackButtonComplete'
 
 function Track() {
   const tracks = useSelector((state) => state.tracks)
@@ -29,9 +30,10 @@ function Track() {
       </div>
       <div className="track-content-container">
         <h2 className="track-name">{track.name}</h2>
-        <div className="track-banner">
-          {track.completed ? <TrackButton /> : <TrackButtonCompleted />}
-        </div>
+
+        {track.completed === 1 && <TrackButtonCompleted />}
+        {track.saved === 1 && track.completed === 0 && <TrackButtonComplete />}
+        {track.saved === 0 && track.completed === 0 && <TrackButtonSave />}
 
         <TrackInfoIcons track={track} />
         <div>
