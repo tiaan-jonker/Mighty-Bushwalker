@@ -3,6 +3,7 @@ exports.up = function (knex) {
     table.integer('id')
     table.string('name')
     table.string('image')
+    table.string('criteria')
   })
 }
 
