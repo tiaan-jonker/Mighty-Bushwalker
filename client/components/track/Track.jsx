@@ -13,7 +13,7 @@ function Track() {
   // const dispatch = useDispatch()
   const { id } = useParams()
   const tracks = useSelector((state) => state.tracks)
-  const badgeModal = useSelector((state) => state.badgeModal)
+  const badgeModal = useSelector((state) => state.badgeModal.display)
   const [track, setTrack] = useState([])
 
   useEffect(() => {

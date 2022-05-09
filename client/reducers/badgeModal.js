@@ -8,7 +8,7 @@ const initialState = {
   badges: [],
 }
 
-export default function userLat(state = initialState, action) {
+export default function badgeModal(state = initialState, action) {
   switch (action.type) {
     case DISPLAY_ACHIEVEMENT_MODAL:
       return { display: true, badges: action.badges }

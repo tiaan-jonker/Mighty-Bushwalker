@@ -6,7 +6,7 @@ function BadgesModal() {
   const dispatch = useDispatch()
 
   const handleClick = () => {
-    dispatch(closeModal)
+    dispatch(closeModal())
   }
 
   return (
