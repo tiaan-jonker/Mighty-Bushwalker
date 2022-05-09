@@ -3,7 +3,7 @@ export function truncatedName(str) {
 }
 
 export function randomNumGenForImage() {
-  return Math.floor(Math.random() * 14)
+  return Math.floor(Math.random() * 14) + 1
 }
 
 export function capitaliseFirstLetter(str) {
