@@ -34,6 +34,7 @@ function Track() {
         {track.completed === 1 && <TrackButtonCompleted />}
         {track.saved === 1 && track.completed === 0 && <TrackButtonComplete />}
         {track.saved === 0 && track.completed === 0 && <TrackButtonSave />}
+
         <TrackInfoIcons track={track} />
         <div>
           <p>
