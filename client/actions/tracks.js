@@ -67,8 +67,8 @@ export function completeTrack(trackId, userId, points) {
       .then(() => {
         return checkForNewBadges(userId)
       })
-      .then(() => {
-        return null
+      .then((badges) => {
+        return
       })
   }
 }

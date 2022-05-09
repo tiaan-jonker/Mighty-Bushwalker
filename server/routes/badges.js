@@ -34,8 +34,8 @@ router.post('/', (req, res) => {
 
   const badgeData = { userId, badgeId }
   db.addBadge(badgeData)
-    .then((result) => {
-      res.json(result)
+    .then(() => {
+      res.sendStatus(201)
       return null
     })
     .catch((err) => {

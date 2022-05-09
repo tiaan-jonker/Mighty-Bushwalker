@@ -1,4 +1,5 @@
-import { getUserTracks } from '../components/user/userHelper'
+import { getUserTracks, getUserBadges } from '../components/user/userHelper'
+import requestor from '../consume'
 
 export function getCurrentDateString() {
   const current = new Date()
@@ -9,13 +10,12 @@ export function getCurrentDateString() {
 
 export async function checkForNewBadges(userId) {
   const tracks = await getUserTracks(userId)
-  // get existing badges
+  const userBadges = await getUserBadges(userId)
+  const existingBadges = userBadges.map((badge) => badge.id)
+
   const newBadges = []
 
   const completedTracks = tracks.filter((track) => track.completed)
-
-  console.log(completedTracks)
-  console.log(tracks)
 
   const difficulties = ['Easy', 'Intermediate', 'Advanced']
 
@@ -42,7 +42,7 @@ export async function checkForNewBadges(userId) {
   }
 
   const tracksCompletedTwice = completedTracks.filter(
-    (track) => track.total_completions > 1
+    (track) => track.totalCompletions > 1
   )
 
   if (tracksCompletedTwice.length > 0) {
@@ -50,7 +50,7 @@ export async function checkForNewBadges(userId) {
   }
 
   const tracksCompletedTenTimes = completedTracks.filter(
-    (track) => track.total_completions > 9
+    (track) => track.totalCompletions > 9
   )
 
   if (tracksCompletedTenTimes.length > 0) {
@@ -98,5 +98,21 @@ export async function checkForNewBadges(userId) {
     }
   })
 
-  console.log(newBadges)
+  const badgesToAdd = newBadges.filter((badgeId) => {
+    return !existingBadges.includes(badgeId)
+  })
+
+  badgesToAdd.map(async (badgeId) => await addBadge(userId, badgeId))
+
+  return badgesToAdd
+}
+
+export function addBadge(userId, badgeId, consume = requestor) {
+  return consume(`/badges`, 'post', { userId, badgeId })
+    .then((res) => {
+      return res.body
+    })
+    .catch((error) => {
+      console.log(error.message)
+    })
 }
