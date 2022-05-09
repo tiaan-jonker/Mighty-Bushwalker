@@ -9,7 +9,6 @@ export function getUsers() {
 }
 
 export function addUser(user) {
-  console.log(user)
   return request.post(rootUrl + '/users').send(user)
 }
 

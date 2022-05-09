@@ -39,10 +39,8 @@ function Registration() {
     e.preventDefault()
     // registerUser(form, authUser, history.push)
     try {
-      console.log(form)
       await addUser(form)
       const userData = await getUser(user.auth0Id)
-      console.log(userData)
       dispatch(setUser(userData))
       const trackdata = await getUserTracks(userData.id)
       dispatch(fetchMapAndTrackDataSuccess(trackdata))

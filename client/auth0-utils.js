@@ -10,7 +10,6 @@ const emptyUser = {
   name: '',
   token: '',
   roles: [],
-  rank: 0,
   id: 0,
   xp: 0,
 }
@@ -46,7 +45,6 @@ export async function cacheUser(useAuth0) {
       const token = await getAccessTokenSilently()
       const roles = await getUserRoles(user.sub)
       const userData = await getUser(user.sub)
-      console.log(userData)
       let userToSave = {}
       if (userData) {
         userToSave = {
@@ -55,11 +53,9 @@ export async function cacheUser(useAuth0) {
           name: userData.name,
           token,
           roles,
-          rank: userData.rank,
           id: userData.id,
           xp: userData.xp,
         }
-        console.log(userData)
         const tracks = await getUserTracks(userData.id)
         saveTracks(tracks)
       }
