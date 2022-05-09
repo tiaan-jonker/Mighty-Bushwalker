@@ -5,18 +5,18 @@ exports.seed = function (knex) {
       return knex('badge_data').insert([
         {
           id: 1,
-          name: 'Honorary Busher',
-          image: './images/bushwacker.jpg',
+          name: 'Baby Genius Award',
+          image: 'baby-genius',
         },
         {
           id: 2,
-          name: 'Honorary Busher',
-          image: './images/bushwacker.jpg',
+          name: 'Hero\'s Journey',
+          image: 'hero-journey',
         },
         {
           id: 3,
-          name: 'Honorary Busher',
-          image: './images/bushwacker.jpg',
+          name: 'Renaissance Person',
+          image: 'renaissance-person',
         },
         {
           id: 4,
