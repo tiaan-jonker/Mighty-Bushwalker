@@ -24,6 +24,7 @@ function App() {
         <Route path="/user/:id/userbadges" element={<UserBadges />} />
         <Route path="/track/:id" element={<Track />} />
         <Route path="/tracks" element={<Tracks />} />
+        <Route path="/register" element={<Registration />} />
       </Routes>
       <Nav />
     </div>

@@ -46,18 +46,31 @@ export async function cacheUser(useAuth0) {
       const token = await getAccessTokenSilently()
       const roles = await getUserRoles(user.sub)
       const userData = await getUser(user.sub)
-      const userToSave = {
-        auth0Id: user.sub,
-        email: user.email,
-        name: userData.name,
-        token,
-        roles,
-        rank: userData.rank,
-        id: userData.id,
-        xp: userData.xp,
+      let userToSave = {}
+      if (userData) {
+        userToSave = {
+          auth0Id: user.sub,
+          email: user.email,
+          name: userData.name,
+          token,
+          roles,
+          rank: userData.rank,
+          id: userData.id,
+          xp: userData.xp,
+        }
       }
-      const tracks = await getUserTracks(userData.id)
-      saveTracks(tracks)
+
+      if (!userData) {
+        userToSave = {
+          auth0Id: user.sub,
+          email: user.email,
+          token,
+          roles,
+        }
+      }
+
+      // const tracks = await getUserTracks(userData.id)
+      // saveTracks(tracks)
       saveUser(userToSave)
     } catch (err) {
       console.error(err)
@@ -81,7 +94,7 @@ export function getIsAuthenticated(useAuth0) {
 
 export function getRegisterFn(useAuth0) {
   const { loginWithRedirect } = useAuth0()
-  const redirectUri = `${window.location.origin}/profile`
+  const redirectUri = `${window.location.origin}/register`
   return () =>
     loginWithRedirect({
       redirectUri,

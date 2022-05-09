@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router'
 import { addUser } from '../apis/users'
+import { getUser } from './user/userHelper'
 
 function Registration() {
   const user = useSelector((state) => state.user)
@@ -36,6 +37,9 @@ function Registration() {
     // registerUser(form, authUser, history.push)
     try {
       await addUser(form)
+      const check = await getUser(user.auth0Id)
+      console.log(check)
+      console.log('hi')
       navigate('/')
     } catch (error) {
       console.error(error)
