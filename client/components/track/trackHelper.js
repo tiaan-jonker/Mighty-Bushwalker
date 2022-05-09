@@ -23,8 +23,8 @@ export function getTrack(id, consume = requestor) {
 }
 
 export function updateTrackStatus(
-  userId,
   trackId,
+  userId,
   update, // use the type of update i.e saved / completed, this directs to the correct route
   points, // for route completion this is used, otherwise leave parameter empty
   consume = requestor
