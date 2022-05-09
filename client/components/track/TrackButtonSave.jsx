@@ -7,14 +7,14 @@ function TrackButtonSave() {
   const { id } = useParams() // track ID
   const user = useSelector((state) => state.user)
   const dispatch = useDispatch()
-  
+
   function handleClick() {
     dispatch(saveTrack(Number(id), user.id))
   }
 
   return (
     <button onClick={handleClick} className="track-btn">
-      Save Bush
+      Save Track
     </button>
   )
 }
