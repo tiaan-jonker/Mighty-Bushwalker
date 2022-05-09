@@ -52,9 +52,7 @@ function Track() {
             </div>
           </div>
           <p>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nisi
-            fugiat praesentium quo nihil tempore commodi ab ipsum quidem
-            deserunt, aliquid.
+            {track.description ? track.description : 'No description available'}
           </p>
         </div>
         <div>
