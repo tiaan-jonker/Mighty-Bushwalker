@@ -8,23 +8,22 @@ import {
 
 function UserStats({ user }) {
   const tracks = useSelector((state) => state.tracks)
+  const userXp = useSelector((state) => state.user.xp)
   const [tracksCompleted, setTracksCompleted] = useState(0)
   const [distanceHiked, setDistanceHiked] = useState(0)
   const [rankPercent, setRankPercent] = useState(0)
   const [rank, setRank] = useState({})
   const [nextRank, setNextRank] = useState({})
-  const nextLevel = 4000
 
   useEffect(() => {
     setTracksCompleted(getAmountOfTracksCompleted(tracks))
     setDistanceHiked(getDistanceHiked(tracks))
-    setRankPercent((user.xp / nextLevel) * 100)
   }, [tracks])
 
   useEffect(() => {
     getRanks()
       .then((ranks) => {
-        const xp = user.xp
+        const xp = userXp
         const ranksToCheck = ranks.reverse()
         for (let i = 0; i < ranksToCheck.length; i++) {
           if (xp >= ranksToCheck[i].xp) {
@@ -36,9 +35,11 @@ function UserStats({ user }) {
         return null
       })
       .catch((err) => console.log(err))
-  }, [user.xp])
+  }, [userXp])
 
-  console.log(nextRank)
+  useEffect(() => {
+    setRankPercent((userXp / nextRank.xp) * 100)
+  }, [userXp])
 
   return (
     <>
@@ -79,7 +80,9 @@ function UserStats({ user }) {
           ></div>
         </div>
         <div className="xp-bottom">
-          <p>2100 / 2700 XP</p>
+          <p>
+            {user.xp} / {nextRank.xp} XP
+          </p>
         </div>
       </div>
     </>
