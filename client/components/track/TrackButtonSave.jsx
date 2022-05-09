@@ -3,12 +3,12 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { saveTrack } from '../../actions/tracks'
 
-function TrackButton() {
+function TrackButtonSave() {
   const { id } = useParams() // track ID
   const user = useSelector((state) => state.user)
   const dispatch = useDispatch()
   function handleClick() {
-    dispatch(saveTrack(user.id, id))
+    dispatch(saveTrack(Number(id), user.id))
   }
 
   return (
@@ -18,4 +18,4 @@ function TrackButton() {
   )
 }
 
-export default TrackButton
+export default TrackButtonSave
