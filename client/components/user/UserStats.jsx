@@ -11,6 +11,7 @@ function UserStats({ user }) {
   const [tracksCompleted, setTracksCompleted] = useState(0)
   const [distanceHiked, setDistanceHiked] = useState(0)
   const [rankPercent, setRankPercent] = useState(0)
+  const [rank, setRank] = useState({})
   const nextLevel = 4000
 
   useEffect(() => {
@@ -26,10 +27,11 @@ function UserStats({ user }) {
         const ranksToCheck = ranks.reverse()
         for (let i = 0; i < ranksToCheck.length; i++) {
           if (xp >= ranksToCheck[i].xp) {
-            return ranksToCheck[i]
+            setRank(ranksToCheck[i])
+            return null
           }
         }
-        return ranks
+        return null
       })
       .catch((err) => console.log(err))
   }, [user.xp])
