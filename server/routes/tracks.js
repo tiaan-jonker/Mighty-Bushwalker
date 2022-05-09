@@ -7,8 +7,11 @@ const router = express.Router()
 // GET /api/v1/tracks
 
 // List all tracks
-router.get('/', (req, res) => {
-  db.listTracks()
+
+// get user_tracks data (saved / closed)
+router.get('/userTracks/:userId', (req, res) => {
+  const userId = Number(req.params.userId)
+  db.getUserTrackByUser(userId)
     .then((tracks) => {
       const parsedTracks = tracks.map((track) => {
         const lineArray = JSON.parse(track.line) // convert array from string to arrays (beware of trailing commas)
@@ -20,7 +23,7 @@ router.get('/', (req, res) => {
     })
     .catch((err) => {
       console.error(err)
-      res.status(500).send(err.message)
+      res.status(500).json({ message: 'Something went wrong' })
     })
 })
 
@@ -104,7 +107,7 @@ router.patch('/uncompleted', (req, res) => {
     })
 })
 
-// Get track by ID
+// Get track by ID **POSSIBLY NOT USED **//
 router.get('/:id', (req, res) => {
   const id = Number(req.params.id)
   db.getTrackById(id)
@@ -119,17 +122,23 @@ router.get('/:id', (req, res) => {
     })
 })
 
-// Get saved track by user ID
-router.get('/saved/:userId', (req, res) => {
-  const userId = Number(req.params.userId)
-  db.getSavedTrackByUser(userId)
+//
+//** UNUSED **//
+
+router.get('/', (req, res) => {
+  db.listTracks()
     .then((tracks) => {
-      res.json(tracks)
+      const parsedTracks = tracks.map((track) => {
+        const lineArray = JSON.parse(track.line) // convert array from string to arrays (beware of trailing commas)
+        return { ...track, line: lineArray }
+      })
+
+      res.json(parsedTracks)
       return null
     })
     .catch((err) => {
       console.error(err)
-      res.status(500).json({ message: 'Something went wrong' })
+      res.status(500).send(err.message)
     })
 })
 
@@ -161,17 +170,12 @@ router.get('/other/:userId', (req, res) => {
     })
 })
 
-// get user_tracks data (saved / closed)
-router.get('/userTracks/:userId', (req, res) => {
+// Get saved track by user ID
+router.get('/saved/:userId', (req, res) => {
   const userId = Number(req.params.userId)
-  db.getUserTrackByUser(userId)
+  db.getSavedTrackByUser(userId)
     .then((tracks) => {
-      const parsedTracks = tracks.map((track) => {
-        const lineArray = JSON.parse(track.line) // convert array from string to arrays (beware of trailing commas)
-        return { ...track, line: lineArray }
-      })
-
-      res.json(parsedTracks)
+      res.json(tracks)
       return null
     })
     .catch((err) => {

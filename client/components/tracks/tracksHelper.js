@@ -1,14 +1,5 @@
 import requestor from '../../consume'
 
-export function getAllTracks(consume = requestor) {
-  return consume(`/tracks`)
-    .then((res) => {
-      const tracks = res.body
-      return tracks
-    })
-    .catch((err) => console.error(err))
-}
-
 export function calculateDistanceBetweenPoints(lat1, lon1, lat2, lon2) {
   var R = 6371 // Radius of the earth in km
   const x =
@@ -21,4 +12,15 @@ export function calculateDistanceBetweenPoints(lat1, lon1, lat2, lon2) {
 
 function deg2rad(deg) {
   return deg * (Math.PI / 180)
+}
+
+//** UNUSED  **//
+
+export function getAllTracks(consume = requestor) {
+  return consume(`/tracks`)
+    .then((res) => {
+      const tracks = res.body
+      return tracks
+    })
+    .catch((err) => console.error(err))
 }
