@@ -166,7 +166,12 @@ router.get('/userTracks/:userId', (req, res) => {
   const userId = Number(req.params.userId)
   db.getUserTrackByUser(userId)
     .then((tracks) => {
-      res.json(tracks)
+      const parsedTracks = tracks.map((track) => {
+        const lineArray = JSON.parse(track.line) // convert array from string to arrays (beware of trailing commas)
+        return { ...track, line: lineArray }
+      })
+
+      res.json(parsedTracks)
       return null
     })
     .catch((err) => {

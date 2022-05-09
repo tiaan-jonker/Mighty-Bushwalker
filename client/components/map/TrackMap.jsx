@@ -20,17 +20,29 @@ function TrackMap(props) {
 
   useEffect(() => {
     if (lat) {
-      const newLine = pathLine.map((set) => {
-        return set.map((coord) => {
-          return coord.reverse()
+      const testCoord = pathLine[0][0][0]
+      console.log(testCoord)
+      if (testCoord > 0) {
+        const newLine = pathLine.map((set) => {
+          return set.map((coord) => {
+            return coord.reverse()
+          })
         })
-      })
-      setTrackData({
-        lat: props.track.lat,
-        lon: lon,
-        name: name,
-        line: newLine,
-      })
+
+        setTrackData({
+          line: newLine,
+          lat,
+          lon,
+          name,
+        })
+      } else {
+        setTrackData({
+          line: pathLine,
+          lat,
+          lon,
+          name,
+        })
+      }
     }
   }, [lat, lon, name, line])
 

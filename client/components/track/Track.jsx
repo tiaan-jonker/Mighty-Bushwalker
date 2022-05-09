@@ -6,17 +6,21 @@ import { useParams } from 'react-router-dom'
 import { getTrack } from './trackHelper'
 import TrackInfoIcons from './TrackInfoIcons'
 import TrackButtonCompleted from './TrackButtonCompleted'
+import { useSelector } from 'react-redux'
 
 function Track() {
-  const [track, setTrack] = useState([])
+  const tracks = useSelector((state) => state.tracks)
+
   const { id } = useParams()
+  const [track, setTrack] = useState(
+    tracks.find((track) => track.id === Number(id))
+  )
   useEffect(() => {
-    getTrack(id)
-      .then((track) => {
-        return setTrack(track)
-      })
-      .catch((err) => console.log(err))
-  }, [id])
+    const trackData = tracks.find((track) => track.id === Number(id))
+    setTrack(trackData)
+  }, [tracks])
+
+  console.log(track)
 
   return (
     <section>
