@@ -5,17 +5,22 @@ import WeatherInfo from '../weather/WeatherInfo'
 import { useParams } from 'react-router-dom'
 import { getTrack } from './trackHelper'
 import TrackInfoIcons from './TrackInfoIcons'
+import TrackButtonCompleted from './TrackButtonCompleted'
+import { useSelector } from 'react-redux'
 
 function Track() {
-  const [track, setTrack] = useState([])
+  const tracks = useSelector((state) => state.tracks)
+
   const { id } = useParams()
+  const [track, setTrack] = useState(
+    tracks.find((track) => track.id === Number(id))
+  )
   useEffect(() => {
-    getTrack(id)
-      .then((user) => {
-        return setTrack(user)
-      })
-      .catch((err) => console.log(err))
-  }, [id])
+    const trackData = tracks.find((track) => track.id === Number(id))
+    setTrack(trackData)
+  }, [tracks])
+
+  console.log(track)
 
   return (
     <section>
@@ -24,7 +29,10 @@ function Track() {
       </div>
       <div className="track-content-container">
         <h2 className="track-name">{track.name}</h2>
-        <TrackButton />
+        <div className="track-banner">
+          {track.completed ? <TrackButton /> : <TrackButtonCompleted />}
+        </div>
+
         <TrackInfoIcons track={track} />
         <div>
           <p>

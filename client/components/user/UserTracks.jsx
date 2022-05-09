@@ -1,25 +1,16 @@
-import React, { useEffect, useState } from 'react'
-import { Link, useParams } from 'react-router-dom'
-import { getUserTracks } from './userHelper'
+import React from 'react'
+import { Link } from 'react-router-dom'
 import { truncatedName, randomNumGenForImage } from '../../utils'
 import TrackImg from './TrackImg'
+// import { calculateDistanceBetweenPoints } from '../tracks/tracksHelper'
+import { useSelector } from 'react-redux'
 
 function UserTracks() {
-  const [userTracks, setUserTracks] = useState([{ track_id: 0 }])
-
-  const { id } = useParams()
-
-  useEffect(() => {
-    getUserTracks(id)
-      .then((tracks) => {
-        return setUserTracks(tracks)
-      })
-      .catch((err) => console.log(err.message))
-  }, [id])
+  const userTracks = useSelector((state) => state.tracks)
 
   return (
     <section>
-      <div className="page-container mg-bottom-50">
+      <div className="page-container mg-bottom-50 container-bg-green">
         <div>
           <h2 className="user-intro">My tracks</h2>
           <h3 className="user-intro-sub">Saved and completed tracks</h3>
@@ -27,8 +18,8 @@ function UserTracks() {
         {userTracks.map((track) => {
           return (
             (track.completed == 1 || track.saved == 1) && (
-              <div key={track.track_id} className="user-track-banner">
-                <Link to={`/track/${track.track_id}`}>
+              <div key={track.id} className="user-track-banner">
+                <Link to={`/track/${track.id}`}>
                   {/* <Link to={`/track/1`}> */}
                   <div className="track-banner">
                     {track.completed ? (
@@ -52,7 +43,10 @@ function UserTracks() {
                         </span>
                       </div>
                       <div className="track-other-details">
-                        <p>Length: 58km • Est. 8hrs • 20km Away</p>
+                        <p>
+                          Length: {track.length}km • Est. {track.hours}hrs •{' '}
+                          {track.points}pts • 80 km away
+                        </p>
                       </div>
                     </div>
                     <TrackImg randomNum={randomNumGenForImage} />

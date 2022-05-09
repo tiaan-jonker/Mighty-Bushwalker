@@ -1,30 +1,19 @@
 import React, { useState, useEffect } from 'react'
-import {
-  getAmountOfTracksCompleted,
-  getUserTracks,
-  getDistanceHiked,
-} from './userHelper'
+import { useSelector } from 'react-redux'
+import { getAmountOfTracksCompleted, getDistanceHiked } from './userHelper'
 
 function UserStats({ user }) {
-  const [userTracks, setUserTracks] = useState([{ track_id: 0 }])
+  const tracks = useSelector((state) => state.tracks)
   const [tracksCompleted, setTracksCompleted] = useState(0)
   const [distanceHiked, setDistanceHiked] = useState(0)
   const [rankPercent, setRankPercent] = useState(0)
   const nextLevel = 4000
 
   useEffect(() => {
-    getUserTracks(user.id)
-      .then((tracks) => {
-        setTracksCompleted(getAmountOfTracksCompleted(tracks))
-        setDistanceHiked(getDistanceHiked(tracks))
-
-        return setUserTracks(tracks)
-      })
-      .catch((err) => console.log(err.message))
-
+    setTracksCompleted(getAmountOfTracksCompleted(tracks))
+    setDistanceHiked(getDistanceHiked(tracks))
     setRankPercent((user.xp / nextLevel) * 100)
-    console.log(rankPercent)
-  }, [user.id])
+  }, [tracks])
 
   return (
     <>
@@ -52,18 +41,20 @@ function UserStats({ user }) {
         </div>
       </div>
       <div className="xp-container">
-        <div
-          className="xp-bar-container"
-          style={{ width: `10em`, height: '2em', backgroundColor: 'white' }}
-        >
+        <div className='xp-top'>
+          <p className='total-xp-text'>Total XP</p>
+          <p>Next Level 20</p>
+        </div>
+        <div className="xp-bar-container">
           <div
             className="xp-bar"
             style={{
               width: `${rankPercent}%`,
-              height: '100%',
-              backgroundColor: 'navy',
             }}
           ></div>
+        </div>
+        <div className='xp-bottom'>
+          <p>2100 / 2700 XP</p>
         </div>
       </div>
     </>

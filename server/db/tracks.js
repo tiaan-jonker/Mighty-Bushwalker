@@ -26,6 +26,14 @@ function updateCompletedStatus({ userId, trackId, status }, db = connection) {
   return db('user_tracks').where(completedTrack).update('completed', status)
 }
 
+function addXp(userId, points, db = connection) {
+  return db('users').where('id', userId).increment('xp', points)
+}
+
+function removeXp(userId, points, db = connection) {
+  return db('users').where('id', userId).decrement('xp', points)
+}
+
 function getTrackById(id, db = connection) {
   return db('track_data')
     .where('id', id)
@@ -37,6 +45,7 @@ function getTrackById(id, db = connection) {
       'days',
       'hours',
       'return',
+      'points',
       'lon',
       'lat',
       'line',
@@ -108,7 +117,7 @@ function getUserTrackByUser(userId, db = connection) {
       'track_data.lat',
       'track_data.lon',
       'track_data.line',
-      // 'track_data.points',
+      'track_data.points',
       'track_data.return'
     )
     .where(query)
@@ -123,4 +132,6 @@ module.exports = {
   getCompletedTrackByUser,
   getOtherTrackByUser,
   getUserTrackByUser,
+  addXp,
+  removeXp,
 }
