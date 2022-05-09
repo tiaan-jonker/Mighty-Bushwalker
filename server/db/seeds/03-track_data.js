@@ -13,6 +13,7 @@ exports.seed = function (knex) {
           length: 25,
           return: false,
           difficulty: 'Advanced',
+          points: 5250,
           lon: 175.402013,
           lat: -36.212791,
           line: `[
@@ -585,6 +586,7 @@ exports.seed = function (knex) {
           length: 16,
           return: true,
           difficulty: 'Advanced',
+          points: 3900,
           lon: 175.388984,
           lat: -36.095533,
           line: `[
@@ -695,6 +697,7 @@ exports.seed = function (knex) {
           length: 14,
           return: false,
           difficulty: 'Advanced',
+          points: 3600,
           lon: 174.645426,
           lat: -36.345696,
           line: `[
@@ -846,6 +849,7 @@ exports.seed = function (knex) {
           length: 2,
           return: true,
           difficulty: 'Easy',
+          points: 800,
           lon: 174.613087,
           lat: -36.361774,
           line: `[
@@ -870,6 +874,7 @@ exports.seed = function (knex) {
           length: 6,
           return: true,
           difficulty: 'Advanced',
+          points: 2400,
           lon: 174.629215,
           lat: -36.361346,
           line: `[
@@ -933,6 +938,7 @@ exports.seed = function (knex) {
           length: 13,
           return: false,
           difficulty: 'Advanced',
+          points: 3450,
           lon: 175.381562,
           lat: -36.20442,
           line: `[
@@ -1142,6 +1148,7 @@ exports.seed = function (knex) {
           length: 3,
           return: true,
           difficulty: 'Easy',
+          points: 950,
           lon: 174.803131,
           lat: -36.270877,
           line: `[
@@ -1179,6 +1186,7 @@ exports.seed = function (knex) {
           length: 0,
           return: false,
           difficulty: 'CLOSED',
+          points: 0,
           lon: 174.455871,
           lat: -36.847572,
           line: `[
@@ -1253,6 +1261,7 @@ exports.seed = function (knex) {
           length: 11.7,
           return: false,
           difficulty: 'Intermediate',
+          points: 2755,
           lon: 175.454245,
           lat: -36.158891,
           // Possible issue as only has array of array (rather than usual array of arrays of arrays)
@@ -1423,6 +1432,7 @@ exports.seed = function (knex) {
           length: 3,
           return: false,
           difficulty: 'Easy',
+          points: 950,
           lon: 175.454245,
           lat: -36.158891,
           line: `[
@@ -1457,6 +1467,7 @@ exports.seed = function (knex) {
           length: 5,
           return: true,
           difficulty: 'Easy',
+          points: 1250,
           lon: 175.431561,
           lat: -36.208121,
           line: `[
@@ -1500,6 +1511,7 @@ exports.seed = function (knex) {
           length: 16,
           return: true,
           difficulty: 'Advanced',
+          points: 3900,
           lon: 175.431561,
           lat: -36.208121,
           // Possible issue as only has array of array (rather than usual array of arrays of arrays)
@@ -1558,6 +1570,7 @@ exports.seed = function (knex) {
           length: 4,
           return: false,
           difficulty: 'Advanced',
+          points: 2100,
           lon: 174.990159,
           lat: -36.777342,
           line: `[
@@ -1621,6 +1634,7 @@ exports.seed = function (knex) {
           length: 1,
           return: false,
           difficulty: 'Easy',
+          points: 650,
           lon: 174.812052,
           lat: -36.827561,
           line: `[
@@ -1649,6 +1663,7 @@ exports.seed = function (knex) {
           length: 1,
           return: false,
           difficulty: 'Easy',
+          points: 650,
           lon: 174.812052,
           lat: -36.827561,
           // Possible issue as only has array of array (rather than usual array of arrays of arrays)
@@ -1676,6 +1691,7 @@ exports.seed = function (knex) {
           length: 1,
           return: true,
           difficulty: 'Easy',
+          points: 650,
           lon: 174.812052,
           lat: -36.827561,
           // Possible issue as only has array of array (rather than usual array of arrays of arrays)
@@ -1711,6 +1727,7 @@ exports.seed = function (knex) {
           length: 12,
           return: true,
           difficulty: 'Advanced',
+          points: 650,
           lon: 174.62945,
           lat: -36.465472,
           // Possible issue as only has array of array (rather than usual array of arrays of arrays)
@@ -1768,6 +1785,7 @@ exports.seed = function (knex) {
           length: 6,
           return: true,
           difficulty: 'Advanced',
+          points: 2400,
           lon: 174.62945,
           lat: -36.465472,
           // Possible issue as only has array of array (rather than usual array of arrays of arrays)
@@ -1814,6 +1832,7 @@ exports.seed = function (knex) {
           length: 1,
           return: true,
           difficulty: 'Easy',
+          points: 3300,
           lon: 174.62945,
           lat: -36.465472,
           // Possible issue as only has array of array (rather than usual array of arrays of arrays)
@@ -1839,6 +1858,7 @@ exports.seed = function (knex) {
           length: 0,
           return: false,
           difficulty: 'CLOSED',
+          points: 0,
           lon: 174.47424,
           lat: -36.84126,
           // Possible issue as only has array of array (rather than usual array of arrays of arrays)

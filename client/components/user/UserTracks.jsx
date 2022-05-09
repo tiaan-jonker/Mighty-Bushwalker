@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { truncatedName, randomNumGenForImage } from '../../utils'
 import TrackImg from './TrackImg'
+// import { calculateDistanceBetweenPoints } from '../tracks/tracksHelper'
 import { useSelector } from 'react-redux'
 
 function UserTracks() {
@@ -42,7 +43,10 @@ function UserTracks() {
                         </span>
                       </div>
                       <div className="track-other-details">
-                        <p>Length: 58km • Est. 8hrs • 20km Away</p>
+                        <p>
+                          Length: {track.length}km • Est. {track.hours}hrs •{' '}
+                          {track.points}pts • 80 km away
+                        </p>
                       </div>
                     </div>
                     <TrackImg randomNum={randomNumGenForImage} />
