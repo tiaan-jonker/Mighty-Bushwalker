@@ -5,7 +5,6 @@ import { fetchForecast } from '../../actions/forecast'
 
 function Weather() {
   const weather = useSelector((state) => state.weather)
-  // const weatherIcon = useSelector((state) => state.weatherIcon)
   const forecast = useSelector((state) => state.forecast)
   const dispatch = useDispatch()
 
@@ -21,7 +20,7 @@ function Weather() {
           <p className="weather-day">Today</p>
           <img
             src="/icons/weather/cloudy.png"
-            alt=""
+            alt="current weather"
             className="weather-icon"
           />
           <p className="weather-temp">{weather.temperature}&deg;C</p>
@@ -33,7 +32,7 @@ function Weather() {
             </p>
             <img
               src="/icons/weather/rain.png"
-              alt=""
+              alt="current weather"
               className="weather-icon"
             />
             <p className="weather-temp">{forecastData.temperature}&deg;C</p>

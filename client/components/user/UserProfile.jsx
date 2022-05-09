@@ -1,9 +1,9 @@
-import { useAuth0 } from '@auth0/auth0-react'
 import React, { useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
+import { useSelector } from 'react-redux'
+import { useAuth0 } from '@auth0/auth0-react'
 import { getLogoutFn } from '../../auth0-utils'
 import UserStats from './UserStats.jsx'
-import { useSelector } from 'react-redux'
 import LogoutModal from './LogoutModal'
 
 function UserProfile() {
