@@ -8,7 +8,12 @@ function getBadgesByUser(userId, db = connection) {
   return db('badges')
     .where('user_id', userId)
     .join('badge_data', 'badge_data.id', 'badges.badge_id')
-    .select('badge_data.id', 'badge_data.name', 'badge_data.image')
+    .select(
+      'badge_data.id',
+      'badge_data.name',
+      'badge_data.image',
+      'badge_data.criteria'
+    )
 } //test working
 
 function addBadge(badge, db = connection) {

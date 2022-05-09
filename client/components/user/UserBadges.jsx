@@ -33,9 +33,11 @@ function ProfileBadgeList() {
           {badges.map((badge) => {
             return (
               <div key={badge.id} className="badge-container">
-                <span className="badge-circle"></span>
+                <span className="badge-circle">
+                  <img src={`/icons/badges/${badge.image}.png`} />
+                </span>
                 <p className="badge-title">{badge.name}</p>
-                <p className="badge-description">badge.criteria</p>
+                <p className="badge-description">{badge.criteria}</p>
                 {badge.achieved && <p>Achieved</p>}
               </div>
             )
