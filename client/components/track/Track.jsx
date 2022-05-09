@@ -29,10 +29,9 @@ function Track() {
       </div>
       <div className="track-content-container">
         <h2 className="track-name">{track.name}</h2>
-        <div className="track-banner">
+        <div>
           {track.completed ? <TrackButton /> : <TrackButtonCompleted />}
         </div>
-
         <TrackInfoIcons track={track} />
         <div>
           <p>

@@ -8,6 +8,17 @@ import { useSelector } from 'react-redux'
 function UserTracks() {
   const userTracks = useSelector((state) => state.tracks)
 
+  const getBackgroundColor = (difficulty) => {
+    switch (difficulty) {
+      case 'Advanced':
+        return '#E75345'
+      case 'Intermediate':
+        return '#04D8CB'
+      case 'Easy':
+        return '#10B470'
+    }
+  }
+
   return (
     <section>
       <div className="page-container mg-bottom-50 container-bg-green">
@@ -37,9 +48,13 @@ function UserTracks() {
                         </h2>
                         <span
                           className="track-difficulty"
-                          // style={{ backgroundColor: getBackgroundColor() }}
+                          style={{
+                            backgroundColor: getBackgroundColor(
+                              track.difficulty
+                            ),
+                          }}
                         >
-                          Difficult
+                          {track.difficulty}
                         </span>
                       </div>
                       <div className="track-other-details">
