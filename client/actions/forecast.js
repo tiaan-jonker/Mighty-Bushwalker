@@ -1,18 +1,26 @@
 import { fetchForecastWeatherData } from '../apis/weather'
 
-export const SET_FORECAST = 'SET_FORECAST'
+export const FETCH_FORECAST_SUCCESS = 'FETCH_FORECAST_SUCCESS'
+export const FETCH_FORECAST_PENDING = 'FETCH_FORECAST_PENDING'
 
-export function setForecast(forecast) {
+export function fetchForecastPending() {
   return {
-    type: SET_FORECAST,
+    type: FETCH_FORECAST_PENDING,
+  }
+}
+
+export function fetchForecastSuccess(forecast) {
+  return {
+    type: FETCH_FORECAST_SUCCESS,
     forecast,
   }
 }
 
 export function fetchForecast() {
   return (dispatch) => {
+    dispatch(fetchForecastPending())
     return fetchForecastWeatherData().then((forecast) => {
-      dispatch(setForecast(forecast))
+      dispatch(fetchForecastSuccess(forecast))
       return null
     })
   }
