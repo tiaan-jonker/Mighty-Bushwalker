@@ -12,6 +12,7 @@ function UserStats({ user }) {
   const [distanceHiked, setDistanceHiked] = useState(0)
   const [rankPercent, setRankPercent] = useState(0)
   const [rank, setRank] = useState({})
+  const [nextRank, setNextRank] = useState({})
   const nextLevel = 4000
 
   useEffect(() => {
@@ -28,6 +29,7 @@ function UserStats({ user }) {
         for (let i = 0; i < ranksToCheck.length; i++) {
           if (xp >= ranksToCheck[i].xp) {
             setRank(ranksToCheck[i])
+            setNextRank(ranksToCheck[i - 1])
             return null
           }
         }
@@ -36,6 +38,8 @@ function UserStats({ user }) {
       .catch((err) => console.log(err))
   }, [user.xp])
 
+  console.log(nextRank)
+
   return (
     <>
       <div className="stats-container">
@@ -43,7 +47,7 @@ function UserStats({ user }) {
           <span className="stat-rectangle">
             <img src="/icons/trophy.svg" alt="" className="stat-icon" />
             <div className="stat-description">Hiking level</div>
-            <div className="user-stat">{user.rank}</div>
+            <div className="user-stat">{rank.rank_name}</div>
           </span>
         </div>
         <div className="stat-info">
@@ -64,7 +68,7 @@ function UserStats({ user }) {
       <div className="xp-container">
         <div className="xp-top">
           <p className="total-xp-text">Total XP</p>
-          <p>Next Level 20</p>
+          <p>Next Level: {nextRank.rank_name}</p>
         </div>
         <div className="xp-bar-container">
           <div
