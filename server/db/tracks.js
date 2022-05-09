@@ -1,5 +1,61 @@
 const connection = require('./connection')
 
+function addXp(userId, points, db = connection) {
+  return db('users').where('id', userId).increment('xp', points)
+}
+
+function removeXp(userId, points, db = connection) {
+  return db('users').where('id', userId).decrement('xp', points)
+}
+
+function getTrackById(id, db = connection) {
+  // Not used?
+  return db('track_data')
+    .where('id', id)
+    .select(
+      'id',
+      'asset_id as assetId',
+      'name',
+      'length',
+      'days',
+      'hours',
+      'return',
+      'points',
+      'lon',
+      'lat',
+      'line',
+      'difficulty'
+    )
+    .first()
+}
+
+function getUserTrackByUser(userId, db = connection) {
+  const query = {
+    user_id: userId,
+  }
+  return db('user_tracks')
+    .join('track_data', 'track_data.id', 'user_tracks.track_id')
+    .select(
+      'track_data.id',
+      'track_data.name',
+      'user_tracks.saved',
+      'user_tracks.completed',
+      'track_data.length',
+      'track_data.difficulty',
+      'track_data.days',
+      'track_data.hours',
+      'track_data.lat',
+      'track_data.lon',
+      'track_data.line',
+      'track_data.points',
+      'track_data.return'
+    )
+    .where(query)
+}
+
+//
+//** UNUSED **//
+
 function listTracks(db = connection) {
   return db('track_data').select(
     'id',
@@ -24,34 +80,6 @@ function updateSavedStatus({ userId, trackId, status }, db = connection) {
 function updateCompletedStatus({ userId, trackId, status }, db = connection) {
   const completedTrack = { user_id: userId, track_id: trackId }
   return db('user_tracks').where(completedTrack).update('completed', status)
-}
-
-function addXp(userId, points, db = connection) {
-  return db('users').where('id', userId).increment('xp', points)
-}
-
-function removeXp(userId, points, db = connection) {
-  return db('users').where('id', userId).decrement('xp', points)
-}
-
-function getTrackById(id, db = connection) {
-  return db('track_data')
-    .where('id', id)
-    .select(
-      'id',
-      'asset_id as assetId',
-      'name',
-      'length',
-      'days',
-      'hours',
-      'return',
-      'points',
-      'lon',
-      'lat',
-      'line',
-      'difficulty'
-    )
-    .first()
 }
 
 // possibly redundant
@@ -99,28 +127,12 @@ function getOtherTrackByUser(userId, db = connection) {
     .where(query)
 }
 
-function getUserTrackByUser(userId, db = connection) {
+function getUserTrackDataOnly(userId, trackId, db = connection) {
   const query = {
     user_id: userId,
+    track_id: trackId,
   }
-  return db('user_tracks')
-    .join('track_data', 'track_data.id', 'user_tracks.track_id')
-    .select(
-      'track_data.id',
-      'track_data.name',
-      'user_tracks.saved',
-      'user_tracks.completed',
-      'track_data.length',
-      'track_data.difficulty',
-      'track_data.days',
-      'track_data.hours',
-      'track_data.lat',
-      'track_data.lon',
-      'track_data.line',
-      'track_data.points',
-      'track_data.return'
-    )
-    .where(query)
+  return db('user_tracks').select().where(query)
 }
 
 module.exports = {
@@ -134,4 +146,5 @@ module.exports = {
   getUserTrackByUser,
   addXp,
   removeXp,
+  getUserTrackDataOnly,
 }

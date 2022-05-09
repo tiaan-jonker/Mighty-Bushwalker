@@ -58,10 +58,19 @@ export function setTrackAsUnsaved(trackId) {
   }
 }
 
-export function completeTrack(trackId, userId) {
+export function completeTrack(trackId, userId, points) {
   return (dispatch) => {
     dispatch(setTrackAsCompleted(trackId))
-    return updateTrackStatus(trackId, userId, 'completed').then(() => {
+    return updateTrackStatus(trackId, userId, 'completed', points).then(() => {
+      return null
+    })
+  }
+}
+
+export function saveTrack(trackId, userId) {
+  return (dispatch) => {
+    dispatch(setTrackAsSaved(trackId))
+    return updateTrackStatus(trackId, userId, 'saved').then(() => {
       return null
     })
   }
