@@ -1,11 +1,15 @@
 import React, { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router'
+import { fetchMapAndTrackDataSuccess } from '../actions/tracks'
+import { setUser } from '../actions/user'
 import { addUser } from '../apis/users'
+import { getUser, getUserTracks } from './user/userHelper'
 
 function Registration() {
   const user = useSelector((state) => state.user)
   const navigate = useNavigate()
+  const dispatch = useDispatch()
 
   const [form, setForm] = useState({
     auth0Id: '',
@@ -36,7 +40,13 @@ function Registration() {
     // registerUser(form, authUser, history.push)
     try {
       await addUser(form)
-      navigate('/')
+      const userData = await getUser(user.auth0Id)
+      dispatch(setUser(userData))
+      const trackdata = await getUserTracks(userData.id)
+      dispatch(fetchMapAndTrackDataSuccess(trackdata))
+      if (userData) {
+        navigate('/')
+      }
     } catch (error) {
       console.error(error)
     }

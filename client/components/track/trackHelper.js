@@ -21,3 +21,19 @@ export function getTrack(id, consume = requestor) {
       console.log(error.message)
     })
 }
+
+export function updateTrackStatus(
+  userId,
+  trackId,
+  update, // use the type of update i.e saved / completed, this directs to the correct route
+  points, // for route completion this is used, otherwise leave parameter empty
+  consume = requestor
+) {
+  return consume(`/tracks/${update}`, 'patch', { userId, trackId, points })
+    .then((res) => {
+      return res.body
+    })
+    .catch((error) => {
+      console.log(error.message)
+    })
+}
