@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { truncatedName, randomNumGenForImage } from '../../utils'
 import TrackImg from './TrackImg'
@@ -6,6 +6,7 @@ import { useSelector } from 'react-redux'
 
 function UserTracks() {
   const userTracks = useSelector((state) => state.tracks)
+  const [checkForNone, setCheckForNone] = useState(0)
 
   const getBackgroundColor = (difficulty) => {
     switch (difficulty) {
@@ -18,6 +19,16 @@ function UserTracks() {
     }
   }
 
+  useEffect(() => {
+    let count = 0
+    for (let i = 0; i < userTracks.length; i++) {
+      count += userTracks[i].completed + userTracks[i].saved
+    }
+    setCheckForNone(count)
+  })
+
+  console.log(checkForNone)
+
   return (
     <section>
       <div className="page-container mg-bottom-50 container-bg-green">
@@ -25,56 +36,62 @@ function UserTracks() {
           <h2 className="user-intro">My tracks</h2>
           <h3 className="user-intro-sub">Saved and completed tracks</h3>
         </div>
-        {userTracks.map((track) => {
-          return (
-            (track.completed == 1 || track.saved == 1) && (
-              <div key={track.id} className="user-track-banner">
-                <Link to={`/track/${track.id}`}>
-                  {/* <Link to={`/track/1`}> */}
-                  <div className="track-banner">
-                    {track.completed ? (
-                      <span className="status-indicator completed">
-                        Completed
-                      </span>
-                    ) : (
-                      <span className="status-indicator saved">Saved</span>
-                    )}
-                    {track.completed ? (
-                      ''
-                    ) : (
-                      <div className="points-container">{track.points} XP</div>
-                    )}
-
-                    <div className="track-banner-info">
-                      <div className="track-name-difficulty-container">
-                        <h2 className="track-list-name">
-                          {truncatedName(track.name)}
-                        </h2>
-                        <span
-                          className="track-difficulty"
-                          style={{
-                            backgroundColor: getBackgroundColor(
-                              track.difficulty
-                            ),
-                          }}
-                        >
-                          {track.difficulty}
+        {checkForNone == 0 ? (
+          <div>Head to Explore to find your first track!</div>
+        ) : (
+          userTracks.map((track) => {
+            return (
+              (track.completed == 1 || track.saved == 1) && (
+                <div key={track.id} className="user-track-banner">
+                  <Link to={`/track/${track.id}`}>
+                    {/* <Link to={`/track/1`}> */}
+                    <div className="track-banner">
+                      {track.completed ? (
+                        <span className="status-indicator completed">
+                          Completed
                         </span>
+                      ) : (
+                        <span className="status-indicator saved">Saved</span>
+                      )}
+                      {track.completed ? (
+                        ''
+                      ) : (
+                        <div className="points-container">
+                          {track.points} XP
+                        </div>
+                      )}
+
+                      <div className="track-banner-info">
+                        <div className="track-name-difficulty-container">
+                          <h2 className="track-list-name">
+                            {truncatedName(track.name)}
+                          </h2>
+                          <span
+                            className="track-difficulty"
+                            style={{
+                              backgroundColor: getBackgroundColor(
+                                track.difficulty
+                              ),
+                            }}
+                          >
+                            {track.difficulty}
+                          </span>
+                        </div>
+                        <div className="track-other-details">
+                          <p>
+                            Length: {track.length}km • Est. {track.hours}hrs •
+                            80 km away
+                          </p>
+                        </div>
                       </div>
-                      <div className="track-other-details">
-                        <p>
-                          Length: {track.length}km • Est. {track.hours}hrs • 80
-                          km away
-                        </p>
-                      </div>
+                      <TrackImg randomNum={randomNumGenForImage} />
                     </div>
-                    <TrackImg randomNum={randomNumGenForImage} />
-                  </div>
-                </Link>
-              </div>
+                  </Link>
+                </div>
+              )
             )
-          )
-        })}
+          })
+        )}
       </div>
     </section>
   )
