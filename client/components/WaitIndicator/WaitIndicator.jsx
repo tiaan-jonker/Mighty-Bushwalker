@@ -1,19 +1,23 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
+import { connect } from 'react-redux'
 import { Box, LinearProgress } from '@mui/material'
 
-function WaitIndicator() {
-  const waiting = useSelector((state) => state.waiting)
-
+function WaitIndicator(props) {
   return (
     <>
-      {waiting ? (
+      {/* {waiting ? (
         <Box sx={{ width: '100%' }}>
           <LinearProgress />
         </Box>
-      ) : null}
+      ) : null} */}
     </>
   )
+}
+
+function mapStateToProps(state) {
+  return {
+    waiting: state.waiting,
+  }
 }
 
 export default WaitIndicator

@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react'
 import { calculateDistanceBetweenPoints, getAllTracks } from './tracksHelper'
-import { useSelector, useDispatch } from 'react-redux'
 import TrackItem from './TrackItem'
 import AllTracksMap from '../map/AllTracksMap'
 import TrackFilterModal from './TrackFilterModal'
-import { fetchMapAndProductData } from '../../actions/tracks'
 import { randomNumGenForImage } from '../../utils'
 
 function Track() {
   const [allTracks, setAllTracks] = useState([])
+
+  // FILTER STATES
   const [filteredTracks, setFilteredTracks] = useState([])
   const [difficultyFilter, setDifficultyFilter] = useState([
     'Easy',
@@ -16,17 +16,23 @@ function Track() {
     'Advanced',
   ])
   const [lengthFilter, setLengthFilter] = useState(['Short', 'Medium', 'Long'])
+
+  // MODAL AND SHOW BUTTON STATES
   const [isOpenModal, setIsOpenModal] = useState(false)
   const [showMore, setShowMore] = useState(2)
+  const [showButtonText, setShowButtonText] = useState(false)
 
+  // MODAL AND SHOW BUTTON LOGIC
   const handleClick = () => {
-    setShowMore(filteredTracks.length)
+    setShowMore((prevState) => (prevState === 2 ? filteredTracks.length : 2))
+    setShowButtonText((prevState) => !prevState)
   }
 
   const handleModal = () => {
     setIsOpenModal(true)
   }
 
+  // GET TRACKS AND GEOLOCATION
   useEffect(() => {
     getAllTracks()
       .then((tracks) => {
@@ -62,7 +68,7 @@ function Track() {
       .catch((err) => console.log(err))
   }, [])
 
-  // Filter Tracks by Difficulty
+  // FILTER TRACKS BY DIFFICULTY
   useEffect(() => {
     const newFilteredTracks = allTracks.filter((track) =>
       difficultyFilter.includes(track.difficulty)
@@ -74,7 +80,7 @@ function Track() {
     setDifficultyFilter(newValue)
   }
 
-  // Filter Tracks by Length
+  // FILTER TRACKS BY LENGTH
   useEffect(() => {
     const newFilteredTracks = allTracks.filter((track) =>
       lengthFilter.includes(track.lengthCategory)
@@ -95,11 +101,17 @@ function Track() {
           lengthFilterDetails={{ updateLengthFilter, lengthFilter }}
         />
       )}
+
       <div className={isOpenModal ? 'modal-display-none' : ''}>
         <h2 className="tracks-intro">Explore</h2>
         <p className="tracks-sub">All trails available to hike</p>
         <AllTracksMap tracks={filteredTracks} />
-        <button onClick={handleModal}>Open Modal</button>
+        <button onClick={handleModal} className="modal-btn">
+          <div className="modal-btn-container">
+            <img src="/icons/filter.svg" alt="" className="filter-icon" />
+            <p>Filters</p>
+          </div>
+        </button>
 
         {filteredTracks.slice(0, showMore).map((trackData) => (
           <ul key={trackData.id} className="track-list">
@@ -111,8 +123,14 @@ function Track() {
             </div>
           </ul>
         ))}
-        <button onClick={handleClick} style={{ marginBottom: '50px' }}>
-          Show more
+        <button
+          onClick={handleClick}
+          className="modal-btn"
+          style={{ marginBottom: '50px' }}
+        >
+          <div className="modal-btn-show-container">
+            {showButtonText ? 'Show less' : 'Show more'}
+          </div>
         </button>
       </div>
     </section>

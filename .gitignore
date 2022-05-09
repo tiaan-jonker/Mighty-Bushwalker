@@ -21,7 +21,6 @@ auth_config.json
 .vscode
 .idea
 
-package-lock.json
 package.json
 
-weather.js
+weatherKey.js
