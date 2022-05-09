@@ -22,6 +22,17 @@ export function getUserBadges(id, consume = requestor) {
     })
 }
 
+export function getAllBadges(consume = requestor) {
+  return consume(`/badges`)
+    .then((res) => {
+      const badges = res.body
+      return badges
+    })
+    .catch((error) => {
+      console.log(error.message)
+    })
+}
+
 export function getUserTracks(id, consume = requestor) {
   return consume(`/tracks/userTracks/${id}`)
     .then((res) => {
