@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import { useSelector } from 'react-redux'
-import { getAmountOfTracksCompleted, getDistanceHiked } from './userHelper'
+import {
+  getAmountOfTracksCompleted,
+  getDistanceHiked,
+  getRanks,
+} from './userHelper'
 
 function UserStats({ user }) {
   const tracks = useSelector((state) => state.tracks)
@@ -14,6 +18,15 @@ function UserStats({ user }) {
     setDistanceHiked(getDistanceHiked(tracks))
     setRankPercent((user.xp / nextLevel) * 100)
   }, [tracks])
+
+  useEffect(() => {
+    getRanks()
+      .then((ranks) => {
+        console.log(ranks)
+        return ranks
+      })
+      .catch((err) => console.log(err))
+  }, [user.xp])
 
   return (
     <>
@@ -41,8 +54,8 @@ function UserStats({ user }) {
         </div>
       </div>
       <div className="xp-container">
-        <div className='xp-top'>
-          <p className='total-xp-text'>Total XP</p>
+        <div className="xp-top">
+          <p className="total-xp-text">Total XP</p>
           <p>Next Level 20</p>
         </div>
         <div className="xp-bar-container">
@@ -53,7 +66,7 @@ function UserStats({ user }) {
             }}
           ></div>
         </div>
-        <div className='xp-bottom'>
+        <div className="xp-bottom">
           <p>2100 / 2700 XP</p>
         </div>
       </div>

@@ -44,3 +44,14 @@ export function getDistanceHiked(tracks) {
   }, 0)
   return distanceHiked
 }
+
+export function getRanks(consume = requestor) {
+  return consume(`/ranks`)
+    .then((res) => {
+      const ranks = res.body
+      return ranks
+    })
+    .catch((error) => {
+      console.log(error.message)
+    })
+}
