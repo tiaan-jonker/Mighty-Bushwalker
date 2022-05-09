@@ -8,13 +8,13 @@ function TrackFilters({ difficultyFilterDetails, lengthFilterDetails }) {
   return (
     <div>
       <TrackFilter
-        updateFilter={difficultyFilterDetails.updateDifficultyFilter}
+        updateFilter={difficultyFilterDetails.setDifficultyFilter}
         filter={difficultyFilterDetails.difficultyFilter}
         filterName="Difficulty"
         filterOptions={difficultyOptions}
       />
       <TrackFilter
-        updateFilter={lengthFilterDetails.updateLengthFilter}
+        updateFilter={lengthFilterDetails.setLengthFilter}
         filter={lengthFilterDetails.lengthFilter}
         filterName="Track Length"
         filterOptions={lengthOptions}

@@ -78,10 +78,6 @@ function Track() {
     setFilteredTracks(newFilteredTracks)
   }, [difficultyFilter])
 
-  function updateDifficultyFilter(newValue) {
-    setDifficultyFilter(newValue)
-  }
-
   // FILTER TRACKS BY LENGTH
   useEffect(() => {
     const newFilteredTracks = allTracks.filter((track) =>
@@ -90,17 +86,13 @@ function Track() {
     setFilteredTracks(newFilteredTracks)
   }, [lengthFilter])
 
-  function updateLengthFilter(newValue) {
-    setLengthFilter(newValue)
-  }
-
   return (
     <section className="page-container">
       {isOpenModal && (
         <TrackFilterModal
           setIsOpenModal={setIsOpenModal}
-          difficultyFilterDetails={{ updateDifficultyFilter, difficultyFilter }}
-          lengthFilterDetails={{ updateLengthFilter, lengthFilter }}
+          difficultyFilterDetails={{ setDifficultyFilter, difficultyFilter }}
+          lengthFilterDetails={{ setLengthFilter, lengthFilter }}
         />
       )}
 
