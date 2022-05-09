@@ -4,6 +4,8 @@ exports.up = function (knex) {
     table.integer('track_id').references('track_data.id')
     table.integer('completed')
     table.integer('saved')
+    table.date('last_completion')
+    table.integer('total_completions')
   })
 }
 

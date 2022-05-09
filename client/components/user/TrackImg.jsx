@@ -5,7 +5,7 @@ function TrackImg({ randomNum }) {
     <div>
       <img
         src={`/images/bg/bg-${randomNum()}.webp`}
-        alt=""
+        alt="image of track"
         className="track-banner-img"
       />
     </div>

@@ -17,7 +17,6 @@ router.get('/userTracks/:userId', (req, res) => {
         const lineArray = JSON.parse(track.line) // convert array from string to arrays (beware of trailing commas)
         return { ...track, line: lineArray }
       })
-
       res.json(parsedTracks)
       return null
     })
@@ -67,17 +66,23 @@ router.patch('/unsaved', (req, res) => {
 // update status of whether a track is completed by user of not
 router.patch('/completed', (req, res) => {
   const { userId, trackId, points } = req.body
+  const current = new Date()
+  const lastCompletion = `${
+    current.getMonth() + 1
+  }/${current.getDate()}/${current.getFullYear()}`
+
   const completedTrack = {
     userId,
     trackId,
     status: 1,
+    lastCompletion,
   }
   db.updateCompletedStatus(completedTrack)
     .then(() => {
       return db.addXp(userId, points)
     })
     .then(() => {
-      res.sendStatus(201)
+      res.sendStatus(200)
       return null
     })
     .catch((err) => {

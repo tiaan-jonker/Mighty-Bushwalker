@@ -1,10 +1,8 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
 import { Box, Tab } from '@mui/material'
 import { TabContext, TabList, TabPanel } from '@mui/lab'
 import Weather from './Weather'
 import Suntimes from './Suntimes'
-import WaitCircular from '../WaitIndicator/WaitCircular'
 
 function WeatherInfo() {
   const [value, setValue] = React.useState('1')
@@ -27,9 +25,7 @@ function WeatherInfo() {
           </TabList>
         </Box>
         <TabPanel value="1">
-          <Weather>
-            <WaitCircular />
-          </Weather>
+          <Weather />
         </TabPanel>
         <TabPanel value="2">
           <Suntimes />

@@ -13,6 +13,7 @@ function generateUserTrackData(userId) {
       track_id: i,
       completed: 0,
       saved: 0,
+      total_completions: 0,
     })
   }
 
@@ -39,8 +40,9 @@ function generateUserTrackDataSeed() {
       userTracks.push({
         user_id: i,
         track_id: j,
-        completed: randSaved,
-        saved: randComplete,
+        completed: randComplete,
+        saved: randSaved,
+        total_completions: randComplete,
       })
     }
   }

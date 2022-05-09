@@ -3,8 +3,7 @@ import TrackButtonSave from './TrackButtonSave'
 import TrackMap from '../map/TrackMap'
 import WeatherInfo from '../weather/WeatherInfo'
 import { useParams } from 'react-router-dom'
-import { getTrack } from './trackHelper'
-import TrackInfoIcons from './TrackInfoIcons'
+import { checkIfDateIsNotToday } from './trackHelper'
 import TrackButtonCompleted from './TrackButtonCompleted'
 import { useSelector } from 'react-redux'
 import TrackButtonComplete from './TrackButtonComplete'
@@ -21,8 +20,6 @@ function Track() {
     setTrack(trackData)
   }, [tracks])
 
-  console.log(track)
-
   return (
     <section>
       <div className="page-image-container">
@@ -31,12 +28,30 @@ function Track() {
       <div className="track-content-container">
         <h2 className="track-name">{track.name}</h2>
 
-        {track.completed === 1 && <TrackButtonCompleted />}
+        {track.completed === 1 && (
+          <TrackButtonCompleted
+            canCompleteAgain={checkIfDateIsNotToday(track.lastCompletion)}
+          />
+        )}
         {track.saved === 1 && track.completed === 0 && <TrackButtonComplete />}
         {track.saved === 0 && track.completed === 0 && <TrackButtonSave />}
 
-        <TrackInfoIcons track={track} />
         <div>
+          <div className="track-info-line"></div>
+          <div className="track-info-container">
+            <div>
+              <p className="track-info-heading">Length</p>
+              <p>{track.length}km</p>
+            </div>
+            <div>
+              <p className="track-info-heading">Est.</p>
+              <p>{track.hours}hrs</p>
+            </div>
+            <div>
+              <p className="track-info-heading">XP Potential</p>
+              <div className="points-info">{track.points} XP</div>
+            </div>
+          </div>
           <p>
             Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nisi
             fugiat praesentium quo nihil tempore commodi ab ipsum quidem

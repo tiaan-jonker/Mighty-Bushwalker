@@ -12,7 +12,9 @@ function tracks(state = [], action) {
       return action.tracks
     case SET_TRACK_AS_COMPLETED:
       return state.map((track) =>
-        track.id === action.trackId ? { ...track, completed: 1 } : track
+        track.id === action.trackId
+          ? { ...track, completed: 1, lastCompletion: action.lastCompletion }
+          : track
       )
     case SET_TRACK_AS_INCOMPLETE:
       return state.map((track) =>

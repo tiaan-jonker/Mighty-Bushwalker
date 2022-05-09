@@ -12,6 +12,7 @@ exports.up = function (knex) {
     table.float('lon')
     table.float('lat')
     table.string('line')
+    table.string('description')
   })
 }
 

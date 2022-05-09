@@ -115,3 +115,23 @@
   justify-content: space-between;
   align-items: center;
 }
+
+.modal-logout-yes {
+  padding: 10px 15px;
+  background-color: #fe4a49;
+  width: 75px;
+  border-radius: 10px;
+  font-size: 16px;
+}
+
+.modal-logout-no {
+  padding: 10px 15px;
+  width: 75px;
+  border-radius: 10px;
+  font-size: 16px;
+}
+
+.flex-space-evenly {
+  display: flex;
+  justify-content: space-evenly;
+}
