@@ -63,7 +63,8 @@ function Track() {
           </p>
         </div>
         <div>
-          <TrackMap track={track} />
+          {badgeModal ? '' : <TrackMap track={track} />}
+
           <WeatherInfo />
         </div>
       </div>
