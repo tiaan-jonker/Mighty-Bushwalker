@@ -9,12 +9,11 @@ import { useSelector } from 'react-redux'
 import TrackButtonComplete from './TrackButtonComplete'
 
 function Track() {
+  const { id } = useParams()
   const tracks = useSelector((state) => state.tracks)
 
-  const { id } = useParams()
-  const [track, setTrack] = useState(
-    tracks.find((track) => track.id === Number(id))
-  )
+  const [track, setTrack] = useState([])
+
   useEffect(() => {
     const trackData = tracks.find((track) => track.id === Number(id))
     setTrack(trackData)

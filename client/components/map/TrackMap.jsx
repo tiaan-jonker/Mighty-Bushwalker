@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { MapContainer, TileLayer, Marker, Popup, Polyline } from 'react-leaflet'
 
-function TrackMap(props) {
-  const { name, lat, lon, line } = props.track
+function TrackMap({ track }) {
+  const { name, lat, lon, line } = track
   const [trackData, setTrackData] = useState({
     lat: 0,
     lon: 0,
