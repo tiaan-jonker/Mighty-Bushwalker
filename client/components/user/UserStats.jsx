@@ -1,19 +1,44 @@
 import React, { useState, useEffect } from 'react'
 import { useSelector } from 'react-redux'
-import { getAmountOfTracksCompleted, getDistanceHiked } from './userHelper'
+import {
+  getAmountOfTracksCompleted,
+  getDistanceHiked,
+  getRanks,
+} from './userHelper'
 
 function UserStats({ user }) {
   const tracks = useSelector((state) => state.tracks)
   const [tracksCompleted, setTracksCompleted] = useState(0)
   const [distanceHiked, setDistanceHiked] = useState(0)
   const [rankPercent, setRankPercent] = useState(0)
-  const nextLevel = 4000
+  const [rank, setRank] = useState({})
+  const [nextRank, setNextRank] = useState({})
 
   useEffect(() => {
     setTracksCompleted(getAmountOfTracksCompleted(tracks))
     setDistanceHiked(getDistanceHiked(tracks))
-    setRankPercent((user.xp / nextLevel) * 100)
   }, [tracks])
+
+  useEffect(() => {
+    getRanks()
+      .then((ranks) => {
+        const xp = user.xp
+        const ranksToCheck = ranks.reverse()
+        for (let i = 0; i < ranksToCheck.length; i++) {
+          if (xp >= ranksToCheck[i].xp) {
+            setRank(ranksToCheck[i])
+            setNextRank(ranksToCheck[i - 1])
+            return null
+          }
+        }
+        return null
+      })
+      .catch((err) => console.log(err))
+  }, [user.xp])
+
+  useEffect(() => {
+    setRankPercent((user.xp / nextRank.xp) * 100)
+  })
 
   return (
     <>
@@ -22,7 +47,7 @@ function UserStats({ user }) {
           <span className="stat-rectangle">
             <img src="/icons/trophy.svg" alt="" className="stat-icon" />
             <div className="stat-description">Hiking level</div>
-            <div className="user-stat">{user.rank}</div>
+            <div className="user-stat">{rank.rank_name}</div>
           </span>
         </div>
         <div className="stat-info">
@@ -41,9 +66,9 @@ function UserStats({ user }) {
         </div>
       </div>
       <div className="xp-container">
-        <div className='xp-top'>
-          <p className='total-xp-text'>Total XP</p>
-          <p>Next Level 20</p>
+        <div className="xp-top">
+          <p className="total-xp-text">Total XP</p>
+          <p>Next Level: {nextRank.rank_name}</p>
         </div>
         <div className="xp-bar-container">
           <div
@@ -53,8 +78,10 @@ function UserStats({ user }) {
             }}
           ></div>
         </div>
-        <div className='xp-bottom'>
-          <p>2100 / 2700 XP</p>
+        <div className="xp-bottom">
+          <p>
+            {user.xp} / {nextRank.xp} XP
+          </p>
         </div>
       </div>
     </>
