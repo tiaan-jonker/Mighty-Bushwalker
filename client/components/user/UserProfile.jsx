@@ -47,11 +47,11 @@ function UserProfile() {
         <div className="user-links-container">
           <div className="link-one">
             <div className="link-container-one">
-              <div className="link-text-container">
-                <div className="link-text">Explore</div>
-                <img src="/icons/arrow.svg" alt="" />
-              </div>
               <Link to="/tracks">
+                <div className="link-text-container">
+                  <div className="link-text">Explore</div>
+                  <img src="/icons/arrow.svg" alt="" />
+                </div>
                 <img
                   src="/images/explore-img.png"
                   alt=""
@@ -62,11 +62,11 @@ function UserProfile() {
           </div>
           <div className="link-two">
             <div className="link-container">
-              <div className="link-text-container">
-                <div className="link-text">My tracks</div>
-                <img src="/icons/arrow.svg" alt="" />
-              </div>
               <Link to={`/user/${id}/usertracks`}>
+                <div className="link-text-container">
+                  <div className="link-text">My tracks</div>
+                  <img src="/icons/arrow.svg" alt="" />
+                </div>
                 <img
                   src="/images/mybadges-img.png"
                   alt=""
@@ -77,11 +77,11 @@ function UserProfile() {
           </div>
           <div className="link-three">
             <div className="link-container">
-              <div className="link-text-container">
-                <div className="link-text">My badges</div>
-                <img src="/icons/arrow.svg" alt="" />
-              </div>
               <Link to={`/user/${id}/userbadges`}>
+                <div className="link-text-container">
+                  <div className="link-text">My badges</div>
+                  <img src="/icons/arrow.svg" alt="" />
+                </div>
                 <img
                   src="/images/mytracks-img.png"
                   alt=""
