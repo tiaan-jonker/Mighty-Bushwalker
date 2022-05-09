@@ -8,6 +8,8 @@ export const SET_TRACK_AS_COMPLETED = 'SET_TRACK_AS_COMPLETED'
 export const SET_TRACK_AS_INCOMPLETE = 'SET_TRACK_AS_INCOMPLETE'
 export const SET_TRACK_AS_SAVED = 'SET_TRACK_AS_SAVED'
 export const SET_TRACK_AS_UNSAVED = 'SET_TRACK_AS_UNSAVED'
+export const DISPLAY_ACHIEVEMENT_MODAL = 'DISPLAY_ACHIEVEMENT_MODAL'
+export const CLOSE_ACHIEVEMENT_MODAL = 'CLOSE_ACHIEVEMENT_MODAL'
 
 export function fetchMapAndTrackDataPending() {
   return {
@@ -61,6 +63,19 @@ export function setTrackAsUnsaved(trackId) {
   }
 }
 
+export function displayAchievementModal(badges) {
+  return {
+    type: DISPLAY_ACHIEVEMENT_MODAL,
+    badges,
+  }
+}
+
+export function closeAchievementModal() {
+  return {
+    type: CLOSE_ACHIEVEMENT_MODAL,
+  }
+}
+
 export function completeTrack(trackId, userId, points) {
   return (dispatch) => {
     dispatch(setTrackAsCompleted(trackId, points))
@@ -69,6 +84,7 @@ export function completeTrack(trackId, userId, points) {
         return checkForNewBadges(userId)
       })
       .then((badges) => {
+        badges.length > 0 ? dispatch(displayAchievementModal(badges)) : null
         return
       })
   }
@@ -80,5 +96,12 @@ export function saveTrack(trackId, userId) {
     return updateTrackStatus(trackId, userId, 'saved').then(() => {
       return null
     })
+  }
+}
+
+export function closeModal() {
+  return (dispatch) => {
+    dispatch(closeAchievementModal())
+    return null
   }
 }
