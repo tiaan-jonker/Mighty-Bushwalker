@@ -2,7 +2,6 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { truncatedName, randomNumGenForImage } from '../../utils'
 import TrackImg from './TrackImg'
-// import { calculateDistanceBetweenPoints } from '../tracks/tracksHelper'
 import { useSelector } from 'react-redux'
 
 function UserTracks() {
