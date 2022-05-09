@@ -49,7 +49,8 @@ function getUserTrackByUser(userId, db = connection) {
       'track_data.line',
       'track_data.points',
       'track_data.return',
-      'user_tracks.last_completion as lastCompletion'
+      'user_tracks.last_completion as lastCompletion',
+      'user_tracks.total_completions as totalCompletions'
     )
     .where(query)
 }
