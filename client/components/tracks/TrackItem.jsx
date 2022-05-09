@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import { truncatedName } from '../../utils'
 import { Link } from 'react-router-dom'
 
@@ -16,10 +16,6 @@ function TrackItem({ trackData, randomNum }) {
         return '#10B470'
     }
   }
-
-  // function truncatedName(str) {
-  //   return str.length > 20 ? str.slice(0, 20 - 1) + '…' : str
-  // }
 
   return (
     <Link to={`/track/${id}`}>

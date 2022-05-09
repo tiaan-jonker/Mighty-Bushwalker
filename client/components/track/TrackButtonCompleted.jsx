@@ -7,9 +7,9 @@ function TrackButtonCompleted({ canCompleteAgain }) {
   const { id } = useParams() // track ID
   const dispatch = useDispatch()
   const user = useSelector((state) => state.user)
-  const { points } = useSelector((state) =>
-    state.tracks.find((track) => track.id === Number(id))
-  )
+  const tracks = useSelector((state) => state.tracks)
+
+  const { points } = tracks.find((track) => track.id === Number(id))
 
   function handleClick() {
     dispatch(completeTrack(Number(id), user.id, points))

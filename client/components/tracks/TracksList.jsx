@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react'
-import { calculateDistanceBetweenPoints, getAllTracks } from './tracksHelper'
+import { calculateDistanceBetweenPoints } from './tracksHelper'
 import TrackItem from './TrackItem'
 import AllTracksMap from '../map/AllTracksMap'
 import TrackFilterModal from './TrackFilterModal'
 import { randomNumGenForImage } from '../../utils'
 import { useSelector } from 'react-redux'
 import WaitCircular from '../WaitIndicator/WaitCircular'
-import { updateTrackStatus } from '../track/trackHelper'
 
 function Track() {
   const tracks = useSelector((state) => state.tracks)
