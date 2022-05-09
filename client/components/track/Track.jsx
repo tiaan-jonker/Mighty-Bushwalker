@@ -1,17 +1,19 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { checkIfDateIsNotToday } from './trackHelper'
 import TrackButtonSave from './TrackButtonSave'
 import TrackButtonComplete from './TrackButtonComplete'
 import TrackButtonCompleted from './TrackButtonCompleted'
 import TrackMap from '../map/TrackMap'
 import WeatherInfo from '../weather/WeatherInfo'
+import BadgesModal from './BadgesModal'
 
 function Track() {
+  // const dispatch = useDispatch()
   const { id } = useParams()
   const tracks = useSelector((state) => state.tracks)
-
+  const badgeModal = useSelector((state) => state.badgeModal)
   const [track, setTrack] = useState([])
 
   useEffect(() => {
@@ -26,6 +28,8 @@ function Track() {
       </div>
       <div className="track-content-container">
         <h2 className="track-name">{track.name}</h2>
+
+        {badgeModal && <BadgesModal />}
 
         {track.completed === 1 && (
           <TrackButtonCompleted
