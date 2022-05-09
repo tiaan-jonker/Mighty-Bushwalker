@@ -58,6 +58,8 @@ export async function cacheUser(useAuth0) {
           id: userData.id,
           xp: userData.xp,
         }
+        const tracks = await getUserTracks(userData.id)
+        saveTracks(tracks)
       }
 
       if (!userData) {
@@ -69,8 +71,6 @@ export async function cacheUser(useAuth0) {
         }
       }
 
-      // const tracks = await getUserTracks(userData.id)
-      // saveTracks(tracks)
       saveUser(userToSave)
     } catch (err) {
       console.error(err)

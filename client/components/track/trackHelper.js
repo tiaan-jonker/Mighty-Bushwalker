@@ -21,3 +21,18 @@ export function getTrack(id, consume = requestor) {
       console.log(error.message)
     })
 }
+
+export function updateTrackStatus(
+  userId,
+  trackId,
+  update,
+  consume = requestor
+) {
+  return consume(`/tracks/${update}`, 'patch', { userId, trackId })
+    .then((res) => {
+      return res.body
+    })
+    .catch((error) => {
+      console.log(error.message)
+    })
+}
