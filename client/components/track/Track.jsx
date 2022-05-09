@@ -14,6 +14,7 @@ function Track() {
   const { id } = useParams()
   const tracks = useSelector((state) => state.tracks)
   const badgeModal = useSelector((state) => state.badgeModal.display)
+  const badgeModalIcons = useSelector((state) => state.badgeModal.badges)
   const [track, setTrack] = useState([])
 
   useEffect(() => {
@@ -29,7 +30,7 @@ function Track() {
       <div className="track-content-container">
         <h2 className="track-name">{track.name}</h2>
 
-        {badgeModal && <BadgesModal />}
+        {badgeModal && <BadgesModal badgeModalIcons={badgeModalIcons} />}
 
         {track.completed === 1 && (
           <TrackButtonCompleted
@@ -60,7 +61,8 @@ function Track() {
           </p>
         </div>
         <div>
-          <TrackMap track={track} />
+          {badgeModal ? '' : <TrackMap track={track} />}
+
           <WeatherInfo />
         </div>
       </div>
