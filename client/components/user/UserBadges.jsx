@@ -34,10 +34,14 @@ function ProfileBadgeList() {
             return (
               <div key={badge.id} className="badge-container">
                 <span className="badge-circle">
-                  <img src={`/icons/badges/${badge.image}.png`} />
+                  <img
+                    src={`/icons/badges/${badge.image}.png`}
+                    className="badge-image"
+                    style={badge.achieved ? null : { filter: 'grayscale(1)' }}
+                  />
                 </span>
                 <p className="badge-title">{badge.name}</p>
-                <p className="badge-description">{badge.criteria}</p>
+                <p className="badge-criteria">{badge.criteria}</p>
                 {badge.achieved && <p>Achieved</p>}
               </div>
             )
