@@ -18,7 +18,6 @@ export function fetchForecastSuccess(forecast) {
 
 export function fetchForecast() {
   return (dispatch) => {
-    dispatch(fetchForecastPending())
     return fetchForecastWeatherData().then((forecast) => {
       dispatch(fetchForecastSuccess(forecast))
       return null
