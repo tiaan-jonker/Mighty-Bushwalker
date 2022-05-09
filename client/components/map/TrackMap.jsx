@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react'
-
 import { MapContainer, TileLayer, Marker, Popup, Polyline } from 'react-leaflet'
 
 function TrackMap(props) {
