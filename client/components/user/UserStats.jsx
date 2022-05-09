@@ -22,7 +22,13 @@ function UserStats({ user }) {
   useEffect(() => {
     getRanks()
       .then((ranks) => {
-        console.log(ranks)
+        const xp = user.xp
+        const ranksToCheck = ranks.reverse()
+        for (let i = 0; i < ranksToCheck.length; i++) {
+          if (xp >= ranksToCheck[i].xp) {
+            return ranksToCheck[i]
+          }
+        }
         return ranks
       })
       .catch((err) => console.log(err))
