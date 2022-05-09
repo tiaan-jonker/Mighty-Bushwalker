@@ -5,10 +5,13 @@ import AllTracksMap from '../map/AllTracksMap'
 import TrackFilterModal from './TrackFilterModal'
 import { randomNumGenForImage } from '../../utils'
 import { useSelector } from 'react-redux'
+import WaitCircular from '../WaitIndicator/WaitCircular'
 
 function Track() {
   const tracks = useSelector((state) => state.tracks)
   const [allTracks, setAllTracks] = useState(tracks)
+
+  const [loading, setLoading] = useState(false)
 
   // FILTER STATES
   const [filteredTracks, setFilteredTracks] = useState([])
@@ -36,6 +39,7 @@ function Track() {
 
   // GET TRACKS AND GEOLOCATION
   useEffect(() => {
+    setLoading(true)
     navigator.geolocation.getCurrentPosition(function (position) {
       const coords = position.coords
       const updatedTracks = tracks.map((track) => {
@@ -62,6 +66,7 @@ function Track() {
 
       setAllTracks(updatedTracks) //
       setFilteredTracks(updatedTracks) // creates display version of tracks which we filter the values out of
+      setLoading(false)
     })
   }, [tracks])
 
@@ -102,33 +107,39 @@ function Track() {
       <div className={isOpenModal ? 'modal-display-none' : ''}>
         <h2 className="tracks-intro">Explore</h2>
         <p className="tracks-sub">All trails available to hike</p>
-        <AllTracksMap tracks={filteredTracks} />
-        <button onClick={handleModal} className="modal-btn">
-          <div className="modal-btn-container">
-            <img src="/icons/filter.svg" alt="" className="filter-icon" />
-            <p>Filters</p>
-          </div>
-        </button>
+        {loading ? (
+          <WaitCircular />
+        ) : (
+          <>
+            <AllTracksMap tracks={filteredTracks} />
+            <button onClick={handleModal} className="modal-btn">
+              <div className="modal-btn-container">
+                <img src="/icons/filter.svg" alt="" className="filter-icon" />
+                <p>Filters</p>
+              </div>
+            </button>
 
-        {filteredTracks.slice(0, showMore).map((trackData) => (
-          <ul key={trackData.id} className="track-list">
-            <div className="track-link-item">
-              <TrackItem
-                trackData={trackData}
-                randomNum={randomNumGenForImage}
-              />
-            </div>
-          </ul>
-        ))}
-        <button
-          onClick={handleClick}
-          className="modal-btn"
-          style={{ marginBottom: '50px' }}
-        >
-          <div className="modal-btn-show-container">
-            {showButtonText ? 'Show less' : 'Show more'}
-          </div>
-        </button>
+            {filteredTracks.slice(0, showMore).map((trackData) => (
+              <ul key={trackData.id} className="track-list">
+                <div className="track-link-item">
+                  <TrackItem
+                    trackData={trackData}
+                    randomNum={randomNumGenForImage}
+                  />
+                </div>
+              </ul>
+            ))}
+            <button
+              onClick={handleClick}
+              className="modal-btn"
+              style={{ marginBottom: '50px' }}
+            >
+              <div className="modal-btn-show-container">
+                {showButtonText ? 'Show less' : 'Show more'}
+              </div>
+            </button>
+          </>
+        )}
       </div>
     </section>
   )
