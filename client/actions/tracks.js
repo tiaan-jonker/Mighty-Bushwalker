@@ -32,9 +32,14 @@ export function fetchMapAndTrackData() {
 }
 
 export function setTrackAsCompleted(trackId) {
+  const current = new Date()
+  const currentDateString = `${
+    current.getMonth() + 1
+  }/${current.getDate()}/${current.getFullYear()}`
   return {
     type: SET_TRACK_AS_COMPLETED,
     trackId,
+    lastCompletion: currentDateString,
   }
 }
 export function setTrackAsIncomplete(trackId) {
