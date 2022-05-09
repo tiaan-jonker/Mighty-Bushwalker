@@ -57,32 +57,8 @@ function Registration() {
       <section className="form">
         <h2>Register Profile</h2>
         <form className="registration">
-          <label htmlFor="auth0Id">auth0Id</label>
-          <input
-            name="auth0Id"
-            value={form.auth0Id}
-            onChange={handleChange}
-            disabled={true}
-          ></input>
-
           <label htmlFor="name">Name</label>
           <input name="name" value={form.name} onChange={handleChange}></input>
-
-          <label htmlFor="email">Email</label>
-          <input
-            name="email"
-            value={form.email}
-            onChange={handleChange}
-            disabled={true}
-          ></input>
-
-          <label htmlFor="description">Description</label>
-          <textarea
-            name="description"
-            value={form.description}
-            onChange={handleChange}
-            cols={3}
-          ></textarea>
           <button type="button" onClick={handleClick}>
             Register
           </button>
