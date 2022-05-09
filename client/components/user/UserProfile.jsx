@@ -54,7 +54,7 @@ function UserProfile() {
                 </div>
                 <img
                   src="/images/explore-img.png"
-                  alt=""
+                  alt="link to explore new tracks"
                   className="user-img-one"
                 />
               </Link>
@@ -68,8 +68,8 @@ function UserProfile() {
                   <img src="/icons/arrow.svg" alt="" />
                 </div>
                 <img
-                  src="/images/mybadges-img.png"
-                  alt=""
+                  src="/images/mytracks-img.png"
+                  alt="link to all my tracks"
                   className="user-img"
                 />
               </Link>
@@ -83,8 +83,8 @@ function UserProfile() {
                   <img src="/icons/arrow.svg" alt="" />
                 </div>
                 <img
-                  src="/images/mytracks-img.png"
-                  alt=""
+                  src="/images/mybadges-img.png"
+                  alt="link to all my badges and achievements"
                   className="user-img"
                 />
               </Link>
