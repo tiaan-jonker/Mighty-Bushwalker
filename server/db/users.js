@@ -23,7 +23,7 @@ function addUser(input, db = connection) {
     name,
     email,
     description,
-    xp: 0,
+    xp: 500,
   }
   return db('users').insert(user)
 }
