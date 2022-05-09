@@ -19,9 +19,14 @@ function MobileTopBar() {
         })}
       </p>
       <div className="mobile-icons-container">
-        <img src="/icons/signal.png" alt="" className="mobile-icon" s />
-        <img src="/icons/wifi.png" alt="" className="mobile-icon" s />
-        <img src="/icons/battery.png" alt="" className="mobile-icon" s />
+        <img src="/icons/mobile/signal.png" alt="" className="mobile-icon" s />
+        <img src="/icons//mobile/wifi.png" alt="" className="mobile-icon" s />
+        <img
+          src="/icons//mobile/battery.png"
+          alt=""
+          className="mobile-icon"
+          s
+        />
       </div>
     </div>
   )

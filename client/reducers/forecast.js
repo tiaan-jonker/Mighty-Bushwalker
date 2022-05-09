@@ -1,8 +1,8 @@
-import { SET_FORECAST } from '../actions/forecast'
+import { FETCH_FORECAST_SUCCESS } from '../actions/forecast'
 
 export default function forecast(state = [], action) {
   switch (action.type) {
-    case SET_FORECAST:
+    case FETCH_FORECAST_SUCCESS:
       return action.forecast
 
     default:

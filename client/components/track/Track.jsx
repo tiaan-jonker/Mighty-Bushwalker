@@ -1,20 +1,19 @@
 import React, { useEffect, useState } from 'react'
+import { useParams } from 'react-router-dom'
+import { useSelector } from 'react-redux'
+import { checkIfDateIsNotToday } from './trackHelper'
 import TrackButtonSave from './TrackButtonSave'
+import TrackButtonComplete from './TrackButtonComplete'
+import TrackButtonCompleted from './TrackButtonCompleted'
 import TrackMap from '../map/TrackMap'
 import WeatherInfo from '../weather/WeatherInfo'
-import { useParams } from 'react-router-dom'
-import { checkIfDateIsNotToday } from './trackHelper'
-import TrackButtonCompleted from './TrackButtonCompleted'
-import { useSelector } from 'react-redux'
-import TrackButtonComplete from './TrackButtonComplete'
 
 function Track() {
+  const { id } = useParams()
   const tracks = useSelector((state) => state.tracks)
 
-  const { id } = useParams()
-  const [track, setTrack] = useState(
-    tracks.find((track) => track.id === Number(id))
-  )
+  const [track, setTrack] = useState([])
+
   useEffect(() => {
     const trackData = tracks.find((track) => track.id === Number(id))
     setTrack(trackData)
