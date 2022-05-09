@@ -37,13 +37,9 @@ function UserStats({ user }) {
   }, [user.xp])
 
   useEffect(() => {
-    console.log(nextRank.xp)
-    console.log(user.xp)
-    console.log(rank.xp)
     setRankPercent(
       100 - ((nextRank.xp - user.xp) / (nextRank.xp - rank.xp)) * 100
     )
-    console.log(rankPercent)
   })
 
   return (
