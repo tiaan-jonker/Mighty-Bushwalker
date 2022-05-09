@@ -50,7 +50,7 @@ export async function checkForNewBadges(userId) {
   }
 
   const tracksCompletedTenTimes = completedTracks.filter(
-    (track) => track.total_competions > 9
+    (track) => track.total_completions > 9
   )
 
   if (tracksCompletedTenTimes.length > 0) {
