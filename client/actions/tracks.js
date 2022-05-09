@@ -31,13 +31,14 @@ export function fetchMapAndTrackData() {
   }
 }
 
-export function setTrackAsCompleted(trackId) {
+export function setTrackAsCompleted(trackId, points) {
   const current = new Date()
   const currentDateString = `${
     current.getMonth() + 1
   }/${current.getDate()}/${current.getFullYear()}`
   return {
     type: SET_TRACK_AS_COMPLETED,
+    points,
     trackId,
     lastCompletion: currentDateString,
   }
@@ -65,7 +66,7 @@ export function setTrackAsUnsaved(trackId) {
 
 export function completeTrack(trackId, userId, points) {
   return (dispatch) => {
-    dispatch(setTrackAsCompleted(trackId))
+    dispatch(setTrackAsCompleted(trackId, points))
     return updateTrackStatus(trackId, userId, 'completed', points).then(() => {
       return null
     })
