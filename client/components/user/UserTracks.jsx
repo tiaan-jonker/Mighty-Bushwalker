@@ -40,6 +40,11 @@ function UserTracks() {
                     ) : (
                       <span className="status-indicator saved">Saved</span>
                     )}
+                    {track.completed ? (
+                      ''
+                    ) : (
+                      <div className="points-container">{track.points} XP</div>
+                    )}
 
                     <div className="track-banner-info">
                       <div className="track-name-difficulty-container">
@@ -59,8 +64,8 @@ function UserTracks() {
                       </div>
                       <div className="track-other-details">
                         <p>
-                          Length: {track.length}km • Est. {track.hours}hrs •{' '}
-                          {track.points}pts • 80 km away
+                          Length: {track.length}km • Est. {track.hours}hrs • 80
+                          km away
                         </p>
                       </div>
                     </div>

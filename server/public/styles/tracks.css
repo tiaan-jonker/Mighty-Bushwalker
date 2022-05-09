@@ -81,3 +81,13 @@
 .saved {
   background-color: rgba(116, 189, 143, 0.9);
 }
+
+.points-container {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background-color: rgb(253, 196, 56, 0.9);
+  font-size: 13px;
+  padding: 5px 15px;
+  border-radius: 8px;
+}
