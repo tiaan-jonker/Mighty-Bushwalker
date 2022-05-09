@@ -11,12 +11,14 @@ import Track from './track/Track'
 import Tracks from './tracks/TracksList'
 import Nav from './nav/Nav'
 import Landing from './Landing'
+import MobileTopBar from './MobileTopBar'
 
 function App() {
   cacheUser(useAuth0)
 
   return (
     <div className="mobile-container">
+      <MobileTopBar />
       <Routes>
         <Route path="/" element={<Landing />} />
         <Route path="/user/:id" element={<UserProfile />} />

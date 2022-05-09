@@ -32,9 +32,10 @@ export function fetchMapAndTrackData() {
   }
 }
 
-export function setTrackAsCompleted(trackId) {
+export function setTrackAsCompleted(trackId, points) {
   return {
     type: SET_TRACK_AS_COMPLETED,
+    points,
     trackId,
     lastCompletion: getCurrentDateString(),
   }
@@ -62,7 +63,7 @@ export function setTrackAsUnsaved(trackId) {
 
 export function completeTrack(trackId, userId, points) {
   return (dispatch) => {
-    dispatch(setTrackAsCompleted(trackId))
+    dispatch(setTrackAsCompleted(trackId, points))
     return updateTrackStatus(trackId, userId, 'completed', points)
       .then(() => {
         return checkForNewBadges(userId)
