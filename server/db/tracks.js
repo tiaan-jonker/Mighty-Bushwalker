@@ -48,9 +48,27 @@ function getUserTrackByUser(userId, db = connection) {
       'track_data.lon',
       'track_data.line',
       'track_data.points',
-      'track_data.return'
+      'track_data.return',
+      'user_tracks.last_completion as lastCompletion'
     )
     .where(query)
+}
+
+function updateSavedStatus({ userId, trackId, status }, db = connection) {
+  const savedTrack = { user_id: userId, track_id: trackId }
+  return db('user_tracks').where(savedTrack).update('saved', status)
+}
+
+function updateCompletedStatus(
+  { userId, trackId, status, lastCompletion },
+  db = connection
+) {
+  const completedTrack = { user_id: userId, track_id: trackId }
+  const updatedData = { completed: status, last_completion: lastCompletion }
+  return db('user_tracks')
+    .where(completedTrack)
+    .update(updatedData)
+    .increment('total_completions')
 }
 
 //
@@ -71,16 +89,6 @@ function listTracks(db = connection) {
     'difficulty'
   )
 } //test written
-
-function updateSavedStatus({ userId, trackId, status }, db = connection) {
-  const savedTrack = { user_id: userId, track_id: trackId }
-  return db('user_tracks').where(savedTrack).update('saved', status)
-}
-
-function updateCompletedStatus({ userId, trackId, status }, db = connection) {
-  const completedTrack = { user_id: userId, track_id: trackId }
-  return db('user_tracks').where(completedTrack).update('completed', status)
-}
 
 // possibly redundant
 function getSavedTrackByUser(userId, db = connection) {

@@ -3,7 +3,7 @@ import TrackButtonSave from './TrackButtonSave'
 import TrackMap from '../map/TrackMap'
 import WeatherInfo from '../weather/WeatherInfo'
 import { useParams } from 'react-router-dom'
-import { getTrack } from './trackHelper'
+import { getTrack, checkIfDateIsNotToday } from './trackHelper'
 import TrackInfoIcons from './TrackInfoIcons'
 import TrackButtonCompleted from './TrackButtonCompleted'
 import { useSelector } from 'react-redux'
@@ -21,8 +21,6 @@ function Track() {
     setTrack(trackData)
   }, [tracks])
 
-  console.log(track)
-
   return (
     <section>
       <div className="page-image-container">
@@ -31,7 +29,11 @@ function Track() {
       <div className="track-content-container">
         <h2 className="track-name">{track.name}</h2>
 
-        {track.completed === 1 && <TrackButtonCompleted />}
+        {track.completed === 1 && (
+          <TrackButtonCompleted
+            canCompleteAgain={checkIfDateIsNotToday(track.lastCompletion)}
+          />
+        )}
         {track.saved === 1 && track.completed === 0 && <TrackButtonComplete />}
         {track.saved === 0 && track.completed === 0 && <TrackButtonSave />}
 
