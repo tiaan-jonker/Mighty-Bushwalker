@@ -27,12 +27,14 @@ function getUsersByAuthId(auth0Id, db = connection) {
 }
 
 function addUser(input, db = connection) {
-  const { auth0Id, name, email, description } = input
+  const { auth0Id, name, email, description, xp, rank } = input
   const user = {
     auth0_id: auth0Id,
     name,
     email,
     description,
+    xp,
+    rank,
   }
   return db('users').insert(user)
 }

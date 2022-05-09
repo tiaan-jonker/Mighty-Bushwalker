@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router'
 import { addUser } from '../apis/users'
-import { getUser } from './user/userHelper'
+import { getUser, getUserTracks } from './user/userHelper'
+import { setUser } from '../actions/user'
+import { fetchMapAndTrackDataSuccess } from '../actions/tracks'
 
 function Registration() {
+  const dispatch = useDispatch()
   const user = useSelector((state) => state.user)
   const navigate = useNavigate()
 
@@ -13,6 +16,8 @@ function Registration() {
     name: '',
     email: '',
     description: '',
+    xp: 0,
+    rank: 1,
   })
 
   useEffect(() => {
@@ -21,6 +26,8 @@ function Registration() {
       name: user.name,
       email: user.email,
       description: user.description,
+      xp: 0,
+      rank: 1,
     })
   }, [user])
 
@@ -29,6 +36,8 @@ function Registration() {
     setForm({
       ...form,
       [name]: value,
+      xp: 0,
+      rank: 1,
     })
   }
 
@@ -36,11 +45,16 @@ function Registration() {
     e.preventDefault()
     // registerUser(form, authUser, history.push)
     try {
+      console.log(form)
       await addUser(form)
-      const check = await getUser(user.auth0Id)
-      console.log(check)
-      console.log('hi')
-      navigate('/')
+      const userData = await getUser(user.auth0Id)
+      console.log(userData)
+      dispatch(setUser(userData))
+      const trackdata = await getUserTracks(userData.id)
+      dispatch(fetchMapAndTrackDataSuccess(trackdata))
+      if (userData) {
+        navigate('/')
+      }
     } catch (error) {
       console.error(error)
     }
@@ -60,12 +74,7 @@ function Registration() {
           ></input>
 
           <label htmlFor="name">Name</label>
-          <input
-            name="name"
-            value={form.name}
-            onChange={handleChange}
-            disabled={true}
-          ></input>
+          <input name="name" value={form.name} onChange={handleChange}></input>
 
           <label htmlFor="email">Email</label>
           <input
