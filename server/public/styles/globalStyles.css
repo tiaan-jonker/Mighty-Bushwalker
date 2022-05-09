@@ -49,3 +49,29 @@
 .mg-bottom-50 {
   margin-bottom: 50px;
 }
+
+.mobile-top-container {
+  display: flex;
+  align-items: center;
+  position: fixed;
+  top: 30px;
+  left: 26px;
+  z-index: 20;
+}
+
+.mobile-icons-container {
+  display: flex;
+  justify-content: space-between;
+  margin-left: 260px;
+  width: 45px;
+}
+
+.mobile-time {
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.mobile-icon {
+  width: 12px;
+  height: 12px;
+}
