@@ -7,6 +7,7 @@ import TrackButtonComplete from './TrackButtonComplete'
 import TrackButtonCompleted from './TrackButtonCompleted'
 import TrackMap from '../map/TrackMap'
 import WeatherInfo from '../weather/WeatherInfo'
+import BadgesModal from './BadgesModal'
 
 function Track() {
   const { id } = useParams()
