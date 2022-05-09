@@ -59,6 +59,7 @@ export async function cacheUser(useAuth0) {
           id: userData.id,
           xp: userData.xp,
         }
+        console.log(userData)
         const tracks = await getUserTracks(userData.id)
         saveTracks(tracks)
       }
