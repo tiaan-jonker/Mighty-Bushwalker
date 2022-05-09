@@ -55,29 +55,24 @@
   box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.04);
 }
 
-.modalHeader {
-  height: 50px;
-  background: white;
-  overflow: hidden;
-  border-top-left-radius: 16px;
-  border-top-right-radius: 16px;
-  font-size: 24px;
+.modal-header {
+  padding: 10px 0px;
 }
 
 .heading {
   margin: 0;
-  padding: 10px;
   color: #2c3e50;
   font-weight: 500;
-  font-size: 18px;
+  font-size: 24px;
   text-align: center;
 }
 
-.modalContent {
-  padding: 10px;
+.modal-content {
+  padding-left: 25px;
+  padding-right: 25px;
+  padding-bottom: 25px;
   font-size: 14px;
   color: #2c3e50;
-  text-align: center;
 }
 
 .closeBtn {
@@ -103,6 +98,20 @@
   display: none;
 }
 
+.filter-name {
+  color: #273f45;
+  font-size: 18px;
+  font-weight: 500;
+}
+
 .filter-text {
   color: #273f45;
+  font-size: 14px;
+  font-weight: 300;
+}
+
+.filter-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }

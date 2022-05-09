@@ -7,7 +7,6 @@ function TrackFilters({ difficultyFilterDetails, lengthFilterDetails }) {
 
   return (
     <div>
-      <h4>Filter</h4>
       <TrackFilter
         updateFilter={difficultyFilterDetails.updateDifficultyFilter}
         filter={difficultyFilterDetails.difficultyFilter}
