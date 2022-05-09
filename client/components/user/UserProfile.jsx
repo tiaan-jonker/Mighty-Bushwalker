@@ -27,7 +27,7 @@ function UserProfile() {
       <UserStats user={user} />
       <div className="user-links-container">
         <div className="link-one">
-          <div className="link-container">
+          <div className="link-container-one">
             <div className="link-text-container">
               <div className="link-text">Explore</div>
               <img src="/icons/arrow.svg" alt="" />
