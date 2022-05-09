@@ -27,8 +27,6 @@ function UserTracks() {
     setCheckForNone(count)
   })
 
-  console.log(checkForNone)
-
   return (
     <section>
       <div className="page-container mg-bottom-50 container-bg-green">
