@@ -11,7 +11,14 @@ function getBadgesByUser(userId, db = connection) {
     .select('badge_data.id', 'badge_data.name', 'badge_data.image')
 } //test working
 
+function addBadge(badge, db = connection) {
+  const { userId, badgeId } = badge
+  const newBadge = { user_id: userId, badge_id: badgeId }
+  return db('badges').insert(newBadge)
+}
+
 module.exports = {
   getBadges,
   getBadgesByUser,
+  addBadge,
 }
