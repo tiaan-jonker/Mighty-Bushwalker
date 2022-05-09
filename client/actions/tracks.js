@@ -1,5 +1,6 @@
 import { updateTrackStatus } from '../components/track/trackHelper'
 import { getUserTracks } from '../components/user/userHelper'
+import { getCurrentDateString, checkForNewBadges } from './actionHelper'
 
 export const FETCH_MAP_TRACKS_PENDING = 'FETCH_MAP_TRACKS_PENDING'
 export const FETCH_MAP_TRACKS_SUCCESS = 'FETCH_MAP_TRACKS_SUCCESS'
@@ -32,15 +33,11 @@ export function fetchMapAndTrackData() {
 }
 
 export function setTrackAsCompleted(trackId, points) {
-  const current = new Date()
-  const currentDateString = `${
-    current.getMonth() + 1
-  }/${current.getDate()}/${current.getFullYear()}`
   return {
     type: SET_TRACK_AS_COMPLETED,
     points,
     trackId,
-    lastCompletion: currentDateString,
+    lastCompletion: getCurrentDateString(),
   }
 }
 export function setTrackAsIncomplete(trackId) {
@@ -67,9 +64,13 @@ export function setTrackAsUnsaved(trackId) {
 export function completeTrack(trackId, userId, points) {
   return (dispatch) => {
     dispatch(setTrackAsCompleted(trackId, points))
-    return updateTrackStatus(trackId, userId, 'completed', points).then(() => {
-      return null
-    })
+    return updateTrackStatus(trackId, userId, 'completed', points)
+      .then(() => {
+        return checkForNewBadges(userId)
+      })
+      .then((badges) => {
+        return
+      })
   }
 }
 

@@ -39,12 +39,9 @@ export function updateTrackStatus(
 }
 
 export function checkIfDateIsNotToday(completionDate) {
-  console.log(completionDate)
-  const completionDateDate = new Date(completionDate)
   const current = new Date()
   const currentDateString = `${
     current.getMonth() + 1
   }/${current.getDate()}/${current.getFullYear()}`
-  console.log(currentDateString)
   return currentDateString !== completionDate
 }
