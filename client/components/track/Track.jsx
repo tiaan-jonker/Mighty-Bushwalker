@@ -5,17 +5,21 @@ import WeatherInfo from '../weather/WeatherInfo'
 import { useParams } from 'react-router-dom'
 import { getTrack } from './trackHelper'
 import TrackInfoIcons from './TrackInfoIcons'
+import { useSelector } from 'react-redux'
 
 function Track() {
-  const [track, setTrack] = useState([])
+  const tracks = useSelector((state) => state.tracks)
+
   const { id } = useParams()
+  const [track, setTrack] = useState(
+    tracks.find((track) => track.id === Number(id))
+  )
   useEffect(() => {
-    getTrack(id)
-      .then((user) => {
-        return setTrack(user)
-      })
-      .catch((err) => console.log(err))
-  }, [id])
+    const trackData = tracks.find((track) => track.id === Number(id))
+    setTrack(trackData)
+  }, [tracks])
+
+  console.log(track)
 
   return (
     <section>

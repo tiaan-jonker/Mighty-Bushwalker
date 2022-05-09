@@ -4,9 +4,11 @@ import TrackItem from './TrackItem'
 import AllTracksMap from '../map/AllTracksMap'
 import TrackFilterModal from './TrackFilterModal'
 import { randomNumGenForImage } from '../../utils'
+import { useSelector } from 'react-redux'
 
 function Track() {
-  const [allTracks, setAllTracks] = useState([])
+  const tracks = useSelector((state) => state.tracks)
+  const [allTracks, setAllTracks] = useState(tracks)
 
   // FILTER STATES
   const [filteredTracks, setFilteredTracks] = useState([])
@@ -34,39 +36,34 @@ function Track() {
 
   // GET TRACKS AND GEOLOCATION
   useEffect(() => {
-    getAllTracks()
-      .then((tracks) => {
-        navigator.geolocation.getCurrentPosition(function (position) {
-          const coords = position.coords
-          const updatedTracks = tracks.map((track) => {
-            const distanceAway = calculateDistanceBetweenPoints(
-              coords.latitude,
-              coords.longitude,
-              track.lat,
-              track.lon
-            ).toFixed(1)
+    navigator.geolocation.getCurrentPosition(function (position) {
+      const coords = position.coords
+      const updatedTracks = tracks.map((track) => {
+        const distanceAway = calculateDistanceBetweenPoints(
+          coords.latitude,
+          coords.longitude,
+          track.lat,
+          track.lon
+        ).toFixed(1)
 
-            let lengthCategory = 'Long'
-            if (track.length < 5) {
-              lengthCategory = 'Short'
-            } else if (track.length < 12) {
-              lengthCategory = 'Medium'
-            }
+        let lengthCategory = 'Long'
+        if (track.length < 5) {
+          lengthCategory = 'Short'
+        } else if (track.length < 12) {
+          lengthCategory = 'Medium'
+        }
 
-            return { ...track, distanceAway, lengthCategory }
-          })
-
-          updatedTracks.sort((a, b) => {
-            return a.distanceAway - b.distanceAway
-          })
-
-          setAllTracks(updatedTracks) //
-          setFilteredTracks(updatedTracks) // creates display version of tracks which we filter the values out of
-          return null
-        })
+        return { ...track, distanceAway, lengthCategory }
       })
-      .catch((err) => console.log(err))
-  }, [])
+
+      updatedTracks.sort((a, b) => {
+        return a.distanceAway - b.distanceAway
+      })
+
+      setAllTracks(updatedTracks) //
+      setFilteredTracks(updatedTracks) // creates display version of tracks which we filter the values out of
+    })
+  }, [tracks])
 
   // FILTER TRACKS BY DIFFICULTY
   useEffect(() => {
