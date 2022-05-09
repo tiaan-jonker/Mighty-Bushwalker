@@ -7,9 +7,9 @@ import { addUser } from '../apis/users'
 import { getUser, getUserTracks } from './user/userHelper'
 
 function Registration() {
+  const dispatch = useDispatch()
   const user = useSelector((state) => state.user)
   const navigate = useNavigate()
-  const dispatch = useDispatch()
 
   const [form, setForm] = useState({
     auth0Id: '',
@@ -66,12 +66,7 @@ function Registration() {
           ></input>
 
           <label htmlFor="name">Name</label>
-          <input
-            name="name"
-            value={form.name}
-            onChange={handleChange}
-            disabled={true}
-          ></input>
+          <input name="name" value={form.name} onChange={handleChange}></input>
 
           <label htmlFor="email">Email</label>
           <input

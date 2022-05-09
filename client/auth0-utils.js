@@ -10,7 +10,6 @@ const emptyUser = {
   name: '',
   token: '',
   roles: [],
-  rank: 0,
   id: 0,
   xp: 0,
 }
@@ -54,7 +53,6 @@ export async function cacheUser(useAuth0) {
           name: userData.name,
           token,
           roles,
-          rank: userData.rank,
           id: userData.id,
           xp: userData.xp,
         }
