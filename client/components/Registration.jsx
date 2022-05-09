@@ -16,8 +16,6 @@ function Registration() {
     name: '',
     email: '',
     description: '',
-    xp: 0,
-    rank: 1,
   })
 
   useEffect(() => {
@@ -26,8 +24,6 @@ function Registration() {
       name: user.name,
       email: user.email,
       description: user.description,
-      xp: 0,
-      rank: 1,
     })
   }, [user])
 
@@ -36,8 +32,6 @@ function Registration() {
     setForm({
       ...form,
       [name]: value,
-      xp: 0,
-      rank: 1,
     })
   }
 
