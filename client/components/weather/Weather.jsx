@@ -8,6 +8,8 @@ function Weather() {
   const forecast = useSelector((state) => state.forecast)
   const dispatch = useDispatch()
 
+  const { temperature } = weather
+
   useEffect(() => {
     dispatch(fetchWeather())
     dispatch(fetchForecast())
@@ -23,7 +25,7 @@ function Weather() {
             alt="current weather"
             className="weather-icon"
           />
-          <p className="weather-temp">{weather.temperature}&deg;C</p>
+          <p className="weather-temp">{temperature}&deg;C</p>
         </div>
         {forecast.slice(0, 2).map((forecastData, index) => (
           <div key={index} className="weather-rectangle">
