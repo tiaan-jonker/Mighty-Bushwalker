@@ -1,17 +1,25 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import { getUserBadges } from './userHelper'
+import { getAllBadges, getUserBadges } from './userHelper'
 
 function ProfileBadgeList() {
   const [badges, setBadges] = useState([])
+
   const { id } = useParams()
 
-  useEffect(() => {
-    getUserBadges(id)
-      .then((userBadges) => {
-        return setBadges(userBadges)
-      })
-      .catch((err) => console.log(err))
+  useEffect(async () => {
+    const userBadges = await getUserBadges(id)
+    const badgesResults = await getAllBadges()
+
+    const userBadgesIds = userBadges.map((badge) => badge.id)
+
+    const badges = badgesResults.map((badge) =>
+      userBadgesIds.includes(badge.id)
+        ? { ...badge, achieved: true }
+        : { ...badge, achieved: false }
+    )
+
+    return setBadges(badges)
   }, [id])
 
   return (
@@ -25,11 +33,16 @@ function ProfileBadgeList() {
           {badges.map((badge) => {
             return (
               <div key={badge.id} className="badge-container">
-                <span className="badge-circle"></span>
+                <span className="badge-circle">
+                  <img
+                    src={`/icons/badges/${badge.image}.png`}
+                    className="badge-image"
+                    style={badge.achieved ? null : { filter: 'grayscale(1)' }}
+                  />
+                </span>
                 <p className="badge-title">{badge.name}</p>
-                <p className="badge-description">
-                  Completed 3 bird spotting walks
-                </p>
+                <p className="badge-criteria">{badge.criteria}</p>
+                {badge.achieved && <p>Achieved</p>}
               </div>
             )
           })}

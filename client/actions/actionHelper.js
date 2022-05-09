@@ -1,4 +1,8 @@
-import { getUserTracks, getUserBadges } from '../components/user/userHelper'
+import {
+  getUserTracks,
+  getUserBadges,
+  getAllBadges,
+} from '../components/user/userHelper'
 import requestor from '../consume'
 
 export function getCurrentDateString() {
@@ -12,6 +16,7 @@ export async function checkForNewBadges(userId) {
   const tracks = await getUserTracks(userId)
   const userBadges = await getUserBadges(userId)
   const existingBadges = userBadges.map((badge) => badge.id)
+  const badgesData = await getAllBadges()
 
   const newBadges = []
 
@@ -104,7 +109,12 @@ export async function checkForNewBadges(userId) {
 
   badgesToAdd.map(async (badgeId) => await addBadge(userId, badgeId))
 
-  return badgesToAdd
+  const badgesToAddData = badgesData.filter((badge) =>
+    badgesToAdd.includes(badge.id)
+  )
+  console.log(badgesToAddData)
+
+  return badgesToAddData
 }
 
 export function addBadge(userId, badgeId, consume = requestor) {
