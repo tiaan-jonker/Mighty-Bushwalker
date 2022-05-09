@@ -19,7 +19,16 @@
 }
 
 .page-container {
+  position: relative;
   padding: 25px;
+}
+
+.logout-btn {
+  position: absolute;
+  top: 41px;
+  right: 20px;
+  width: 18px;
+  height: 18px;
 }
 
 .container-bg-green {
