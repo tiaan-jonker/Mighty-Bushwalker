@@ -22,7 +22,7 @@ function TrackFilter({ filter, updateFilter, filterName, filterOptions }) {
   return (
     <div>
       <div>
-        <p className="filter-text">{filterName}</p>
+        <p className="filter-name">{filterName}</p>
       </div>
       <div>
         {filterItems.map((filterValue, index) => {
@@ -32,14 +32,16 @@ function TrackFilter({ filter, updateFilter, filterName, filterOptions }) {
               : filter.includes(filterValue)
           return (
             <div key={index}>
-              <label className="filter-text">{filterValue}</label>‍
-              <input
-                type="checkbox"
-                checked={isSelected}
-                onChange={() => {
-                  handleSelect(filterValue, isSelected)
-                }}
-              />
+              <div className="filter-item">
+                <label className="filter-text">{filterValue}</label>‍
+                <input
+                  type="checkbox"
+                  checked={isSelected}
+                  onChange={() => {
+                    handleSelect(filterValue, isSelected)
+                  }}
+                />
+              </div>
             </div>
           )
         })}
