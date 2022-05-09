@@ -7,6 +7,7 @@ const trackRoutes = require('./routes/tracks')
 
 const badgesRoutes = require('./routes/badges')
 
+const ranksRoutes = require('./routes/ranks')
 
 const server = express()
 
@@ -19,6 +20,7 @@ server.use('/api/v1/tracks', trackRoutes)
 
 server.use('/api/v1/badges', badgesRoutes)
 
+server.use('/api/v1/ranks', ranksRoutes)
 
 server.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'))
