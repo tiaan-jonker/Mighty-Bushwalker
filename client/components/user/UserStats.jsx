@@ -8,7 +8,6 @@ import {
 
 function UserStats({ user }) {
   const tracks = useSelector((state) => state.tracks)
-  const userXp = useSelector((state) => state.user.xp)
   const [tracksCompleted, setTracksCompleted] = useState(0)
   const [distanceHiked, setDistanceHiked] = useState(0)
   const [rankPercent, setRankPercent] = useState(0)
@@ -23,7 +22,7 @@ function UserStats({ user }) {
   useEffect(() => {
     getRanks()
       .then((ranks) => {
-        const xp = userXp
+        const xp = user.xp
         const ranksToCheck = ranks.reverse()
         for (let i = 0; i < ranksToCheck.length; i++) {
           if (xp >= ranksToCheck[i].xp) {
@@ -35,11 +34,11 @@ function UserStats({ user }) {
         return null
       })
       .catch((err) => console.log(err))
-  }, [userXp])
+  }, [user.xp])
 
   useEffect(() => {
-    setRankPercent((userXp / nextRank.xp) * 100)
-  }, [userXp])
+    setRankPercent((user.xp / nextRank.xp) * 100)
+  })
 
   return (
     <>
