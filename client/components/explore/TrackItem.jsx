@@ -19,7 +19,7 @@ function TrackItem({ trackData, randomNum }) {
 
   return (
     <Link to={`/track/${id}`}>
-      <li className="">
+      <li>
         <div className="track-banner">
           <div className="track-banner-info">
             <div className="track-name-difficulty-container">
