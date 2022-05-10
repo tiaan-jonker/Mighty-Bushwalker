@@ -8,15 +8,10 @@ function HikingModal({ setIsOpenModal, cantCompleteAgain, outHiking }) {
   const { id } = useParams() // track ID
   const dispatch = useDispatch()
   const user = useSelector((state) => state.user)
-  const [isHiking, setIsHiking] = useState(false)
 
   function handleSubmit() {
     dispatch(hikeTrack(Number(id), user.id, form))
     setIsOpenModal(false)
-  }
-
-  function handleYesClick() {
-    setIsHiking(true)
   }
 
   function closeModal() {
@@ -65,68 +60,42 @@ function HikingModal({ setIsOpenModal, cantCompleteAgain, outHiking }) {
           {/* where the user is not currently hiking*/}
           {!outHiking && !cantCompleteAgain && (
             <>
-              {/* where the user is yet to say whether they are hiking this track*/}
-              {!isHiking && (
-                <>
-                  <div className="modal-header">
-                    <h5 className="heading">Are you hiking this track</h5>
-                  </div>
-                  <div className="modal-content flex-space-evenly">
-                    <button
-                      onClick={handleYesClick}
-                      className="modal-logout-yes"
-                    >
-                      Yes
-                    </button>
-                    <button
-                      onClick={() => setIsOpenModal(false)}
-                      className="modal-logout-no"
-                    >
-                      No
-                    </button>
-                  </div>
-                </>
-              )}
-
-              {isHiking && (
-                <>
-                  <div className="modal-content flex-space-evenly">
-                    <h2>Leave A Note For Other Hikers</h2>
-                    <form className="registration">
-                      {form.checked && (
-                        <>
-                          <label htmlFor="displayName">Display Name</label>
-                          <input
-                            name="displayName"
-                            value={form.displayName}
-                            onChange={handleChange}
-                          ></input>
-                          <label htmlFor="status">Status</label>
-                          <input
-                            name="status"
-                            value={form.status}
-                            onChange={handleChange}
-                          ></input>
-                        </>
-                      )}
+              <div className="modal-content flex-space-evenly">
+                <h2>Leave A Note For Other Hikers</h2>
+                <form className="registration">
+                  {form.checked && (
+                    <>
+                      <label htmlFor="displayName">Display Name</label>
                       <input
-                        name="checked"
-                        type="checkbox"
-                        defaultChecked={form.checked}
-                        onChange={handleCheckClick}
+                        name="displayName"
+                        value={form.displayName}
+                        onChange={handleChange}
                       ></input>
-                      <label htmlFor="checked">Leave Note</label>
-                      <button onClick={closeModal}>x</button>
-                      <button type="button" onClick={handleSubmit}>
-                        Start Hiking
-                      </button>
-                    </form>
-                  </div>
-                </>
-              )}
+                      <label htmlFor="status">Status</label>
+                      <input
+                        name="status"
+                        value={form.status}
+                        onChange={handleChange}
+                      ></input>
+                    </>
+                  )}
+                  <input
+                    name="checked"
+                    type="checkbox"
+                    defaultChecked={form.checked}
+                    onChange={handleCheckClick}
+                  ></input>
+                  <label htmlFor="checked">Leave Note</label>
+                  <button onClick={closeModal}>x</button>
+                  <button type="button" onClick={handleSubmit}>
+                    Start Hiking
+                  </button>
+                </form>
+              </div>
             </>
           )}
 
+          {/* where the user is not currently hiking but has already completed this track today*/}
           {!outHiking && cantCompleteAgain && (
             <>
               <p>Sorry you have already Completed this track today</p>
@@ -134,6 +103,7 @@ function HikingModal({ setIsOpenModal, cantCompleteAgain, outHiking }) {
             </>
           )}
 
+          {/* where the user is  currently hiking on this track or another*/}
           {outHiking && (
             <>
               <p>Sorry you are already hiking somewhere else</p>
