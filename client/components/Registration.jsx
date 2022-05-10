@@ -73,7 +73,6 @@ function Registration() {
                   value={form.name}
                   onChange={handleChange}
                 ></input>
-                <div className="form-group"></div>
                 <button
                   type="button"
                   className="btn btn-primary btn-block rounded-btn register-text"

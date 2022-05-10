@@ -105,12 +105,13 @@
   border-radius: 6px;
   border: rgba(128, 212, 143, 0) 1px solid;
   padding-left: 10px;
-}
-
-.form-group {
-  height: 10px;
+  margin-bottom: 10px;
 }
 
 .btn:hover {
   background-color: #e96e1d !important;
+}
+
+.form-group {
+  margin-top: 30px;
 }
