@@ -127,9 +127,9 @@ export function hikeTrack(
     dispatch(setTrackAsHiking(trackId))
     return updateTrackStatus(trackId, userId, 'hiking')
       .then(() => {
+        const displayNameData = stayAnonymous ? 'Anon' : displayName
+        const statusData = stayAnonymous ? 'Mind your own business' : status
         dispatch(updateUserStatus(displayName, status))
-        const displayNameData = stayAnonymous ? displayName : 'Anon'
-        const statusData = stayAnonymous ? status : 'Mind your own business'
         return updateStatus(userId, displayNameData, statusData)
       })
       .then(() => {
