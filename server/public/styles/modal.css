@@ -225,3 +225,12 @@
 .anon-container {
   margin: 10px;
 }
+
+.hiking-modal-btn {
+  cursor: pointer;
+  padding: 10px 15px;
+  background-color: #285656;
+  color: #eee;
+  border-radius: 10px;
+  font-size: 16px;
+}

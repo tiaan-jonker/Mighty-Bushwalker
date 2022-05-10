@@ -108,7 +108,11 @@ function HikingModal({ setIsOpenModal, cantCompleteAgain, outHiking }) {
                           onChange={handleCheckClick}
                         />
                       </div>
-                      <button type="button" onClick={handleSubmit}>
+                      <button
+                        className="hiking-modal-btn"
+                        type="button"
+                        onClick={handleSubmit}
+                      >
                         Start Hiking
                       </button>
                     </div>
