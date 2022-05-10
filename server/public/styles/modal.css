@@ -194,3 +194,23 @@
   display: flex;
   justify-content: space-evenly;
 }
+
+.modal-text {
+  color: #273f45;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.modal-hiking-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.modal-form {
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 2px 2px 2px 5px;
+}

@@ -118,14 +118,18 @@ export function saveTrack(trackId, userId) {
   }
 }
 
-export function hikeTrack(trackId, userId, { displayName, status, checked }) {
+export function hikeTrack(
+  trackId,
+  userId,
+  { displayName, status, stayAnonymous }
+) {
   return (dispatch) => {
     dispatch(setTrackAsHiking(trackId))
     return updateTrackStatus(trackId, userId, 'hiking')
       .then(() => {
         dispatch(updateUserStatus(displayName, status))
-        const displayNameData = checked ? displayName : 'Anon'
-        const statusData = checked ? status : 'Mind your own business'
+        const displayNameData = stayAnonymous ? displayName : 'Anon'
+        const statusData = stayAnonymous ? status : 'Mind your own business'
         return updateStatus(userId, displayNameData, statusData)
       })
       .then(() => {
@@ -137,7 +141,7 @@ export function hikeTrack(trackId, userId, { displayName, status, checked }) {
 export function hikeTrackNoStatus(
   trackId,
   userId,
-  { displayName, status, checked }
+  { displayName, status, stayAnonymous }
 ) {
   return (dispatch) => {
     dispatch(setTrackAsHiking(trackId))
