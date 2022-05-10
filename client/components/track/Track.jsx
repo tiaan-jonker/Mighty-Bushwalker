@@ -23,8 +23,8 @@ function Track() {
   }, [tracks])
 
   return (
-    <section>
-      <div className="page-image-container">
+    <section className="container-bg-blue">
+      <div className="page-image-container ">
         <img src="/images/bg/bg-1.webp" alt="placeholder image of track" />
       </div>
       <div className="track-content-container">

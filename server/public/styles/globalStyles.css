@@ -7,7 +7,7 @@
   height: 812px;
   border: 1px solid black;
   border-radius: 25px;
-  background: linear-gradient(192.13deg, #78d8de -63.39%, #ffffff 100%);
+  /* background: linear-gradient(192.13deg, #78d8de -63.39%, #ffffff 100%); */
   color: #273f45;
   position: relative;
   overflow-x: hidden;
@@ -21,6 +21,7 @@
 .page-container {
   position: relative;
   padding: 25px;
+  height: 100%;
 }
 
 .logout-btn {
