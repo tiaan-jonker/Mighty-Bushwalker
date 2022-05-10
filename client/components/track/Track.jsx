@@ -49,7 +49,14 @@ function Track() {
 
         {badgeModal && <BadgesModal badgeModalIcons={badgeModalIcons} />}
         {isHikingOpenModal && (
-          <HikingModal setIsOpenModal={setIsHikingOpenModal} />
+          <HikingModal
+            setIsOpenModal={setIsHikingOpenModal}
+            outHiking={outHiking}
+            canCompleteAgain={
+              checkIfDateIsNotToday(track.lastCompletion) &&
+              track.completed === 1
+            }
+          />
         )}
 
         {track.completed === 1 && (
@@ -59,10 +66,6 @@ function Track() {
         )}
         {track.saved === 1 && track.completed === 0 && <TrackButtonComplete />}
         {track.saved === 0 && track.completed === 0 && <TrackButtonSave />}
-        {outHiking < 1 && checkIfDateIsNotToday(track.lastCompletion) && (
-          <TrackButtonHiking />
-        )}
-        {track.hiking === 1 && <TrackButtonUnhike />}
         <div>
           <div className="track-info-line"></div>
           <div className="track-info-container">

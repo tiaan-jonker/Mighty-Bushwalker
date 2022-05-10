@@ -23,7 +23,7 @@ router.patch('/', (req, res) => {
   const updateData = { displayName, id, status }
   db.updateNote(updateData)
     .then(() => {
-      res.send(200)
+      res.sendStatus(200)
       return null
     })
     .catch((err) => {

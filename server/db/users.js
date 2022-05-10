@@ -10,10 +10,9 @@ function getUsersByAuthId(auth0Id, db = connection) {
       'email',
       'description',
       'id',
-      'description',
       'rank',
       'xp',
-      'displayName',
+      'display_name as displayName',
       'status'
     )
 }

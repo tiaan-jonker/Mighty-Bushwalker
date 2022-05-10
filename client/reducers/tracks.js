@@ -40,9 +40,10 @@ function tracks(state = [], action) {
         track.id === action.trackId ? { ...track, hiking: 1 } : track
       )
     case SET_TRACK_AS_NOT_HIKING:
-      return state.map((track) =>
-        track.id === action.trackId ? { ...track, hiking: 0 } : track
-      )
+      return state.map((track) => {
+        return { ...track, hiking: 0 }
+      })
+
     default:
       return state
   }

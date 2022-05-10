@@ -1,4 +1,4 @@
-import { SET_USER, CLEAR_USER } from '../actions/user'
+import { SET_USER, CLEAR_USER, UPDATE_USER_STATUS } from '../actions/user'
 import { SET_TRACK_AS_COMPLETED } from '../actions/tracks'
 
 const emptyUser = {
@@ -17,6 +17,13 @@ export default function user(state = emptyUser, action) {
 
     case SET_TRACK_AS_COMPLETED:
       return { ...state, xp: state.xp + action.points }
+
+    case UPDATE_USER_STATUS:
+      return {
+        ...state,
+        displayName: action.displayName,
+        status: action.status,
+      }
 
     default:
       return state
