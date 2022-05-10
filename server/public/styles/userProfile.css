@@ -116,7 +116,3 @@
     width: 0%;
   }
 }
-
-.xp-bar {
-  animation: xp-bar-animation 2s ease-out;
-}
