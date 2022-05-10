@@ -110,3 +110,9 @@
   font-size: 14px;
   font-weight: 600;
 }
+
+@keyframes xp-bar-animation {
+  0% {
+    width: 0%;
+  }
+}

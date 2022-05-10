@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { hikeTrack, unhikeTrack } from '../../actions/tracks'
+import { RiCloseLine } from 'react-icons/ri'
 
 function HikingModal({ setIsOpenModal, cantCompleteAgain, outHiking }) {
   const { id } = useParams() // track ID
@@ -28,12 +29,12 @@ function HikingModal({ setIsOpenModal, cantCompleteAgain, outHiking }) {
       ? {
           displayName: user.displayName,
           status: user.status,
-          checked: true,
+          stayAnonymous: true,
         }
       : {
           displayName: user.name,
           status: '',
-          checked: false,
+          stayAnonymous: false,
         }
   )
 
@@ -48,70 +49,114 @@ function HikingModal({ setIsOpenModal, cantCompleteAgain, outHiking }) {
   function handleCheckClick() {
     setForm({
       ...form,
-      checked: form.checked ? false : true,
+      stayAnonymous: form.stayAnonymous ? false : true,
     })
   }
 
   return (
     <>
       <div className="darkBG" />
-      <div className="modal-centered">
-        <div className="modal">
-          {/* where the user is not currently hiking*/}
-          {outHiking === 0 && !cantCompleteAgain && (
-            <>
-              <div className="modal-content flex-space-evenly">
-                <h2>Leave A Note For Other Hikers</h2>
-                <form className="registration">
-                  {form.checked && (
-                    <>
-                      <label htmlFor="displayName">Display Name</label>
-                      <input
-                        name="displayName"
-                        value={form.displayName}
-                        onChange={handleChange}
-                      ></input>
-                      <label htmlFor="status">Status</label>
-                      <input
-                        name="status"
-                        value={form.status}
-                        onChange={handleChange}
-                      ></input>
-                    </>
-                  )}
-                  <input
-                    name="checked"
-                    type="checkbox"
-                    defaultChecked={form.checked}
-                    onChange={handleCheckClick}
-                  ></input>
-                  <label htmlFor="checked">Leave Note</label>
-                  <button onClick={closeModal}>x</button>
-                  <button type="button" onClick={handleSubmit}>
-                    Start Hiking
+      <div className="modal-container">
+        <div className="modal-centered">
+          <div className="modal">
+            {/* where the user is not currently hiking*/}
+            {outHiking === 0 && !cantCompleteAgain && (
+              <>
+                <div className="flex-space-evenly modal-hiking-container">
+                  <div className="modal-header modal-text">
+                    <h2 className="heading">Leave A Note For Other Hikers</h2>
+                  </div>
+                  <button className="closeBtn" onClick={closeModal}>
+                    <RiCloseLine style={{ marginBottom: '-3px' }} />
                   </button>
-                </form>
-              </div>
-            </>
-          )}
+                  <form className="registration">
+                    {!form.stayAnonymous && (
+                      <>
+                        <label htmlFor="displayName" className="checkbox-text">
+                          Display Name
+                        </label>
+                        <input
+                          className="modal-form"
+                          name="displayName"
+                          value={form.displayName}
+                          onChange={handleChange}
+                        />
+                        <label htmlFor="status" className="checkbox-text">
+                          Status
+                        </label>
+                        <input
+                          className="modal-form"
+                          name="status"
+                          value={form.status}
+                          onChange={handleChange}
+                        />
+                      </>
+                    )}
+                    <div className="modal-hiking-container">
+                      <div className="anon-container">
+                        <label
+                          htmlFor="stayAnonymous"
+                          className="checkbox-text"
+                        >
+                          Stay Anonymous
+                        </label>
+                        <input
+                          className="checkbox-text"
+                          name="stayAnonymous"
+                          type="checkbox"
+                          defaultChecked={form.stayAnonymous}
+                          onChange={handleCheckClick}
+                        />
+                      </div>
+                      <button
+                        className="hiking-modal-btn"
+                        type="button"
+                        onClick={handleSubmit}
+                      >
+                        Start Hiking
+                      </button>
+                    </div>
+                  </form>
+                </div>
+              </>
+            )}
 
-          {/* where the user is not currently hiking but has already completed this track today*/}
-          {outHiking === 0 && cantCompleteAgain && (
-            <>
-              <p>Sorry you have already Completed this track today</p>
-              <button onClick={closeModal}>x</button>
-            </>
-          )}
+            {/* where the user is not currently hiking but has already completed this track today*/}
+            {outHiking === 0 && cantCompleteAgain && (
+              <>
+                <div className="flex-space-evenly modal-hiking-container">
+                  <button className="closeBtn" onClick={closeModal}>
+                    <RiCloseLine style={{ marginBottom: '-3px' }} />
+                  </button>
+                  <p className="heading">
+                    Sorry you have already completed this track today
+                  </p>
+                  <button className="hiking-modal-btn" onClick={closeModal}>
+                    Come back tomorrow
+                  </button>
+                </div>
+              </>
+            )}
 
-          {/* where the user is  currently hiking on this track or another track*/}
-          {outHiking > 0 && (
-            <>
-              <p>Sorry you are already hiking somewhere else</p>
-              <button type="button" onClick={handleUnhike}>
-                Un Hike
-              </button>
-            </>
-          )}
+            {/* where the user is  currently hiking on this track or another track*/}
+            {outHiking > 0 && (
+              <>
+                <div className="flex-space-evenly modal-hiking-container">
+                  <button className="closeBtn" onClick={closeModal}>
+                    <RiCloseLine style={{ marginBottom: '-3px' }} />
+                  </button>
+                  <h1 className="heading">Changed your mind?</h1>
+                  <button
+                    className="hiking-modal-btn"
+                    type="button"
+                    onClick={handleUnhike}
+                  >
+                    Stop hike
+                  </button>
+                </div>
+              </>
+            )}
+          </div>
         </div>
       </div>
     </>
