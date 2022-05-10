@@ -72,7 +72,7 @@ function HikingModal({ setIsOpenModal, cantCompleteAgain, outHiking }) {
                   <form className="registration">
                     {!form.stayAnonymous && (
                       <>
-                        <label htmlFor="displayName" className="modal-text">
+                        <label htmlFor="displayName" className="checkbox-text">
                           Display Name
                         </label>
                         <input
@@ -80,8 +80,8 @@ function HikingModal({ setIsOpenModal, cantCompleteAgain, outHiking }) {
                           name="displayName"
                           value={form.displayName}
                           onChange={handleChange}
-                        ></input>
-                        <label htmlFor="status" className="modal-text">
+                        />
+                        <label htmlFor="status" className="checkbox-text">
                           Status
                         </label>
                         <input
@@ -89,19 +89,29 @@ function HikingModal({ setIsOpenModal, cantCompleteAgain, outHiking }) {
                           name="status"
                           value={form.status}
                           onChange={handleChange}
-                        ></input>
+                        />
                       </>
                     )}
-                    <label htmlFor="stayAnonymous">Leave Note</label>
-                    <input
-                      name="stayAnonymous"
-                      type="checkbox"
-                      defaultChecked={form.stayAnonymous}
-                      onChange={handleCheckClick}
-                    ></input>
-                    <button type="button" onClick={handleSubmit}>
-                      Start Hiking
-                    </button>
+                    <div className="modal-hiking-container">
+                      <div className="anon-container">
+                        <label
+                          htmlFor="stayAnonymous"
+                          className="checkbox-text"
+                        >
+                          Stay Anonymous
+                        </label>
+                        <input
+                          className="checkbox-text"
+                          name="stayAnonymous"
+                          type="checkbox"
+                          defaultChecked={form.stayAnonymous}
+                          onChange={handleCheckClick}
+                        />
+                      </div>
+                      <button type="button" onClick={handleSubmit}>
+                        Start Hiking
+                      </button>
+                    </div>
                   </form>
                 </div>
               </>
