@@ -13,6 +13,8 @@ exports.seed = function (knex) {
           description: 'the awesome developer',
           rank: 'Bush Lord',
           xp: '1000',
+          display_name: 'kelmarna',
+          status: '',
         },
         {
           id: 2,
@@ -22,6 +24,8 @@ exports.seed = function (knex) {
           description: 'hi',
           rank: 'Bush Lord',
           xp: '1000',
+          display_name: 'example',
+          status: '',
         },
       ])
     })
