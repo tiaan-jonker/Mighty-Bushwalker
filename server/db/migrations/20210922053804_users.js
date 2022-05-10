@@ -6,6 +6,8 @@ exports.up = function (knex) {
     table.string('email')
     table.string('description')
     table.string('rank')
+    table.string('display_name')
+    table.string('status')
     table.integer('xp')
   })
 }

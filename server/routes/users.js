@@ -18,6 +18,20 @@ router.post('/', async (req, res) => {
   }
 })
 
+router.patch('/', (req, res) => {
+  const { displayName, id, status } = req.body
+  const updateData = { displayName, id, status }
+  db.updateNote(updateData)
+    .then(() => {
+      res.sendStatus(200)
+      return null
+    })
+    .catch((err) => {
+      console.error(err)
+      res.status(500).json({ message: 'Something went wrong' })
+    })
+})
+
 // GET /api/v1/users/:userId
 
 // router.get('/:id', (req, res) => {

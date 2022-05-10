@@ -10,6 +10,8 @@ import WeatherInfo from '../weather/WeatherInfo'
 import BadgesModal from './BadgesModal'
 import TrackButtonHiking from './TrackButtonHiking'
 import TrackButtonUnhike from './TrackButtonUnhike'
+import HikingModal from './HikingModal'
+import HikingUsers from './HikingUsers'
 
 function Track() {
   // const dispatch = useDispatch()
@@ -19,29 +21,43 @@ function Track() {
   const badgeModalIcons = useSelector((state) => state.badgeModal.badges)
   const [track, setTrack] = useState([])
   const [outHiking, setOutHiking] = useState(false)
+  const [isHikingOpenModal, setIsHikingOpenModal] = useState(false)
 
   useEffect(() => {
     const trackData = tracks.find((track) => track.id === Number(id))
-
     const isHiking = tracks.filter((track) => track.hiking).length
-
-    console.log('hiking: ', isHiking)
-
     setOutHiking(isHiking)
-
     setTrack(trackData)
   }, [tracks])
+
+  function handleClick() {
+    setIsHikingOpenModal(true)
+  }
 
   return (
     <section className="container-bg-blue">
       <div className="page-image-container ">
         <img src="/images/bg/bg-1.webp" alt="placeholder image of track" />
       </div>
+      <img
+        src="/icons/logout.svg"
+        alt=""
+        onClick={handleClick}
+        className="logout-btn"
+      />
       <div className="track-content-container">
         <h2 className="track-name">{track.name}</h2>
 
-        {badgeModal && (
-          <BadgesModal badgeModalIcons={badgeModalIcons} />
+        {badgeModal && <BadgesModal badgeModalIcons={badgeModalIcons} />}
+        {isHikingOpenModal && (
+          <HikingModal
+            setIsOpenModal={setIsHikingOpenModal}
+            outHiking={outHiking}
+            cantCompleteAgain={
+              track.completed === 1 &&
+              !checkIfDateIsNotToday(track.lastCompletion)
+            }
+          />
         )}
 
         {track.completed === 1 && (
@@ -51,10 +67,6 @@ function Track() {
         )}
         {track.saved === 1 && track.completed === 0 && <TrackButtonComplete />}
         {track.saved === 0 && track.completed === 0 && <TrackButtonSave />}
-        {outHiking < 1 && checkIfDateIsNotToday(track.lastCompletion) && (
-          <TrackButtonHiking />
-        )}
-        {track.hiking === 1 && <TrackButtonUnhike />}
         <div>
           <div className="track-info-line"></div>
           <div className="track-info-container">
@@ -80,6 +92,9 @@ function Track() {
 
           <WeatherInfo />
         </div>
+      </div>
+      <div>
+        <HikingUsers />
       </div>
     </section>
   )

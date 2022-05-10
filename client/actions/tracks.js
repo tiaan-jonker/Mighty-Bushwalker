@@ -1,6 +1,10 @@
-import { updateTrackStatus } from '../components/track/trackHelper'
+import {
+  updateStatus,
+  updateTrackStatus,
+} from '../components/track/trackHelper'
 import { getUserTracks } from '../components/user/userHelper'
 import { getCurrentDateString, checkForNewBadges } from './actionHelper'
+import { updateUserStatus } from './user'
 
 export const FETCH_MAP_TRACKS_PENDING = 'FETCH_MAP_TRACKS_PENDING'
 export const FETCH_MAP_TRACKS_SUCCESS = 'FETCH_MAP_TRACKS_SUCCESS'
@@ -114,12 +118,37 @@ export function saveTrack(trackId, userId) {
   }
 }
 
-export function hikeTrack(trackId, userId) {
+export function hikeTrack(trackId, userId, { displayName, status, checked }) {
   return (dispatch) => {
     dispatch(setTrackAsHiking(trackId))
-    return updateTrackStatus(trackId, userId, 'hiking').then(() => {
-      return null
-    })
+    return updateTrackStatus(trackId, userId, 'hiking')
+      .then(() => {
+        dispatch(updateUserStatus(displayName, status))
+        const displayNameData = checked ? displayName : 'Anon'
+        const statusData = checked ? status : 'Mind your own business'
+        return updateStatus(userId, displayNameData, statusData)
+      })
+      .then(() => {
+        return null
+      })
+  }
+}
+
+export function hikeTrackNoStatus(
+  trackId,
+  userId,
+  { displayName, status, checked }
+) {
+  return (dispatch) => {
+    dispatch(setTrackAsHiking(trackId))
+    return updateTrackStatus(trackId, userId, 'hiking')
+      .then(() => {
+        dispatch(updateUserStatus('Anon', 'What a great day'))
+        return updateStatus(userId, displayName, status)
+      })
+      .then(() => {
+        return null
+      })
   }
 }
 

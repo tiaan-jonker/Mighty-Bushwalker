@@ -12,6 +12,8 @@ const emptyUser = {
   roles: [],
   id: 0,
   xp: 0,
+  displayName: '',
+  status: '',
 }
 
 const emptyTrack = [
@@ -55,6 +57,8 @@ export async function cacheUser(useAuth0) {
           roles,
           id: userData.id,
           xp: userData.xp,
+          displayName: userData.displayName,
+          status: userData.status,
         }
         const tracks = await getUserTracks(userData.id)
         saveTracks(tracks)
