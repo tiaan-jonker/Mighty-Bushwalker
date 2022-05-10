@@ -28,7 +28,7 @@ function UserTracks() {
   })
 
   return (
-    <section>
+    <section style={{ height: '100%' }}>
       <div className="page-container mg-bottom-50 container-bg-blue">
         <div>
           <h2 className="user-intro">My tracks</h2>

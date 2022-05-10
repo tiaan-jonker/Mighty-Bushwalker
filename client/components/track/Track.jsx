@@ -40,7 +40,9 @@ function Track() {
       <div className="track-content-container">
         <h2 className="track-name">{track.name}</h2>
 
-        {badgeModal && <BadgesModal badgeModalIcons={badgeModalIcons} />}
+        {badgeModal && (
+          <BadgesModal badgeModalIcons={badgeModalIcons} />
+        )}
 
         {track.completed === 1 && (
           <TrackButtonCompleted

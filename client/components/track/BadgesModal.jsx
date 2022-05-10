@@ -15,21 +15,29 @@ function BadgesModal({ badgeModalIcons }) {
       <div className="modal-centered">
         <div className="modal">
           <div className="modal-header">
-            <h5 className="heading">Achievement</h5>
+            <h5 className="heading">Congrats!</h5>
+            <p className="sub-heading">You have earned...</p>
           </div>
-          <div className="modal-content flex-space-evenly">
-            <p>Achievement earned</p>
-            {badgeModalIcons.map((badgeImage) => (
-              <span key={badgeImage.id} className="badge-circle">
-                <img
-                  src={`/icons/badges/${badgeImage.image}.png`}
-                  alt=""
-                  className="badge-image"
-                />
-              </span>
+          <div className="modal-badge-content">
+            {badgeModalIcons.map((badge) => (
+              <div key={badge.id} className="modal-badge-container">
+                <span className="model-badge-circle">
+                  <img
+                    src={`/icons/badges/${badge.image}.png`}
+                    alt=""
+                    className="badge-image"
+                  />
+                </span>
+                <h5 className="modal-badge-heading">{badge.name}</h5>
+                <p className="modal-badge-criteria">{badge.criteria}</p>
+              </div>
             ))}
 
-            <button onClick={handleClick}>Close modal</button>
+            <div className="modal-badge-close-container">
+              <button className="modal-badge-close" onClick={handleClick}>
+                Close
+              </button>
+            </div>
           </div>
         </div>
       </div>
