@@ -40,8 +40,8 @@ function Track() {
         <img src="/images/bg/bg-1.webp" alt="placeholder image of track" />
       </div>
       <img
-        src="/icons/logout.svg"
-        alt=""
+        src="/icons/hiking-options.svg"
+        alt="Options"
         onClick={handleClick}
         className="logout-btn"
       />
