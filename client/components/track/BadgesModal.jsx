@@ -15,7 +15,7 @@ function BadgesModal({ badgeModalIcons }) {
       <div className="modal-centered">
         <div className="modal">
           <div className="modal-header">
-            <h5 className="heading">Congrats!</h5>
+            <h5 className="badge-heading">Congrats!</h5>
             <p className="sub-heading">You have earned...</p>
           </div>
           <div className="modal-badge-content">
