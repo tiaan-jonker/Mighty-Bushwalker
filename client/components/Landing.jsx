@@ -29,13 +29,13 @@ function Landing() {
       )}
 
       <IfNotAuthenticated>
-        <div className="login-container">
-          <div className="col-xs-12 col-sm-4 col-sm-offset-4 login-box">
+        <div className="register-container">
+          <div className="register-box">
             <div className="login-header">
-              <img src="https://res.cloudinary.com/dt7wm4h23/image/upload/v1651913955/Group_2_u0xxru.svg" />
-              <h3>BUSHWALK</h3>
+              <img src="/icons/BushWalkLogo.svg" />
+              <h1 className="register-text register-heading">BUSHWALK</h1>
             </div>
-            <div className="button-container">
+            <div className="form-group">
               <button
                 onClick={handleLogin}
                 type="submit"

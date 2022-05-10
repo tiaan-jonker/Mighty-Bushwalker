@@ -57,10 +57,7 @@ function Registration() {
       <div className="register-container">
         <div className="register-box">
           <section className="form">
-            <img
-              className="register-image"
-              src="https://res.cloudinary.com/dt7wm4h23/image/upload/v1651913955/Group_2_u0xxru.svg"
-            ></img>
+            <img className="register-image" src="/icons/BushWalkLogo.svg"></img>
             <h1 className="register-text register-heading">REGISTER PROFILE</h1>
             <form className="registration">
               <div className="form-group">
