@@ -71,7 +71,11 @@ function updateCompletedStatus(
   db = connection
 ) {
   const completedTrack = { user_id: userId, track_id: trackId }
-  const updatedData = { completed: status, last_completion: lastCompletion }
+  const updatedData = {
+    completed: status,
+    last_completion: lastCompletion,
+    hiking: 0,
+  }
   return db('user_tracks')
     .where(completedTrack)
     .update(updatedData)
