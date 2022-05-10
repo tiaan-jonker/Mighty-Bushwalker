@@ -10,6 +10,8 @@ export const SET_TRACK_AS_SAVED = 'SET_TRACK_AS_SAVED'
 export const SET_TRACK_AS_UNSAVED = 'SET_TRACK_AS_UNSAVED'
 export const DISPLAY_ACHIEVEMENT_MODAL = 'DISPLAY_ACHIEVEMENT_MODAL'
 export const CLOSE_ACHIEVEMENT_MODAL = 'CLOSE_ACHIEVEMENT_MODAL'
+export const SET_TRACK_AS_HIKING = 'SET_TRACK_AS_HIKING'
+export const SET_TRACK_AS_NOT_HIKING = 'SET_TRACK_AS_NOT_HIKING'
 
 export function fetchMapAndTrackDataPending() {
   return {
@@ -63,6 +65,19 @@ export function setTrackAsUnsaved(trackId) {
   }
 }
 
+export function setTrackAsHiking(trackId) {
+  return {
+    type: SET_TRACK_AS_HIKING,
+    trackId,
+  }
+}
+export function setTrackAsNotHiking(trackId) {
+  return {
+    type: SET_TRACK_AS_NOT_HIKING,
+    trackId,
+  }
+}
+
 export function displayAchievementModal(badges) {
   return {
     type: DISPLAY_ACHIEVEMENT_MODAL,
@@ -94,6 +109,24 @@ export function saveTrack(trackId, userId) {
   return (dispatch) => {
     dispatch(setTrackAsSaved(trackId))
     return updateTrackStatus(trackId, userId, 'saved').then(() => {
+      return null
+    })
+  }
+}
+
+export function hikeTrack(trackId, userId) {
+  return (dispatch) => {
+    dispatch(setTrackAsHiking(trackId))
+    return updateTrackStatus(trackId, userId, 'hiking').then(() => {
+      return null
+    })
+  }
+}
+
+export function unhikeTrack(trackId, userId) {
+  return (dispatch) => {
+    dispatch(setTrackAsNotHiking(trackId))
+    return updateTrackStatus(trackId, userId, 'hiked').then(() => {
       return null
     })
   }

@@ -112,7 +112,6 @@ export async function checkForNewBadges(userId) {
   const badgesToAddData = badgesData.filter((badge) =>
     badgesToAdd.includes(badge.id)
   )
-  console.log(badgesToAddData)
 
   return badgesToAddData
 }
