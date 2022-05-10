@@ -12,7 +12,6 @@ import TrackButtonHiking from './TrackButtonHiking'
 import TrackButtonUnhike from './TrackButtonUnhike'
 
 function Track() {
-  // const dispatch = useDispatch()
   const { id } = useParams()
   const tracks = useSelector((state) => state.tracks)
   const badgeModal = useSelector((state) => state.badgeModal.display)

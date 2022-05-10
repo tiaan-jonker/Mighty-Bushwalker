@@ -105,10 +105,8 @@
 
 .loading span {
   display: inline-block;
-  /* margin: 0 -0.05em; */
 }
 
-/* code #1 */
 .loading01 span {
   animation: loading01 1.4s infinite alternate;
 }
