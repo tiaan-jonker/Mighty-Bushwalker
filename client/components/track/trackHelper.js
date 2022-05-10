@@ -29,7 +29,6 @@ export function updateTrackStatus(
   points, // for route completion this is used, otherwise leave parameter empty
   consume = requestor
 ) {
-  console.log('reached trachupdater')
   return consume(`/tracks/${update}`, 'patch', { userId, trackId, points })
     .then((res) => {
       return res.body
@@ -45,4 +44,20 @@ export function checkIfDateIsNotToday(completionDate) {
     current.getMonth() + 1
   }/${current.getDate()}/${current.getFullYear()}`
   return currentDateString !== completionDate
+}
+
+export function updateStatus(
+  id,
+  displayName, // use the type of update i.e saved / completed, this directs to the correct route
+  status, // for route completion this is used, otherwise leave parameter empty
+  consume = requestor
+) {
+  console.log('reached statusupdater')
+  return consume(`/users`, 'patch', { id, displayName, status })
+    .then((res) => {
+      return res.body
+    })
+    .catch((error) => {
+      console.log(error.message)
+    })
 }

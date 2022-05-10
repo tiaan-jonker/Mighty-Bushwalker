@@ -1,4 +1,7 @@
-import { updateTrackStatus } from '../components/track/trackHelper'
+import {
+  updateStatus,
+  updateTrackStatus,
+} from '../components/track/trackHelper'
 import { getUserTracks } from '../components/user/userHelper'
 import { getCurrentDateString, checkForNewBadges } from './actionHelper'
 
@@ -114,12 +117,16 @@ export function saveTrack(trackId, userId) {
   }
 }
 
-export function hikeTrack(trackId, userId) {
+export function hikeTrack(trackId, userId, { displayName, status, checked }) {
   return (dispatch) => {
     dispatch(setTrackAsHiking(trackId))
-    return updateTrackStatus(trackId, userId, 'hiking').then(() => {
-      return null
-    })
+    return updateTrackStatus(trackId, userId, 'hiking')
+      .then(() => {
+        return updateStatus(userId, displayName, status)
+      })
+      .then(() => {
+        return null
+      })
   }
 }
 

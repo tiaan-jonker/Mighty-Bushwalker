@@ -12,7 +12,9 @@ function getUsersByAuthId(auth0Id, db = connection) {
       'id',
       'description',
       'rank',
-      'xp'
+      'xp',
+      'displayName',
+      'status'
     )
 }
 
@@ -24,6 +26,8 @@ function addUser(input, db = connection) {
     email,
     description,
     xp: 500,
+    displayName: name,
+    status: '',
   }
   return db('users').insert(user)
 }
@@ -31,6 +35,11 @@ function addUser(input, db = connection) {
 function addNewUserTracks(userId, db = connection) {
   const newUserTracks = generateUserTrackData(userId)
   return db('user_tracks').insert(newUserTracks)
+}
+
+function updateNote({ displayName, id, status }, db = connection) {
+  const noteDetails = { display_name: displayName, status }
+  return db('users').where('id', id).update(noteDetails)
 }
 
 //
@@ -59,4 +68,5 @@ module.exports = {
   getUserById,
   addNewUserTracks,
   getUsersByAuthId,
+  updateNote,
 }
