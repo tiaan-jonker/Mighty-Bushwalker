@@ -34,12 +34,13 @@
 .darkBG {
   background-color: rgba(0, 0, 0, 0.6);
   width: 100vw;
-  height: 100vh;
+  height: 870px;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   position: absolute;
-  filter: blur(2px);
+  /* filter: blur(1px); */
+  backdrop-filter: blur(7px);
   z-index: 1;
 }
 
