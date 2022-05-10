@@ -17,9 +17,9 @@ function AllTrackMap({ tracks }) {
 
   const mapComponent = (
     <div>
-      <div className="all-map-container">
+      <div className="map-container">
         <MapContainer
-          className="all-map"
+          className="map"
           center={[lat, long]} // This will change - with the long and lat passed in from the track
           zoom={8}
           scrollWheelZoom={true}
