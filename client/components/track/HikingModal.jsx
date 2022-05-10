@@ -64,9 +64,7 @@ function HikingModal({ setIsOpenModal, cantCompleteAgain, outHiking }) {
               <>
                 <div className="flex-space-evenly modal-hiking-container">
                   <div className="modal-header modal-text">
-                    <h2 className="heading">
-                      Leave A Note For Other Hikers
-                    </h2>
+                    <h2 className="heading">Leave A Note For Other Hikers</h2>
                   </div>
                   <button className="closeBtn" onClick={closeModal}>
                     <RiCloseLine style={{ marginBottom: '-3px' }} />
