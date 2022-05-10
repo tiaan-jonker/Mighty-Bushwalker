@@ -1,9 +1,9 @@
 .nav-bar {
   position: fixed;
-  width: 375px;
+  width: 374px;
   height: 70px;
   bottom: 8px;
-  border-radius: 0px 0px 25px 25px;
+  border-radius: 0px 0px 24px 23px;
   background-color: rgb(39, 63, 69);
 }
 
