@@ -8,6 +8,8 @@ import TrackButtonCompleted from './TrackButtonCompleted'
 import TrackMap from '../map/TrackMap'
 import WeatherInfo from '../weather/WeatherInfo'
 import BadgesModal from './BadgesModal'
+import TrackButtonHiking from './TrackButtonHiking'
+import TrackButtonUnhike from './TrackButtonUnhike'
 
 function Track() {
   // const dispatch = useDispatch()
@@ -16,9 +18,17 @@ function Track() {
   const badgeModal = useSelector((state) => state.badgeModal.display)
   const badgeModalIcons = useSelector((state) => state.badgeModal.badges)
   const [track, setTrack] = useState([])
+  const [outHiking, setOutHiking] = useState(false)
 
   useEffect(() => {
     const trackData = tracks.find((track) => track.id === Number(id))
+
+    const isHiking = tracks.filter((track) => track.hiking).length
+
+    console.log('hiking: ', isHiking)
+
+    setOutHiking(isHiking)
+
     setTrack(trackData)
   }, [tracks])
 
@@ -39,7 +49,10 @@ function Track() {
         )}
         {track.saved === 1 && track.completed === 0 && <TrackButtonComplete />}
         {track.saved === 0 && track.completed === 0 && <TrackButtonSave />}
-
+        {outHiking < 1 && checkIfDateIsNotToday(track.lastCompletion) && (
+          <TrackButtonHiking />
+        )}
+        {track.hiking === 1 && <TrackButtonUnhike />}
         <div>
           <div className="track-info-line"></div>
           <div className="track-info-container">

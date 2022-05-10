@@ -21,7 +21,6 @@ router.get('/:userId', async (req, res) => {
   const userId = Number(req.params.userId)
   try {
     const badges = await db.getBadgesByUser(userId)
-    console.log(badges)
     res.json(badges)
   } catch (error) {
     console.error(error)

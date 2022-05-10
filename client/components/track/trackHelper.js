@@ -29,6 +29,7 @@ export function updateTrackStatus(
   points, // for route completion this is used, otherwise leave parameter empty
   consume = requestor
 ) {
+  console.log('reached trachupdater')
   return consume(`/tracks/${update}`, 'patch', { userId, trackId, points })
     .then((res) => {
       return res.body

@@ -63,6 +63,45 @@ router.patch('/unsaved', (req, res) => {
     })
 })
 
+// Update status of whether a track is saved by user of not
+router.patch('/hiking', (req, res) => {
+  const { userId, trackId } = req.body
+  const hikedTrack = {
+    userId,
+    trackId,
+    status: 1,
+  }
+  db.updateHikingStatus(hikedTrack)
+    .then(() => {
+      res.sendStatus(200)
+      return null
+    })
+    .catch((err) => {
+      console.error(err)
+      res.status(500).json({ message: 'Unable to mark track as being hiked' })
+    })
+})
+
+router.patch('/hiked', (req, res) => {
+  const { userId, trackId } = req.body
+  const hikedTrack = {
+    userId,
+    trackId,
+    status: 0,
+  }
+  db.updateHikingStatus(hikedTrack)
+    .then(() => {
+      res.sendStatus(200)
+      return null
+    })
+    .catch((err) => {
+      console.error(err)
+      res
+        .status(500)
+        .json({ message: 'Unable to mark track as no longer being hiked' })
+    })
+})
+
 // update status of whether a track is completed by user of not
 router.patch('/completed', (req, res) => {
   const { userId, trackId, points } = req.body
