@@ -31,7 +31,7 @@ function Landing() {
       <IfNotAuthenticated>
         <div className="register-container">
           <div className="register-box">
-            <div className="login-header">
+            <div className="sign-in">
               <img src="/icons/BushWalkLogo.svg" />
               <h1 className="register-text register-heading">BUSHWALK</h1>
             </div>

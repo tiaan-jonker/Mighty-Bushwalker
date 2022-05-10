@@ -117,3 +117,30 @@
 .form-group {
   margin-top: 30px;
 }
+
+.sign-in {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.btn-primary,
+.btn-primary:active,
+.btn-primary:visited {
+  background-color: #e77e37 !important;
+  border: none;
+}
+
+.btn-primary:hover {
+  background-color: #e96e1d !important;
+}
+
+.btn-default {
+  border: none;
+}
+
+.button-container {
+  display: flex;
+  flex-direction: column;
+}
