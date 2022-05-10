@@ -16,17 +16,26 @@ function HikingUsers() {
   }, [user]) // when the user says they are hiking the user should update,
   // and this should refresh the list of walkers to show the current user
   return (
-    <>
-      {walkingUsers.map((user) => {
-        return (
-          <div key={user.id}>
-            <p>
-              {user.displayName} - {user.status}
-            </p>
-          </div>
-        )
-      })}
-    </>
+    <div>
+      <p className="track-info-heading">Hikers on this track</p>
+      <div className="hikers-info-line">
+        <div className="hikers-info-container">
+          {walkingUsers.length > 0 ? (
+            <>
+              {walkingUsers.map((user) => {
+                return (
+                  <div key={user.id} className="hiker-info">
+                    {user.displayName} - &ldquo;{user.status}&rdquo;
+                  </div>
+                )
+              })}
+            </>
+          ) : (
+            <p>No hikers out there today</p>
+          )}
+        </div>
+      </div>
+    </div>
   )
 }
 
