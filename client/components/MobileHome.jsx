@@ -2,7 +2,7 @@ import React from 'react'
 
 function MobileHome({ handleClick }) {
   return (
-    <>
+    <div>
       <div className="app-icons-container">
         <img
           src="/icons/sim/mighty-bush.svg"
@@ -15,7 +15,7 @@ function MobileHome({ handleClick }) {
         <img src="/icons/sim/safari.svg" alt="" className="app-icon" />
       </div>
       <img src="/icons/sim/home-bg.svg" alt="" className="mobile-bg" />
-    </>
+    </div>
   )
 }
 

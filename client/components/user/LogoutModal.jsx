@@ -3,7 +3,7 @@ import React from 'react'
 function LogoutModal({ setIsOpenModal, handleLogout }) {
   return (
     <div className="modal-container">
-      <div >
+      <div>
         <div className="modal-centered">
           <div className="modal">
             <div className="modal-header">

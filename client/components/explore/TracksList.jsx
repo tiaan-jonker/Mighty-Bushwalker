@@ -105,7 +105,7 @@ function Track() {
         {loading ? (
           <WaitCircular />
         ) : (
-          <>
+          <div>
             <AllTracksMap tracks={filteredTracks} />
             <button onClick={handleModal} className="modal-btn">
               <div className="modal-btn-container">
@@ -133,7 +133,7 @@ function Track() {
                 {showButtonText ? 'Show less' : 'Show more'}
               </div>
             </button>
-          </>
+          </div>
         )}
       </div>
     </section>

@@ -38,47 +38,44 @@ function UserTracks() {
           <div>Head to Explore to find your first track!</div>
         ) : (
           userTracks.map((track) => {
+            const { id, completed, points, name, difficulty, length, hours } =
+              track
+
             return (
-              (track.completed == 1 || track.saved == 1) && (
-                <div key={track.id} className="user-track-banner">
-                  <Link to={`/track/${track.id}`}>
-                    {/* <Link to={`/track/1`}> */}
+              (completed == 1 || track.saved == 1) && (
+                <div key={id} className="user-track-banner">
+                  <Link to={`/track/${id}`}>
                     <div className="track-banner">
-                      {track.completed ? (
+                      {completed ? (
                         <span className="status-indicator completed">
                           Completed
                         </span>
                       ) : (
                         <span className="status-indicator saved">Saved</span>
                       )}
-                      {track.completed ? (
+                      {completed ? (
                         ''
                       ) : (
-                        <div className="points-container">
-                          {track.points} XP
-                        </div>
+                        <div className="points-container">{points} XP</div>
                       )}
 
                       <div className="track-banner-info">
                         <div className="track-name-difficulty-container">
                           <h2 className="track-list-name">
-                            {truncatedName(track.name)}
+                            {truncatedName(name)}
                           </h2>
                           <span
                             className="track-difficulty"
                             style={{
-                              backgroundColor: getBackgroundColor(
-                                track.difficulty
-                              ),
+                              backgroundColor: getBackgroundColor(difficulty),
                             }}
                           >
-                            {track.difficulty}
+                            {difficulty}
                           </span>
                         </div>
                         <div className="track-other-details">
                           <p>
-                            Length: {track.length}km • Est. {track.hours}hrs •
-                            80 km away
+                            Length: {length}km • Est. {hours}hrs • 80 km away
                           </p>
                         </div>
                       </div>

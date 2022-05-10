@@ -47,7 +47,7 @@ function TrackMap({ track }) {
 
   const startPosition = [trackData.lat, trackData.lon]
   const mapComponent = (
-    <>
+    <div>
       <div className="map-container">
         <MapContainer
           className="map"
@@ -70,9 +70,9 @@ function TrackMap({ track }) {
           })}
         </MapContainer>
       </div>
-    </>
+    </div>
   )
-  return <>{trackData.lat !== 0 && trackData.lon !== 0 ? mapComponent : null}</>
+  return <div>{trackData.lat !== 0 && trackData.lon !== 0 ? mapComponent : null}</div>
 }
 
 export default TrackMap

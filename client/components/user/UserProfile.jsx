@@ -3,9 +3,9 @@ import { Link, useNavigate, useParams } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { useAuth0 } from '@auth0/auth0-react'
 import { getLogoutFn } from '../../auth0-utils'
+import { capitaliseFirstLetter } from '../../utils'
 import UserStats from './UserStats.jsx'
 import LogoutModal from './LogoutModal'
-import { capitaliseFirstLetter } from '../../utils'
 
 function UserProfile() {
   const user = useSelector((state) => state.user)
@@ -54,50 +54,44 @@ function UserProfile() {
         </div>
         <UserStats user={user} />
         <div className="user-links-container">
-          <div className="link-one">
-            <div className="link-container-one">
-              <Link to="/tracks">
-                <div className="link-text-container">
-                  <div className="link-text">Explore</div>
-                  <img src="/icons/arrow.svg" alt="" />
-                </div>
-                <img
-                  src="/images/explore-img.png"
-                  alt="link to explore new tracks"
-                  className="user-img-one"
-                />
-              </Link>
-            </div>
+          <div className="explore-area">
+            <Link to="/tracks">
+              <div className="link-text-container">
+                <div className="link-text">Explore</div>
+                <img src="/icons/arrow.svg" alt="" />
+              </div>
+              <img
+                src="/images/explore-img.png"
+                alt="link to explore new tracks"
+                className="explore-area-img"
+              />
+            </Link>
           </div>
-          <div className="link-two">
-            <div className="link-container">
-              <Link to={`/user/${id}/usertracks`}>
-                <div className="link-text-container">
-                  <div className="link-text">My tracks</div>
-                  <img src="/icons/arrow.svg" alt="" />
-                </div>
-                <img
-                  src="/images/mytracks-img.png"
-                  alt="link to all my tracks"
-                  className="user-img"
-                />
-              </Link>
-            </div>
+          <div className="tracks-area">
+            <Link to={`/user/${id}/usertracks`}>
+              <div className="link-text-container">
+                <div className="link-text">My tracks</div>
+                <img src="/icons/arrow.svg" alt="" />
+              </div>
+              <img
+                src="/images/mytracks-img.png"
+                alt="link to all my tracks"
+                className="tracks-area-img"
+              />
+            </Link>
           </div>
-          <div className="link-three">
-            <div className="link-container">
-              <Link to={`/user/${id}/userbadges`}>
-                <div className="link-text-container">
-                  <div className="link-text">My badges</div>
-                  <img src="/icons/arrow.svg" alt="" />
-                </div>
-                <img
-                  src="/images/mybadges-img.png"
-                  alt="link to all my badges and achievements"
-                  className="user-img"
-                />
-              </Link>
-            </div>
+          <div className="badges-area">
+            <Link to={`/user/${id}/userbadges`}>
+              <div className="link-text-container">
+                <div className="link-text">My badges</div>
+                <img src="/icons/arrow.svg" alt="" />
+              </div>
+              <img
+                src="/images/mybadges-img.png"
+                alt="link to all my badges and achievements"
+                className="badges-area-img"
+              />
+            </Link>
           </div>
         </div>
       </section>
