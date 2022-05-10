@@ -145,13 +145,13 @@ function HikingModal({ setIsOpenModal, cantCompleteAgain, outHiking }) {
                   <button className="closeBtn" onClick={closeModal}>
                     <RiCloseLine style={{ marginBottom: '-3px' }} />
                   </button>
-                  <h1 className="heading">Finish Hiking</h1>
+                  <h1 className="heading">Changed your mind?</h1>
                   <button
                     className="hiking-modal-btn"
                     type="button"
                     onClick={handleUnhike}
                   >
-                    Finished
+                    Stop hike
                   </button>
                 </div>
               </>
