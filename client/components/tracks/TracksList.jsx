@@ -99,7 +99,7 @@ function Track() {
         />
       )}
 
-      <div >
+      <div>
         <h2 className="tracks-intro">Explore</h2>
         <p className="tracks-sub">All trails available to hike</p>
         {loading ? (
@@ -127,7 +127,7 @@ function Track() {
             <button
               onClick={handleClick}
               className="modal-btn"
-              style={{ marginBottom: '50px' }}
+              style={{ marginBottom: '88px' }}
             >
               <div className="modal-btn-show-container">
                 {showButtonText ? 'Show less' : 'Show more'}
