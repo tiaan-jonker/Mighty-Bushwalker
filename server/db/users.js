@@ -25,7 +25,7 @@ function addUser(input, db = connection) {
     email,
     description,
     xp: 500,
-    displayName: name,
+    display_name: name,
     status: '',
   }
   return db('users').insert(user)
