@@ -62,8 +62,10 @@ function HikingModal({ setIsOpenModal, cantCompleteAgain, outHiking }) {
       <div className="darkBG" />
       <div className="modal-centered">
         <div className="modal">
+          {/* where the user is not currently hiking*/}
           {!outHiking && !cantCompleteAgain && (
             <>
+              {/* where the user is yet to say whether they are hiking this track*/}
               {!isHiking && (
                 <>
                   <div className="modal-header">
