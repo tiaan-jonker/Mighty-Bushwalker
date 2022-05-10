@@ -11,6 +11,7 @@ import BadgesModal from './BadgesModal'
 import TrackButtonHiking from './TrackButtonHiking'
 import TrackButtonUnhike from './TrackButtonUnhike'
 import HikingModal from './HikingModal'
+import HikingUsers from './HikingUsers'
 
 function Track() {
   // const dispatch = useDispatch()
@@ -91,6 +92,9 @@ function Track() {
 
           <WeatherInfo />
         </div>
+      </div>
+      <div>
+        <HikingUsers />
       </div>
     </section>
   )

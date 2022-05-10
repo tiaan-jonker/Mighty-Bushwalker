@@ -104,7 +104,7 @@ function HikingModal({ setIsOpenModal, cantCompleteAgain, outHiking }) {
           )}
 
           {/* where the user is  currently hiking on this track or another track*/}
-          {outHiking === 1 && (
+          {outHiking > 0 && (
             <>
               <p>Sorry you are already hiking somewhere else</p>
               <button type="button" onClick={handleUnhike}>
