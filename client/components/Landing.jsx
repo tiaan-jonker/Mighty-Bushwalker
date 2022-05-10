@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useAuth0 } from '@auth0/auth0-react'
 import { getLoginFn, getRegisterFn } from '../auth0-utils'
 import { IfAuthenticated, IfNotAuthenticated } from './Authenticated'
@@ -6,6 +6,7 @@ import { useSelector } from 'react-redux'
 import { Navigate } from 'react-router-dom'
 import MobileHome from './MobileHome'
 import SplashPage from './SplashPage'
+import { playTheme } from './musichelper/musichelper'
 
 function Landing() {
   const user = useSelector((state) => state.user)
@@ -15,11 +16,17 @@ function Landing() {
   const [animation, setAnimation] = useState(false)
 
   function handleClick() {
+    // const [song, playSong] = useState(playTheme())
+
+    // useEffect(() => {
+    //   return null
+    // }, [playTheme])
+    playTheme(1)
     setAnimation(true)
     setTimeout(() => {
       setAnimation(false)
       setHome(true)
-    }, 3000)
+    }, 3300)
   }
 
   function handleLogin(event) {

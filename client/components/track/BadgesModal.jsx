@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { closeModal } from '../../actions/tracks'
+import { playTheme } from '../musichelper/musichelper'
 
 function BadgesModal({ badgeModalIcons }) {
   const dispatch = useDispatch()
@@ -8,6 +9,10 @@ function BadgesModal({ badgeModalIcons }) {
   const handleClick = () => {
     dispatch(closeModal())
   }
+
+  useEffect(() => {
+    return null
+  }, [playTheme(2)])
 
   return (
     <>
