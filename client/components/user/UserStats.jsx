@@ -77,6 +77,7 @@ function UserStats({ user }) {
             className="xp-bar"
             style={{
               width: `${rankPercent}%`,
+              animation: `xp-bar-animation ${rankPercent / 25}s ease-out`,
             }}
           ></div>
         </div>
