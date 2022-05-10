@@ -35,8 +35,10 @@ function generateUserTrackDataSeed() {
 
   for (let i = 1; i < amountOfUsers + 1; i++) {
     for (let j = 1; j < amountOfTracks + 1; j++) {
-      const randSaved = Math.random() < 0.2
-      const randComplete = Math.random() < 0.2
+      // const randSaved = Math.random() < 0.2
+      // const randComplete = Math.random() < 0.2
+      const randSaved = 0
+      const randComplete = 0
 
       userTracks.push({
         user_id: i,

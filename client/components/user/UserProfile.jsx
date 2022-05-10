@@ -1,18 +1,27 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { useAuth0 } from '@auth0/auth0-react'
 import { getLogoutFn } from '../../auth0-utils'
 import UserStats from './UserStats.jsx'
 import LogoutModal from './LogoutModal'
+import { capitaliseFirstLetter } from '../../utils'
 
 function UserProfile() {
   const user = useSelector((state) => state.user)
   const { id } = useParams()
   const logout = getLogoutFn(useAuth0)
   const Navigate = useNavigate
+  const [capitalisedUserName, setCapitalisedUserName] = useState('')
 
   const [isOpenModal, setIsOpenModal] = useState(false)
+
+  useEffect(() => {
+    if (user.name) {
+      const capsName = capitaliseFirstLetter(user.name)
+      setCapitalisedUserName(capsName)
+    }
+  })
 
   function handleLogout(event) {
     event.preventDefault()
@@ -40,7 +49,7 @@ function UserProfile() {
           />
         )}
         <div>
-          <h2 className="user-intro">Hello {user.name},</h2>
+          <h2 className="user-intro">Hello {capitalisedUserName},</h2>
           <h3 className="user-intro-sub">Ready to level up your walking?</h3>
         </div>
         <UserStats user={user} />

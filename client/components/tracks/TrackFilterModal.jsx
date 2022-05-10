@@ -8,7 +8,7 @@ function TrackFilterModal({
   lengthFilterDetails,
 }) {
   return (
-    <>
+    <div className="modal-container">
       <div className="darkBG" onClick={() => setIsOpenModal(false)} />
       <div className="modal-centered">
         <div className="modal">
@@ -18,7 +18,7 @@ function TrackFilterModal({
           <button className="closeBtn" onClick={() => setIsOpenModal(false)}>
             <RiCloseLine style={{ marginBottom: '-3px' }} />
           </button>
-          <div className='modal-content'>
+          <div className="modal-content">
             <TrackFilters
               difficultyFilterDetails={difficultyFilterDetails}
               lengthFilterDetails={lengthFilterDetails}
@@ -26,7 +26,7 @@ function TrackFilterModal({
           </div>
         </div>
       </div>
-    </>
+    </div>
   )
 }
 
