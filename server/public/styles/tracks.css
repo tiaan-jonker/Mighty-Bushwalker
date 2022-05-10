@@ -1,0 +1,142 @@
+.tracks-intro {
+  font-size: 38px;
+  font-weight: 700;
+}
+
+.tracks-sub {
+  font-size: 18px;
+  font-weight: 300;
+  margin-bottom: 15px;
+}
+
+.track-list {
+  list-style: none;
+}
+
+.track-name-difficulty-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.track-list-name {
+  font-size: 18px;
+}
+
+.track-link-item {
+  border-radius: 15px;
+  margin-bottom: 20px;
+}
+
+.track-difficulty {
+  color: #eee;
+  font-size: 11px;
+  padding: 5px 15px;
+  border-radius: 8px;
+}
+
+.track-other-details {
+  display: flex;
+}
+
+.track-other-details > p {
+  font-size: 12px;
+}
+
+.track-banner {
+  position: relative;
+  border-radius: 10px;
+  height: 170px;
+  overflow: hidden;
+}
+
+.track-banner-img {
+  width: 100%;
+  height: 170px;
+  object-fit: cover;
+  object-position: bottom;
+}
+
+.track-banner-info {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  padding: 10px;
+  background-color: rgb(39, 63, 69, 0.7);
+  color: #eee;
+}
+
+.status-indicator {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  padding: 5px 15px;
+  color: #eee;
+  border-radius: 10px;
+}
+
+.completed {
+  background-color: rgba(99, 176, 181, 0.9);
+}
+
+.saved {
+  background-color: rgba(116, 189, 143, 0.9);
+}
+
+.points-container {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background-color: rgb(253, 196, 56, 0.9);
+  font-size: 13px;
+  padding: 5px 15px;
+  border-radius: 8px;
+}
+
+.loading-container {
+  margin-top: 230px;
+}
+
+.loading {
+  font-size: 30px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  text-align: center;
+}
+
+.loading span {
+  display: inline-block;
+}
+
+.loading01 span {
+  animation: loading01 1.4s infinite alternate;
+}
+.loading01 span:nth-child(1) {
+  animation-delay: 0s;
+}
+.loading01 span:nth-child(2) {
+  animation-delay: 0.1s;
+}
+.loading01 span:nth-child(3) {
+  animation-delay: 0.2s;
+}
+.loading01 span:nth-child(4) {
+  animation-delay: 0.3s;
+}
+.loading01 span:nth-child(5) {
+  animation-delay: 0.4s;
+}
+.loading01 span:nth-child(6) {
+  animation-delay: 0.5s;
+}
+.loading01 span:nth-child(7) {
+  animation-delay: 0.6s;
+}
+
+@keyframes loading01 {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}

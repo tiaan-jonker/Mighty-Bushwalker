@@ -1,5 +1,7 @@
+import { fetchMapAndTrackDataSuccess } from './actions/tracks'
 import { setUser } from './actions/user'
 import { getUserRoles } from './apis/users'
+import { getUser, getUserTracks } from './components/user/userHelper'
 import store from './store'
 
 const emptyUser = {
@@ -8,10 +10,32 @@ const emptyUser = {
   name: '',
   token: '',
   roles: [],
+  id: 0,
+  xp: 0,
 }
+
+const emptyTrack = [
+  {
+    id: 0,
+    asset_id: '',
+    name: '',
+    days: 0,
+    hours: 0,
+    length: 0,
+    return: false,
+    difficulty: '',
+    lon: 0,
+    lat: 0,
+    line: [[0, 0]],
+  },
+]
 
 function saveUser(user = emptyUser) {
   store.dispatch(setUser(user))
+}
+
+function saveTracks(tracks = emptyTrack) {
+  store.dispatch(fetchMapAndTrackDataSuccess(tracks))
 }
 
 export async function cacheUser(useAuth0) {
@@ -20,13 +44,31 @@ export async function cacheUser(useAuth0) {
     try {
       const token = await getAccessTokenSilently()
       const roles = await getUserRoles(user.sub)
-      const userToSave = {
-        auth0Id: user.sub,
-        email: user.email,
-        name: user.nickname,
-        token,
-        roles,
+      const userData = await getUser(user.sub)
+      let userToSave = {}
+      if (userData) {
+        userToSave = {
+          auth0Id: user.sub,
+          email: user.email,
+          name: userData.name,
+          token,
+          roles,
+          id: userData.id,
+          xp: userData.xp,
+        }
+        const tracks = await getUserTracks(userData.id)
+        saveTracks(tracks)
       }
+
+      if (!userData) {
+        userToSave = {
+          auth0Id: user.sub,
+          email: user.email,
+          token,
+          roles,
+        }
+      }
+
       saveUser(userToSave)
     } catch (err) {
       console.error(err)
@@ -50,7 +92,7 @@ export function getIsAuthenticated(useAuth0) {
 
 export function getRegisterFn(useAuth0) {
   const { loginWithRedirect } = useAuth0()
-  const redirectUri = `${window.location.origin}/profile`
+  const redirectUri = `${window.location.origin}/register`
   return () =>
     loginWithRedirect({
       redirectUri,

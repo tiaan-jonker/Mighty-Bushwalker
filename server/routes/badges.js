@@ -28,4 +28,20 @@ router.get('/:userId', async (req, res) => {
   }
 })
 
+//
+router.post('/', (req, res) => {
+  const { userId, badgeId } = req.body
+
+  const badgeData = { userId, badgeId }
+  db.addBadge(badgeData)
+    .then(() => {
+      res.sendStatus(201)
+      return null
+    })
+    .catch((err) => {
+      console.error(err)
+      res.status(500).json({ message: 'Failed to create badge' })
+    })
+})
+
 module.exports = router

@@ -1,9 +1,13 @@
 import React, { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router'
+import { fetchMapAndTrackDataSuccess } from '../actions/tracks'
+import { setUser } from '../actions/user'
 import { addUser } from '../apis/users'
+import { getUser, getUserTracks } from './user/userHelper'
 
 function Registration() {
+  const dispatch = useDispatch()
   const user = useSelector((state) => state.user)
   const navigate = useNavigate()
 
@@ -36,7 +40,13 @@ function Registration() {
     // registerUser(form, authUser, history.push)
     try {
       await addUser(form)
-      navigate('/')
+      const userData = await getUser(user.auth0Id)
+      dispatch(setUser(userData))
+      const trackdata = await getUserTracks(userData.id)
+      dispatch(fetchMapAndTrackDataSuccess(trackdata))
+      if (userData) {
+        navigate('/')
+      }
     } catch (error) {
       console.error(error)
     }
@@ -44,45 +54,34 @@ function Registration() {
 
   return (
     <>
-      <section className="form">
-        <h2>Register Profile</h2>
-        <form className="registration">
-          <label htmlFor="auth0Id">auth0Id</label>
-          <input
-            name="auth0Id"
-            value={form.auth0Id}
-            onChange={handleChange}
-            disabled={true}
-          ></input>
-
-          <label htmlFor="name">Name</label>
-          <input
-            name="name"
-            value={form.name}
-            onChange={handleChange}
-            disabled={true}
-          ></input>
-
-          <label htmlFor="email">Email</label>
-          <input
-            name="email"
-            value={form.email}
-            onChange={handleChange}
-            disabled={true}
-          ></input>
-
-          <label htmlFor="description">Description</label>
-          <textarea
-            name="description"
-            value={form.description}
-            onChange={handleChange}
-            cols={3}
-          ></textarea>
-          <button type="button" onClick={handleClick}>
-            Register
-          </button>
-        </form>
-      </section>
+      <div className="register-container">
+        <div className="register-box">
+          <section className="form">
+            <img className="register-image" src="/icons/BushWalkLogo.svg"></img>
+            <h1 className="register-text register-heading">REGISTER PROFILE</h1>
+            <form className="registration">
+              <div className="form-group">
+                <label htmlFor="name" className="register-text">
+                  Name
+                </label>
+                <input
+                  className="form-control"
+                  name="name"
+                  value={form.name}
+                  onChange={handleChange}
+                ></input>
+                <button
+                  type="button"
+                  className="btn btn-primary btn-block rounded-btn register-text"
+                  onClick={handleClick}
+                >
+                  Register
+                </button>
+              </div>
+            </form>
+          </section>
+        </div>
+      </div>
     </>
   )
 }

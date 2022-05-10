@@ -1,15 +1,21 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap');
 
+:root {
+  --stand-border-radius: 12px;
+}
+
 .mobile-container {
   margin: 0 auto;
   margin-top: 25px;
   width: 375px;
-  min-height: 812px;
+  height: 812px;
   border: 1px solid black;
   border-radius: 25px;
-  background-color: #eee;
+  /* background: linear-gradient(192.13deg, #78d8de -63.39%, #ffffff 100%); */
+  color: #273f45;
   position: relative;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: scroll;
 }
 
 .app-name {
@@ -17,11 +23,60 @@
 }
 
 .page-container {
+  position: relative;
   padding: 25px;
+  height: 100%;
+}
+
+.logout-btn {
+  position: absolute;
+  top: 41px;
+  right: 20px;
+  width: 18px;
+  height: 18px;
+}
+
+.container-bg-green {
+  background: linear-gradient(192.13deg, #8ce8ae -63.39%, #ffffff 100%);
+}
+
+.container-bg-blue {
+  background: linear-gradient(192.13deg, #78d8de -63.39%, #ffffff 100%);
 }
 
 .page-image-container {
   border-radius: 25px 25px 0px 0px;
   height: 162px;
   overflow: hidden;
+  position: relative;
+}
+
+.mg-bottom-50 {
+  margin-bottom: 50px;
+}
+
+.mobile-top-container {
+  display: flex;
+  align-items: center;
+  position: fixed;
+  top: 30px;
+  left: 26px;
+  z-index: 20;
+}
+
+.mobile-icons-container {
+  display: flex;
+  justify-content: space-between;
+  margin-left: 260px;
+  width: 45px;
+}
+
+.mobile-time {
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.mobile-icon {
+  width: 12px;
+  height: 12px;
 }
