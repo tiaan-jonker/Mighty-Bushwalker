@@ -50,7 +50,8 @@ function getUserTrackByUser(userId, db = connection) {
       'track_data.points',
       'track_data.return',
       'user_tracks.last_completion as lastCompletion',
-      'user_tracks.total_completions as totalCompletions'
+      'user_tracks.total_completions as totalCompletions',
+      'user_tracks.hiking'
     )
     .where(query)
 }
@@ -60,12 +61,21 @@ function updateSavedStatus({ userId, trackId, status }, db = connection) {
   return db('user_tracks').where(savedTrack).update('saved', status)
 }
 
+function updateHikingStatus({ userId, trackId, status }, db = connection) {
+  const hikedTrack = { user_id: userId, track_id: trackId }
+  return db('user_tracks').where(hikedTrack).update('hiking', status)
+}
+
 function updateCompletedStatus(
   { userId, trackId, status, lastCompletion },
   db = connection
 ) {
   const completedTrack = { user_id: userId, track_id: trackId }
-  const updatedData = { completed: status, last_completion: lastCompletion }
+  const updatedData = {
+    completed: status,
+    last_completion: lastCompletion,
+    hiking: 0,
+  }
   return db('user_tracks')
     .where(completedTrack)
     .update(updatedData)
@@ -156,4 +166,5 @@ module.exports = {
   addXp,
   removeXp,
   getUserTrackDataOnly,
+  updateHikingStatus,
 }

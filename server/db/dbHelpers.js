@@ -14,6 +14,7 @@ function generateUserTrackData(userId) {
       completed: 0,
       saved: 0,
       total_completions: 0,
+      hiking: 0,
     })
   }
 
@@ -43,6 +44,7 @@ function generateUserTrackDataSeed() {
         completed: randComplete,
         saved: randSaved,
         total_completions: randComplete,
+        hiking: 0,
       })
     }
   }

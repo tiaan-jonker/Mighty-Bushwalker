@@ -90,7 +90,7 @@ function Track() {
   }, [lengthFilter])
 
   return (
-    <section className="page-container">
+    <section className="page-container container-bg-blue">
       {isOpenModal && (
         <TrackFilterModal
           setIsOpenModal={setIsOpenModal}

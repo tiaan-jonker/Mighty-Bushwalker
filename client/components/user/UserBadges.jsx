@@ -24,7 +24,7 @@ function ProfileBadgeList() {
 
   return (
     <section>
-      <div className="page-container">
+      <div className="page-container container-bg-blue">
         <div>
           <h2 className="user-intro">My badges</h2>
           <h3 className="user-intro-sub">See what you have achieved</h3>
