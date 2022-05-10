@@ -24,7 +24,7 @@ function HikingModal({ setIsOpenModal, cantCompleteAgain, outHiking }) {
   }
 
   const [form, setForm] = useState(
-    user.displayName !== 'Anon'
+    user.displayName !== 'Anon' // check if user has previously chosen not leave a note i.e. display name was saved as anon previously
       ? {
           displayName: user.displayName,
           status: user.status,
@@ -58,7 +58,7 @@ function HikingModal({ setIsOpenModal, cantCompleteAgain, outHiking }) {
       <div className="modal-centered">
         <div className="modal">
           {/* where the user is not currently hiking*/}
-          {!outHiking && !cantCompleteAgain && (
+          {outHiking === 0 && !cantCompleteAgain && (
             <>
               <div className="modal-content flex-space-evenly">
                 <h2>Leave A Note For Other Hikers</h2>
@@ -96,15 +96,15 @@ function HikingModal({ setIsOpenModal, cantCompleteAgain, outHiking }) {
           )}
 
           {/* where the user is not currently hiking but has already completed this track today*/}
-          {!outHiking && cantCompleteAgain && (
+          {outHiking === 0 && cantCompleteAgain && (
             <>
               <p>Sorry you have already Completed this track today</p>
               <button onClick={closeModal}>x</button>
             </>
           )}
 
-          {/* where the user is  currently hiking on this track or another*/}
-          {outHiking && (
+          {/* where the user is  currently hiking on this track or another track*/}
+          {outHiking === 1 && (
             <>
               <p>Sorry you are already hiking somewhere else</p>
               <button type="button" onClick={handleUnhike}>
