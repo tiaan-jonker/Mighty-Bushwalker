@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { hikeTrack, unhikeTrack } from '../../actions/tracks'
 
-function HikingModal({ setIsOpenModal, canCompleteAgain, outHiking }) {
+function HikingModal({ setIsOpenModal, cantCompleteAgain, outHiking }) {
   const { id } = useParams() // track ID
   const dispatch = useDispatch()
   const user = useSelector((state) => state.user)
@@ -62,7 +62,7 @@ function HikingModal({ setIsOpenModal, canCompleteAgain, outHiking }) {
       <div className="darkBG" />
       <div className="modal-centered">
         <div className="modal">
-          {!outHiking && canCompleteAgain && (
+          {!outHiking && !cantCompleteAgain && (
             <>
               {!isHiking && (
                 <>
@@ -125,15 +125,16 @@ function HikingModal({ setIsOpenModal, canCompleteAgain, outHiking }) {
             </>
           )}
 
-          {!canCompleteAgain && (
+          {!outHiking && cantCompleteAgain && (
             <>
-              <h2>Sorry you have already Completed this track today</h2>
+              <p>Sorry you have already Completed this track today</p>
               <button onClick={closeModal}>x</button>
             </>
           )}
 
           {outHiking && (
             <>
+              <p>Sorry you are already hiking somewhere else</p>
               <button type="button" onClick={handleUnhike}>
                 Un Hike
               </button>

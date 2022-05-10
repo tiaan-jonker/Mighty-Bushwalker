@@ -52,9 +52,9 @@ function Track() {
           <HikingModal
             setIsOpenModal={setIsHikingOpenModal}
             outHiking={outHiking}
-            canCompleteAgain={
-              checkIfDateIsNotToday(track.lastCompletion) &&
-              track.completed === 1
+            cantCompleteAgain={
+              track.completed === 1 &&
+              !checkIfDateIsNotToday(track.lastCompletion)
             }
           />
         )}
