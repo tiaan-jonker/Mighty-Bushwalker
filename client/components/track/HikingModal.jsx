@@ -64,7 +64,9 @@ function HikingModal({ setIsOpenModal, cantCompleteAgain, outHiking }) {
               <>
                 <div className="flex-space-evenly modal-hiking-container">
                   <div className="modal-header modal-text">
-                    <h2 className="heading">Leave A Note For Other Hikers</h2>
+                    <h2 className="heading">
+                      Leave A Note For Other Hikers
+                    </h2>
                   </div>
                   <button className="closeBtn" onClick={closeModal}>
                     <RiCloseLine style={{ marginBottom: '-3px' }} />
@@ -124,18 +126,36 @@ function HikingModal({ setIsOpenModal, cantCompleteAgain, outHiking }) {
             {/* where the user is not currently hiking but has already completed this track today*/}
             {outHiking === 0 && cantCompleteAgain && (
               <>
-                <p>Sorry you have already Completed this track today</p>
-                <button onClick={closeModal}>x</button>
+                <div className="flex-space-evenly modal-hiking-container">
+                  <button className="closeBtn" onClick={closeModal}>
+                    <RiCloseLine style={{ marginBottom: '-3px' }} />
+                  </button>
+                  <p className="heading">
+                    Sorry you have already completed this track today
+                  </p>
+                  <button className="hiking-modal-btn" onClick={closeModal}>
+                    Come back tomorrow
+                  </button>
+                </div>
               </>
             )}
 
             {/* where the user is  currently hiking on this track or another track*/}
             {outHiking > 0 && (
               <>
-                <p>Sorry you are already hiking somewhere else</p>
-                <button type="button" onClick={handleUnhike}>
-                  Un Hike
-                </button>
+                <div className="flex-space-evenly modal-hiking-container">
+                  <button className="closeBtn" onClick={closeModal}>
+                    <RiCloseLine style={{ marginBottom: '-3px' }} />
+                  </button>
+                  <h1 className="heading">Finish Hiking</h1>
+                  <button
+                    className="hiking-modal-btn"
+                    type="button"
+                    onClick={handleUnhike}
+                  >
+                    Finished
+                  </button>
+                </div>
               </>
             )}
           </div>

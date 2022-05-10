@@ -223,14 +223,23 @@
 }
 
 .anon-container {
-  margin: 10px;
+  margin-top: 10px;
 }
 
 .hiking-modal-btn {
   cursor: pointer;
   padding: 10px 15px;
-  background-color: #285656;
-  color: #eee;
-  border-radius: 10px;
   font-size: 16px;
+  margin-top: 10px;
+  background-color: #f4f4f4;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+.modal-medium-heading {
+  color: #273f45;
+  font-size: 18px;
+  font-weight: 500;
+  margin-right: 10px;
+  text-align: center;
 }
