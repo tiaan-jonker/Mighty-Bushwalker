@@ -52,8 +52,17 @@ export function updateStatus(
   status, // for route completion this is used, otherwise leave parameter empty
   consume = requestor
 ) {
-  console.log('reached statusupdater')
   return consume(`/users`, 'patch', { id, displayName, status })
+    .then((res) => {
+      return res.body
+    })
+    .catch((error) => {
+      console.log(error.message)
+    })
+}
+
+export function getWalkingUsers(trackId, consume = requestor) {
+  return consume(`/tracks/walkingUsers/${trackId}`)
     .then((res) => {
       return res.body
     })
