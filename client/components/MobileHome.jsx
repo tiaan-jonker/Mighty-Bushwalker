@@ -1,8 +1,10 @@
 import React from 'react'
+import MobileTopBarSim from './MobileTopBarSim'
 
 function MobileHome({ handleClick }) {
   return (
     <div>
+      <MobileTopBarSim />
       <div className="app-icons-container">
         <img
           src="/icons/sim/mighty-bush.svg"
