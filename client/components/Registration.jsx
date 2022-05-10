@@ -54,16 +54,38 @@ function Registration() {
 
   return (
     <>
-      <section className="form">
-        <h2>Register Profile</h2>
-        <form className="registration">
-          <label htmlFor="name">Name</label>
-          <input name="name" value={form.name} onChange={handleChange}></input>
-          <button type="button" onClick={handleClick}>
-            Register
-          </button>
-        </form>
-      </section>
+      <div className="register-container">
+        <div className="register-box">
+          <section className="form">
+            <img
+              className="register-image"
+              src="https://res.cloudinary.com/dt7wm4h23/image/upload/v1651913955/Group_2_u0xxru.svg"
+            ></img>
+            <h1 className="register-text register-heading">REGISTER PROFILE</h1>
+            <form className="registration">
+              <div className="form-group">
+                <label htmlFor="name" className="register-text">
+                  Name
+                </label>
+                <input
+                  className="form-control"
+                  name="name"
+                  value={form.name}
+                  onChange={handleChange}
+                ></input>
+                <div className="form-group"></div>
+                <button
+                  type="button"
+                  className="btn btn-primary btn-block rounded-btn register-text"
+                  onClick={handleClick}
+                >
+                  Register
+                </button>
+              </div>
+            </form>
+          </section>
+        </div>
+      </div>
     </>
   )
 }
