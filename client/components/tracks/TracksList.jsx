@@ -99,7 +99,7 @@ function Track() {
         />
       )}
 
-      <div className={isOpenModal ? 'modal-display-none' : ''}>
+      <div >
         <h2 className="tracks-intro">Explore</h2>
         <p className="tracks-sub">All trails available to hike</p>
         {loading ? (
