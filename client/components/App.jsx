@@ -12,6 +12,7 @@ import Tracks from './tracks/TracksList'
 import Nav from './nav/Nav'
 import Landing from './Landing'
 import MobileTopBar from './MobileTopBar'
+import { IfAuthenticated } from './Authenticated'
 
 function App() {
   cacheUser(useAuth0)
@@ -28,7 +29,9 @@ function App() {
         <Route path="/tracks" element={<Tracks />} />
         <Route path="/register" element={<Registration />} />
       </Routes>
-      <Nav />
+      <IfAuthenticated>
+        <Nav />
+      </IfAuthenticated>
     </div>
   )
 }
