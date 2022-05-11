@@ -36,3 +36,16 @@ In respect of the video: the music, editing, voiceover and recording was all don
 - Burril Route and details, Tiaan
 - Voiceover and outro, Finn
 - Get the MIGHTY BUSH, all of us
+
+## Tech Stack / Tools used for this App
+
+- React
+- CSS
+- Epxress
+- Autho0
+- Knexjs
+- SQLite3
+- Figma
+- Excalidraw 
+- Miro
+- Dicord
