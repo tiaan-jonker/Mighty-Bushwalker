@@ -46,6 +46,7 @@ In respect of the video: the music, editing, voiceover and recording was all don
 - Auth0
 - Knexjs
 - SQLite3
+- Insomnia
 - Figma
 - Excalidraw 
 - Miro
