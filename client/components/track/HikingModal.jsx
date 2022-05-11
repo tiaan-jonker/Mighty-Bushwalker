@@ -31,6 +31,7 @@ function HikingModal({
 
   function hikeThisTrack() {
     dispatch(unhikeTrack(Number(id), user.id))
+    setIsOpenModal(true)
   }
 
   const [form, setForm] = useState(
@@ -131,7 +132,7 @@ function HikingModal({
             )}
 
             {/* where the user is not currently hiking but has already completed this track today*/}
-            {outHiking === 0 && cantCompleteAgain && (
+            {cantCompleteAgain && (
               <>
                 <div className="flex-space-evenly modal-hiking-container">
                   <button className="closeBtn" onClick={closeModal}>
@@ -148,7 +149,7 @@ function HikingModal({
             )}
 
             {/* where the user is  currently hiking on this track */}
-            {outHiking > 0 && hikingCurrentTrack > 0 && (
+            {outHiking > 0 && hikingCurrentTrack > 0 && !cantCompleteAgain && (
               <>
                 <div className="flex-space-evenly modal-hiking-container">
                   <button className="closeBtn" onClick={closeModal}>
@@ -158,7 +159,7 @@ function HikingModal({
                   <button
                     className="hiking-modal-btn"
                     type="button"
-                    onClick={hikeThisTrack}
+                    onClick={handleUnhike}
                   >
                     Stop hike
                   </button>
@@ -167,7 +168,7 @@ function HikingModal({
             )}
 
             {/* where the user is  currently hiking on another track */}
-            {outHiking > 0 && hikingCurrentTrack === 0 && (
+            {outHiking > 0 && hikingCurrentTrack === 0 && !cantCompleteAgain && (
               <>
                 <div className="flex-space-evenly modal-hiking-container">
                   <button className="closeBtn" onClick={closeModal}>
@@ -179,9 +180,9 @@ function HikingModal({
                   <button
                     className="hiking-modal-btn"
                     type="button"
-                    onClick={handleUnhike}
+                    onClick={hikeThisTrack}
                   >
-                    Stop hike
+                    Hike this track
                   </button>
                 </div>
               </>
