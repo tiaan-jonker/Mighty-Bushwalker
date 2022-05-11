@@ -44,27 +44,8 @@ function updateNote({ displayName, id, status }, db = connection) {
 //
 //** UNUSED  **//
 
-function getUserById(id, db = connection) {
-  return db('users')
-    .where('id', id)
-    .select('id', 'name', 'description', 'rank', 'xp')
-    .first()
-}
-
-function getUsers(db = connection) {
-  return db('users').select(
-    'id',
-    'auth0_id as auth0Id',
-    'name',
-    'email',
-    'description'
-  )
-}
-
 module.exports = {
-  getUsers,
   addUser,
-  getUserById,
   addNewUserTracks,
   getUsersByAuthId,
   updateNote,
