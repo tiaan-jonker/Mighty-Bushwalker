@@ -127,3 +127,14 @@
   height: 220px;
   width: 100%;
 }
+
+.track-buttons-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.play-btn {
+  width: 45px;
+  height: 45px;
+}

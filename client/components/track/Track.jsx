@@ -20,6 +20,7 @@ function Track() {
   const [hikingCurrentTrack, setHikingCurrentTrack] = useState(0)
   const [outHiking, setOutHiking] = useState(false)
   const [isHikingOpenModal, setIsHikingOpenModal] = useState(false)
+  const [voiceover, setVoiceover] = useState(false)
 
   useEffect(() => {
     const trackData = tracks.find((track) => track.id === Number(id))
@@ -31,6 +32,10 @@ function Track() {
 
   function handleClick() {
     setIsHikingOpenModal(true)
+  }
+
+  function handlePlay() {
+    setVoiceover((prevState) => !prevState)
   }
 
   return (
@@ -59,14 +64,23 @@ function Track() {
             }
           />
         )}
-
-        {track.completed === 1 && (
-          <TrackButtonCompleted
-            canCompleteAgain={checkIfDateIsNotToday(track.lastCompletion)}
+        <div className="track-buttons-container">
+          {track.completed === 1 && (
+            <TrackButtonCompleted
+              canCompleteAgain={checkIfDateIsNotToday(track.lastCompletion)}
+            />
+          )}
+          {track.saved === 1 && track.completed === 0 && (
+            <TrackButtonComplete />
+          )}
+          {track.saved === 0 && track.completed === 0 && <TrackButtonSave />}
+          <img
+            src={`/icons/${voiceover ? 'stop' : 'play'}.svg`}
+            alt=""
+            className="play-btn"
+            onClick={handlePlay}
           />
-        )}
-        {track.saved === 1 && track.completed === 0 && <TrackButtonComplete />}
-        {track.saved === 0 && track.completed === 0 && <TrackButtonSave />}
+        </div>
         <div>
           <div className="track-info-line"></div>
           <div className="track-info-container">
