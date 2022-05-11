@@ -67,6 +67,16 @@
   background-color: #418080;
 }
 
+.self-hiker-info {
+  font-size: 13px;
+  padding: 3px 15px;
+  margin-top: 5px;
+  border-radius: 8px;
+  border: 1px solid black;
+  color: #eee;
+  background-color: var(--primary-red);
+}
+
 .weather-container {
   display: flex;
   justify-content: space-between;
