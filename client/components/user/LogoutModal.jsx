@@ -7,7 +7,7 @@ function LogoutModal({ setIsOpenModal, handleLogout }) {
         <div className="modal-centered">
           <div className="modal">
             <div className="modal-header">
-              <h5 className="heading">Logout?</h5>
+              <h5 className="heading">Logout? </h5>
             </div>
             <div className="modal-content flex-space-evenly">
               <button onClick={handleLogout} className="modal-logout-yes">
