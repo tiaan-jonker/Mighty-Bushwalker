@@ -102,7 +102,7 @@ exports.seed = function (knex) {
         {
           id: 17,
           name: 'Think you can tramp?',
-          image: 'Think-you-can-tramp?',
+          image: 'think-you-can-tramp',
           criteria: 'Complete all intermediate tracks',
         },
         {
