@@ -6,13 +6,10 @@ Proudly created by: Clementine, Finn, Tiaan, Jesse and Tai
 
 ## Getting Started
 
-### From the GitHub UI
-See the instructions [here](https://docs.github.com/en/free-pro-team@latest/github/creating-cloning-and-archiving-repositories/creating-a-repository-from-a-template) to use GitHub's feature to create a new repo from a template.
-
-### From the command line
+Clone and cd to this repo.
 
 ```shell
-git clone git@github.com:dev-academy-challenges/boilerplate-full-stack-auth0.git [your-project-name]
+git clone 
 cd [your-project-name]
 cp client/auth_config.json.example client/auth_config.json
 cp server/.env.example server/.env
