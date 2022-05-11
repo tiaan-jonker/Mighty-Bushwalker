@@ -75,7 +75,7 @@ function UserTracks() {
                         </div>
                         <div className="track-other-details">
                           <p>
-                            Length: {length}km • Est. {hours}hrs • 80 km away
+                            Length: {length}km • Est. {hours}hrs
                           </p>
                         </div>
                       </div>

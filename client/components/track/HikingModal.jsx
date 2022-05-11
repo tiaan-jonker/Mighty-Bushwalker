@@ -5,7 +5,12 @@ import { useParams } from 'react-router-dom'
 import { hikeTrack, unhikeTrack } from '../../actions/tracks'
 import { RiCloseLine } from 'react-icons/ri'
 
-function HikingModal({ setIsOpenModal, cantCompleteAgain, outHiking }) {
+function HikingModal({
+  setIsOpenModal,
+  cantCompleteAgain,
+  outHiking,
+  hikingCurrentTrack,
+}) {
   const { id } = useParams() // track ID
   const dispatch = useDispatch()
   const user = useSelector((state) => state.user)
@@ -22,6 +27,11 @@ function HikingModal({ setIsOpenModal, cantCompleteAgain, outHiking }) {
   function handleUnhike() {
     dispatch(unhikeTrack(Number(id), user.id))
     setIsOpenModal(false)
+  }
+
+  function hikeThisTrack() {
+    dispatch(unhikeTrack(Number(id), user.id))
+    setIsOpenModal(true)
   }
 
   const [form, setForm] = useState(
@@ -122,7 +132,7 @@ function HikingModal({ setIsOpenModal, cantCompleteAgain, outHiking }) {
             )}
 
             {/* where the user is not currently hiking but has already completed this track today*/}
-            {outHiking === 0 && cantCompleteAgain && (
+            {cantCompleteAgain && (
               <>
                 <div className="flex-space-evenly modal-hiking-container">
                   <button className="closeBtn" onClick={closeModal}>
@@ -138,8 +148,8 @@ function HikingModal({ setIsOpenModal, cantCompleteAgain, outHiking }) {
               </>
             )}
 
-            {/* where the user is  currently hiking on this track or another track*/}
-            {outHiking > 0 && (
+            {/* where the user is  currently hiking on this track */}
+            {outHiking > 0 && hikingCurrentTrack > 0 && !cantCompleteAgain && (
               <>
                 <div className="flex-space-evenly modal-hiking-container">
                   <button className="closeBtn" onClick={closeModal}>
@@ -152,6 +162,27 @@ function HikingModal({ setIsOpenModal, cantCompleteAgain, outHiking }) {
                     onClick={handleUnhike}
                   >
                     Stop hike
+                  </button>
+                </div>
+              </>
+            )}
+
+            {/* where the user is  currently hiking on another track */}
+            {outHiking > 0 && hikingCurrentTrack === 0 && !cantCompleteAgain && (
+              <>
+                <div className="flex-space-evenly modal-hiking-container">
+                  <button className="closeBtn" onClick={closeModal}>
+                    <RiCloseLine style={{ marginBottom: '-3px' }} />
+                  </button>
+                  <h1 className="heading">
+                    It looks like your hiking elsewhere
+                  </h1>
+                  <button
+                    className="hiking-modal-btn"
+                    type="button"
+                    onClick={hikeThisTrack}
+                  >
+                    Hike this track
                   </button>
                 </div>
               </>
