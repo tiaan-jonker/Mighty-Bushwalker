@@ -14,7 +14,7 @@ exports.seed = function (knex) {
           rank: 'Bush Lord',
           xp: '1000',
           display_name: 'kelmarna',
-          status: '',
+          status: 'Here since day 1',
         },
         {
           id: 2,
@@ -36,7 +36,7 @@ exports.seed = function (knex) {
           rank: 'Bush Lord',
           xp: '1000',
           display_name: 'Ahmad',
-          status: '',
+          status: "I'm dividing and conquering the track!",
         },
         {
           id: 4,
@@ -47,7 +47,7 @@ exports.seed = function (knex) {
           rank: 'Bush Lord',
           xp: '1000',
           display_name: 'jesse',
-          status: '',
+          status: "On a walk cause I'm on a diet lol",
         },
         {
           id: 5,
@@ -58,7 +58,7 @@ exports.seed = function (knex) {
           rank: 'Bush Lord',
           xp: '1000',
           display_name: 'tai',
-          status: '',
+          status: 'Out here to get my boots dirty',
         },
         {
           id: 6,
@@ -69,7 +69,7 @@ exports.seed = function (knex) {
           rank: 'Bush Lord',
           xp: '1000',
           display_name: 'tiaan',
-          status: '',
+          status: 'Trying to navigate this bush',
         },
         {
           id: 7,
@@ -80,7 +80,7 @@ exports.seed = function (knex) {
           rank: 'Bush Lord',
           xp: '1000',
           display_name: 'Steve Jobs',
-          status: '',
+          status: 'Going for a little walk',
         },
         {
           id: 8,
@@ -91,7 +91,7 @@ exports.seed = function (knex) {
           rank: 'Bush Lord',
           xp: '1000',
           display_name: 'warney',
-          status: '',
+          status: 'rip me',
         },
         {
           id: 9,
@@ -102,6 +102,17 @@ exports.seed = function (knex) {
           rank: 'Bush Lord',
           xp: '1000',
           display_name: 'clementine',
+          status: 'Levelling up so I can watch the xp bar animation',
+        },
+        {
+          id: 10,
+          auth0_id: 'auth0|62784e3011021a00681fa910',
+          name: 'finn',
+          email: 'peanut@example.org',
+          description: 'hi',
+          rank: 'Bush Lord',
+          xp: '1000',
+          display_name: 'finn',
           status: '',
         },
       ])
