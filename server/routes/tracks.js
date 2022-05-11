@@ -21,7 +21,7 @@ router.get('/userTracks/:userId', (req, res) => {
       return null
     })
     .catch((err) => {
-      console.error(err)
+      console.log(err)
       res.status(500).json({ message: 'Something went wrong' })
     })
 })
@@ -34,7 +34,7 @@ router.get('/walkingUsers/:trackId', (req, res) => {
       return null
     })
     .catch((err) => {
-      console.error(err)
+      console.log(err)
       res.status(500).json({ message: 'Something went wrong' })
     })
 })
@@ -49,11 +49,11 @@ router.patch('/saved', (req, res) => {
   }
   db.updateSavedStatus(savedTrack)
     .then(() => {
-      res.sendStatus(201)
+      res.sendStatus(200)
       return null
     })
     .catch((err) => {
-      console.error(err)
+      console.log(err)
       res.status(500).json({ message: 'Unable to update track' })
     })
 })
@@ -72,7 +72,7 @@ router.patch('/hiking', (req, res) => {
       return null
     })
     .catch((err) => {
-      console.error(err)
+      console.log(err)
       res.status(500).json({ message: 'Unable to mark track as being hiked' })
     })
 })
@@ -90,7 +90,7 @@ router.patch('/hiked', (req, res) => {
       return null
     })
     .catch((err) => {
-      console.error(err)
+      console.log(err)
       res
         .status(500)
         .json({ message: 'Unable to mark track as no longer being hiked' })
@@ -123,7 +123,7 @@ router.patch('/completed', (req, res) => {
       return null
     })
     .catch((err) => {
-      console.error(err)
+      console.log(err)
       res.status(500).json({ message: 'Unable to update track' })
     })
 })
@@ -144,7 +144,7 @@ router.patch('/unsaved', (req, res) => {
       return null
     })
     .catch((err) => {
-      console.error(err)
+      console.log(err)
       res.status(500).json({ message: 'Unable to unsave track' })
     })
 })
