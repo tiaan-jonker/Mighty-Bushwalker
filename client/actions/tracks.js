@@ -138,24 +138,6 @@ export function hikeTrack(
   }
 }
 
-export function hikeTrackNoStatus(
-  trackId,
-  userId,
-  { displayName, status, stayAnonymous }
-) {
-  return (dispatch) => {
-    dispatch(setTrackAsHiking(trackId))
-    return updateTrackStatus(trackId, userId, 'hiking')
-      .then(() => {
-        dispatch(updateUserStatus('Anon', 'What a great day'))
-        return updateStatus(userId, displayName, status)
-      })
-      .then(() => {
-        return null
-      })
-  }
-}
-
 export function unhikeTrack(trackId, userId) {
   return (dispatch) => {
     dispatch(setTrackAsNotHiking(trackId))

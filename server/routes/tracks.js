@@ -58,24 +58,6 @@ router.patch('/saved', (req, res) => {
     })
 })
 
-router.patch('/unsaved', (req, res) => {
-  const { userId, trackId } = req.body
-  const savedTrack = {
-    userId,
-    trackId,
-    status: 0,
-  }
-  db.updateSavedStatus(savedTrack)
-    .then(() => {
-      res.sendStatus(200)
-      return null
-    })
-    .catch((err) => {
-      console.error(err)
-      res.status(500).json({ message: 'Unable to unsave track' })
-    })
-})
-
 // Update status of whether a track is saved by user of not
 router.patch('/hiking', (req, res) => {
   const { userId, trackId } = req.body
@@ -146,101 +128,24 @@ router.patch('/completed', (req, res) => {
     })
 })
 
-router.patch('/uncompleted', (req, res) => {
-  const { userId, trackId, points } = req.body
-  const completedTrack = {
+//
+//** UNUSED **//
+
+router.patch('/unsaved', (req, res) => {
+  const { userId, trackId } = req.body
+  const savedTrack = {
     userId,
     trackId,
     status: 0,
   }
-  db.updateCompletedStatus(completedTrack)
-    .then(() => {
-      return db.removeXp(userId, points)
-    })
+  db.updateSavedStatus(savedTrack)
     .then(() => {
       res.sendStatus(200)
       return null
     })
     .catch((err) => {
       console.error(err)
-      res.status(500).json({ message: 'Unable to mark track as uncompleted' })
-    })
-})
-
-// Get track by ID **POSSIBLY NOT USED **//
-router.get('/:id', (req, res) => {
-  const id = Number(req.params.id)
-  db.getTrackById(id)
-    .then((track) => {
-      const lineArray = JSON.parse(track.line) // convert array from string to arrays (beware of trailing commas)
-      res.json({ ...track, line: lineArray })
-      return null
-    })
-    .catch((err) => {
-      console.error(err)
-      res.status(500).json({ message: 'Something went wrong' })
-    })
-})
-
-//
-//** UNUSED **//
-
-router.get('/', (req, res) => {
-  db.listTracks()
-    .then((tracks) => {
-      const parsedTracks = tracks.map((track) => {
-        const lineArray = JSON.parse(track.line) // convert array from string to arrays (beware of trailing commas)
-        return { ...track, line: lineArray }
-      })
-
-      res.json(parsedTracks)
-      return null
-    })
-    .catch((err) => {
-      console.error(err)
-      res.status(500).send(err.message)
-    })
-})
-
-// Get completed tracks by user ID
-router.get('/completed/:userId', (req, res) => {
-  const userId = Number(req.params.userId)
-  db.getCompletedTrackByUser(userId)
-    .then((tracks) => {
-      res.json(tracks)
-      return null
-    })
-    .catch((err) => {
-      console.error(err)
-      res.status(500).json({ message: 'Something went wrong' })
-    })
-})
-
-// Get other tracks (not completed nor saved) by user ID
-router.get('/other/:userId', (req, res) => {
-  const userId = Number(req.params.userId)
-  db.getOtherTrackByUser(userId)
-    .then((tracks) => {
-      res.json(tracks)
-      return null
-    })
-    .catch((err) => {
-      console.error(err)
-      res.status(500).json({ message: 'Something went wrong' })
-    })
-})
-
-// Get saved track by user ID
-router.get('/saved/:userId', (req, res) => {
-  const userId = Number(req.params.userId)
-  db.getSavedTrackByUser(userId)
-    .then((tracks) => {
-      res.json(tracks)
-      return null
-    })
-    .catch((err) => {
-      console.error(err)
-      res.status(500).json({ message: 'Something went wrong' })
+      res.status(500).json({ message: 'Unable to unsave track' })
     })
 })
 
