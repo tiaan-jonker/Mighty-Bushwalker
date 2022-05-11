@@ -2,7 +2,7 @@
 
 We all love the nature and beauty of Aotearoa. One of the best pasttimes that we can do in our country is to explore the native flora and fauna via bushwalks! Our app will allow you to get the best out of Aotearoas bush walks by saving your favourite trails, discovering new ones and levelling up your walking with our in-built progression system. We present to you, "The Mighty Bush!"
 
-Built in one week, by Clementine, Finn, Tiaan, Jesse and Tai, as final project for [Enspiral Dev Academy](https://devacademy.co.nz/?gclid=Cj0KCQjwgYSTBhDKARIsAB8Kuktbb0DWX4Q7kk5pH-HMplNUiMBA60xYTWzpVqCMnxMTEKjYY5zl0_waAg0aEALw_wcB). We learned an incredible amount and had loads of fun creating it!
+Built in one week, by [Clementine](https://github.com/clementine-smart), [Finn](https://github.com/MsFinnJ), [Tiaan](https://github.com/tiaan-jonker), [Jesse](https://github.com/jesse-reeves) and [Tai](https://github.com/atmour-tai-mourie), as final project for [Enspiral Dev Academy](https://devacademy.co.nz/?gclid=Cj0KCQjwgYSTBhDKARIsAB8Kuktbb0DWX4Q7kk5pH-HMplNUiMBA60xYTWzpVqCMnxMTEKjYY5zl0_waAg0aEALw_wcB). We learned an incredible amount and had loads of fun creating it!
 
 ## Note on the app
 
