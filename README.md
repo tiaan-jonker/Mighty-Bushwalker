@@ -2,7 +2,11 @@
 
 We all love the nature and beauty of Aotearoa. One of the best pasttimes that we can do in our country is to explore the native flora and fauna via bushwalks! Our app will allow you to get the best out of Aotearoas bush walks by saving your favourite trails, discovering new ones and levelling up your walking with our in-built progression system. We present to you, "The mighty bush!
 
-Proudly created by: Clementine, Finn, Tiaan, Jesse and Tai
+Proudly created by: Clementine, Finn, Tiaan, Jesse and Tai.
+
+## Note on the app
+
+This application is meant to be downloaded and to function as an iOS or Android mobile application. At this stage the entire app is built with React and made to 'simulate' a mobile application. This took some creative thinking. In future the app might be converted and written in React Native. For some us in this group the intent is to learn React Native and attempt building a mobile app. 
 
 ## Getting Started
 
