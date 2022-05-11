@@ -27,4 +27,12 @@ You can find the server running on [http://localhost:3000](http://localhost:3000
 
 The beutiful illustration pictures used throughout the app is attributed to: [Brian Edward Miller](https://dribbble.com/bemocs). However, the registration and login page background was designed by Clementine. 
 
-The icons used in this app is either designed by us in Figma or obtained from [SVG Repo](https://www.svgrepo.com/)
+The icons used in this app is either designed by us in Figma or obtained from [SVG Repo](https://www.svgrepo.com/).
+
+In respect of the video: the music, editing, voiceover and recording was all done by Finn. Each of us in the group had turn to introduce sections of the app. In order they are:
+- Introduction, by Jesse
+- Login page and profile page, Clementine
+- Explore page, Tai
+- Burril Route and details, Tiaan
+- Voiceover and outro, Finn
+- Get the MIGHTY BUSH, all of us
