@@ -28,7 +28,7 @@ router.get('/:userId', async (req, res) => {
   }
 })
 
-//
+// award the user badges
 router.post('/', (req, res) => {
   const { userId, badgeId } = req.body
 
