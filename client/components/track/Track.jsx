@@ -93,7 +93,7 @@ function Track() {
           {badgeModal ? '' : <TrackMap track={track} />}
 
           <WeatherInfo />
-          <div style={{ marginBottom: '190px' }}>
+          <div style={{ minHeight: '200px', marginBottom: '60px' }}>
             <HikingUsers />
           </div>
         </div>
