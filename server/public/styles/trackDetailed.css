@@ -80,7 +80,6 @@
 .weather-container {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 60px;
 }
 
 .weather-rectangle {
@@ -125,6 +124,6 @@
 }
 
 .weather-area {
-  height: 250px;
+  height: 220px;
   width: 100%;
 }
