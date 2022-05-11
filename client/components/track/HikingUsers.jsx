@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { getWalkingUsers } from './trackHelper'
+import { getRanks } from '../user/userHelper'
 
 function HikingUsers() {
   const user = useSelector((state) => state.user)
@@ -16,6 +17,7 @@ function HikingUsers() {
     setWalkingUsers(walkers)
   }, [user, track]) // when the user says they are hiking the user should update,
   // and this should refresh the list of walkers to show the current user
+
   return (
     <div>
       <p className="track-info-heading">Hikers on this track</p>
@@ -23,10 +25,16 @@ function HikingUsers() {
         <div className="hikers-info-container">
           {walkingUsers.length > 0 ? (
             <>
-              {walkingUsers.map((user) => {
-                return (
-                  <div key={user.id} className="hiker-info">
-                    {user.displayName} - &ldquo;{user.status}&rdquo;
+              {walkingUsers.map((walker) => {
+                return walker.id == user.id ? (
+                  <div key={walker.id} className="self-hiker-info">
+                    {walker.displayName} - &ldquo;{walker.status}&rdquo;
+                    <p>this will be rank</p>
+                  </div>
+                ) : (
+                  <div key={walker.id} className="hiker-info">
+                    {walker.displayName} - &ldquo;{walker.status}&rdquo;
+                    <p>this will be rank</p>
                   </div>
                 )
               })}
