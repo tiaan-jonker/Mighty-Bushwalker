@@ -30,13 +30,11 @@ function HikingUsers() {
                   <div key={walker.id} className="self-hiker-info">
                     {capitaliseFirstLetter(walker.displayName)} - &ldquo;
                     {walker.status}&rdquo;
-                    <p>this will be rank</p>
                   </div>
                 ) : (
                   <div key={walker.id} className="hiker-info">
                     {capitaliseFirstLetter(walker.displayName)} - &ldquo;
                     {walker.status}&rdquo;
-                    <p>this will be rank</p>
                   </div>
                 )
               })}
