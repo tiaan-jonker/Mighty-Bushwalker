@@ -20,7 +20,6 @@ function TrackMap({ track }) {
   useEffect(() => {
     if (lat) {
       const testCoord = pathLine[0][0][0]
-      console.log(testCoord)
       if (testCoord > 0) {
         const newLine = pathLine.map((set) => {
           return set.map((coord) => {
@@ -72,7 +71,11 @@ function TrackMap({ track }) {
       </div>
     </div>
   )
-  return <div>{trackData.lat !== 0 && trackData.lon !== 0 ? mapComponent : null}</div>
+  return (
+    <div>
+      {trackData.lat !== 0 && trackData.lon !== 0 ? mapComponent : null}
+    </div>
+  )
 }
 
 export default TrackMap
