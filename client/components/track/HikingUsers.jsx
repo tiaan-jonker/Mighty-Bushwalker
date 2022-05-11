@@ -6,6 +6,7 @@ import { capitaliseFirstLetter } from '../../utils'
 
 function HikingUsers() {
   const user = useSelector((state) => state.user)
+  const tracks = useSelector((state) => state.tracks)
 
   const [walkingUsers, setWalkingUsers] = useState([])
   const { id } = useParams()
@@ -14,7 +15,7 @@ function HikingUsers() {
     const walkers = await getWalkingUsers(id)
 
     setWalkingUsers(walkers)
-  }, [user]) // when the user says they are hiking the user should update,
+  }, [user, tracks]) // when the user says they are hiking the user should update,
   // and this should refresh the list of walkers to show the current user
 
   return (
