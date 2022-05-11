@@ -11,17 +11,6 @@ export function getUserBadges(id) {
   return request.get(`${baseUrl}/badges/${id}`).then((res) => res.body)
 }
 
-export function getTrack(id, consume = requestor) {
-  return consume(`/tracks/${id}`)
-    .then((res) => {
-      const track = res.body
-      return track
-    })
-    .catch((error) => {
-      console.log(error.message)
-    })
-}
-
 export function updateTrackStatus(
   trackId,
   userId,
