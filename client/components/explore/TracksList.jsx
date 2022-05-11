@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react'
-import { calculateDistanceBetweenPoints } from './tracksHelper'
+import {
+  calculateDistanceBetweenPoints,
+  updateTracksData,
+} from './tracksHelper'
 import TrackItem from './TrackItem'
 import AllTracksMap from '../map/AllTracksMap'
 import TrackFilterModal from './TrackFilterModal'
@@ -38,39 +41,12 @@ function Track() {
   }
 
   // GET TRACKS AND GEOLOCATION
-  useEffect(() => {
+  useEffect(async () => {
     setLoading(true)
-    navigator.geolocation.getCurrentPosition(function (position) {
-      const coords = position.coords
-      const updatedTracks = tracks.map((track) => {
-        const distanceAway = calculateDistanceBetweenPoints(
-          coords.latitude,
-          coords.longitude,
-          track.lat,
-          track.lon
-        ).toFixed(1)
-
-        let lengthCategory = 'Long'
-        if (track.length < 5) {
-          lengthCategory = 'Short'
-        } else if (track.length < 12) {
-          lengthCategory = 'Medium'
-        }
-
-        return { ...track, distanceAway, lengthCategory }
-      })
-
-      const unsavedTracks = updatedTracks.filter(
-        (track) => !track.completed && !track.saved
-      )
-
-      unsavedTracks.sort((a, b) => {
-        return a.distanceAway - b.distanceAway
-      })
-      setAllTracks(unsavedTracks) //
-      setFilteredTracks(unsavedTracks) // creates display version of tracks which we filter the values out of
-      setLoading(false)
-    })
+    const exploreTracks = await updateTracksData(tracks)
+    setAllTracks(exploreTracks) //
+    setFilteredTracks(exploreTracks) // creates display version of tracks which we filter the values out of
+    setLoading(false)
   }, [tracks])
 
   // FILTER TRACKS BY DIFFICULTY
