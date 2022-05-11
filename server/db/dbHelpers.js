@@ -28,7 +28,7 @@ function generateUserTrackDataSeed() {
   // [{user_id: 1, track_id: 1, ...}, {user_id: 1, track_id: 2, ...}, {user_id: 1, track_id: 3, ...},
   //  {user_id: 2, track_id: 1, ...}, {user_id: 2, track_id: 2, ...}, {user_id: 2, track_id: 3, ...}]
 
-  const amountOfUsers = 2
+  const amountOfUsers = 9
   const amountOfTracks = 20
 
   const userTracks = []
