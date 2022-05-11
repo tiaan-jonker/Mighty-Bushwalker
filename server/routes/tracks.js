@@ -26,6 +26,19 @@ router.get('/userTracks/:userId', (req, res) => {
     })
 })
 
+router.get('/walkingUsers/:trackId', (req, res) => {
+  const trackId = Number(req.params.trackId)
+  db.getWalkingUsersOnTrack(trackId)
+    .then((walkingUsers) => {
+      res.json(walkingUsers)
+      return null
+    })
+    .catch((err) => {
+      console.error(err)
+      res.status(500).json({ message: 'Something went wrong' })
+    })
+})
+
 // Update status of whether a track is saved by user of not
 router.patch('/saved', (req, res) => {
   const { userId, trackId } = req.body
@@ -119,6 +132,9 @@ router.patch('/completed', (req, res) => {
   db.updateCompletedStatus(completedTrack)
     .then(() => {
       return db.addXp(userId, points)
+    })
+    .then(() => {
+      return db.resetUserHikingStatus(userId)
     })
     .then(() => {
       res.sendStatus(200)
