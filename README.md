@@ -23,3 +23,8 @@ npm run dev # to start the dev server
 
 You can find the server running on [http://localhost:3000](http://localhost:3000).
 
+## Credits
+
+The beutiful illustration pictures used throughout the app is attributed to: [Brian Edward Miller](https://dribbble.com/bemocs). However, the registration and login page background was designed by Clementine. 
+
+The icons used in this app is either designed by us in Figma or obtained from [SVG Repo](https://www.svgrepo.com/)
