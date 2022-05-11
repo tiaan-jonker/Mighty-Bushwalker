@@ -14,6 +14,7 @@ function Landing() {
   const register = getRegisterFn(useAuth0)
   const [home, setHome] = useState(false)
   const [animation, setAnimation] = useState(false)
+  const [navigate, setNavigate] = useState(false)
 
   function handleClick() {
     // const [song, playSong] = useState(playTheme())
@@ -27,6 +28,10 @@ function Landing() {
       setAnimation(false)
       setHome(true)
     }, 3300)
+  }
+
+  function handleNavigate() {
+    setNavigate(true)
   }
 
   function handleLogin(event) {
@@ -84,7 +89,11 @@ function Landing() {
             {animation ? (
               <SplashPage />
             ) : (
-              <MobileHome handleClick={handleClick} />
+              <MobileHome
+                handleClick={handleClick}
+                handleNavigate={handleNavigate}
+                navigate={navigate}
+              />
             )}
           </div>
         )}
