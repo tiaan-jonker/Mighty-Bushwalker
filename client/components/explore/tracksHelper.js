@@ -22,8 +22,6 @@ export async function updateTracksData(tracks) {
   unsavedTracks.sort((a, b) => {
     return a.distanceAway - b.distanceAway
   })
-  console.log(unsavedTracks)
-
   return unsavedTracks
 }
 
