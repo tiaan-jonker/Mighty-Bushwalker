@@ -577,6 +577,8 @@ exports.seed = function (knex) {
               [175.412931, -36.185718]
             ]
           ]`,
+          description:
+            'The Aotea Track offers a range of spectacular landscapes, superb views and rich history',
         },
         {
           asset_id: 'd2f000ee-fdeb-49b6-a53c-de537a3c4aed',
@@ -688,10 +690,12 @@ exports.seed = function (knex) {
               [175.378487, -36.071029]
             ]
           ]`,
+          description:
+            'Burrill Route was formed in the 1970s by miners prospecting for copper',
         },
         {
           asset_id: '02dd9d7c-5464-4778-9885-d43d548d38a0',
-          name: 'Dome Forest car park to Govan Wilson Rd, Matakana ',
+          name: 'Dome Forest to Govan Wilson Rd',
           days: 1,
           hours: 7,
           length: 14,
@@ -840,10 +844,12 @@ exports.seed = function (knex) {
               [174.6677, -36.3151]
             ]
           ]`,
+          description:
+            'A challenging longer walk (7 hrs) through regenerating native forest that is also part of Te Araroa, The Long Pathway. The track starts at the Dome carpark and ends at Govan Wilson Rd, Matakana',
         },
         {
           asset_id: '861389de-d0bf-4d33-860b-86fc1e788e2a',
-          name: 'Dome Forest car park to lookout ',
+          name: 'Dome Forest lookout ',
           days: 1,
           hours: 1.3,
           length: 2,
@@ -865,10 +871,12 @@ exports.seed = function (knex) {
               [174.61765, -36.36002]
             ]
           ]`,
+          description:
+            'Starting from the Dome tearooms carpark, steps lead up along a narrow road reserve to the Dome Forest conservation area',
         },
         {
           asset_id: '18915ea7-3ff7-4381-8612-2352a2952711',
-          name: 'Dome Forest car park to Waiwhiu Grove',
+          name: 'Dome Forest to Waiwhiu Grove',
           days: 1,
           hours: 3,
           length: 6,
@@ -929,10 +937,12 @@ exports.seed = function (knex) {
               [174.645307, -36.360337]
             ]
           ]`,
+          description:
+            'From the Dome Forest lookout the track continues to the Dome Summit where you get views of Taranga Island',
         },
         {
           asset_id: '7355a707-ba6f-409f-a506-85da5841a1ef',
-          name: 'Forest Road (Port FitzRoy - Whangaparapara)',
+          name: 'Forest Road Whangaparapara',
           days: 1,
           hours: 5,
           length: 13,
@@ -1139,6 +1149,8 @@ exports.seed = function (knex) {
               [175.362669, -36.178979]
             ]
           ]`,
+          description:
+            'Discover a wide array of beautiful bush and mountain views',
         },
         {
           asset_id: 'bc9dfa83-b046-403f-a833-7a6c6d5a114a',
@@ -1177,6 +1189,8 @@ exports.seed = function (knex) {
               [174.80878, -36.27237]
             ]
           ]`,
+          description:
+            "This return walk traverses the coast part way to Cape Rodney. overlooking New Zealand's oldest and most popular marine reserve",
         },
         {
           asset_id: 'cc5aa728-3874-4631-9847-1cd682505e24',
@@ -1252,10 +1266,12 @@ exports.seed = function (knex) {
               [174.448235, -36.842037]
             ]
           ]`,
+          description:
+            'Goldie Bush Scenic Reserve offers a variety of walks through coastal kauri forest, taking in the impressive Mokoroa Falls',
         },
         {
           asset_id: '57ec73b2-c91f-4b41-a003-759321270227',
-          name: 'Harataonga area tracks - Harataonga Coastal Walkway',
+          name: 'Harataonga Coastal Walkway',
           days: 1,
           hours: 4.5,
           length: 11.7,
@@ -1422,11 +1438,13 @@ exports.seed = function (knex) {
             [175.479436, -36.171121],
             [175.479986, -36.171561]
           ]`,
+          description:
+            'There are a number of tramping tracks in the Harataonga area, which offer great views of the island and surrounding coastline',
         },
 
         {
           asset_id: '57ec73b2-c91f-4b41-a003-759321270227',
-          name: 'Harataonga area tracks - Harataonga Loop Track',
+          name: 'Harataonga Loop Track',
           days: 1,
           hours: 0.5,
           length: 3,
@@ -1458,10 +1476,12 @@ exports.seed = function (knex) {
               [175.472782, -36.166356]
             ]
           ]`,
+          description:
+            'There are a number of tramping tracks in the Harataonga area, which offer great views of the island and surrounding coastline',
         },
         {
           asset_id: '206b3b62-91c8-4f6a-8abe-95cf67abdd94',
-          name: 'Kaitoke Hot Springs Track to Mt Hobson (Hirakimata)',
+          name: 'Kaitoke Hot Springs Track to Hirakimata',
           days: 1,
           hours: 2,
           length: 5,
@@ -1502,10 +1522,12 @@ exports.seed = function (knex) {
               [175.424395, -36.230322]
             ]
           ]`,
+          description:
+            'Kaitoke Hot Springs Track is a popular easy walk following the edge of the Kaitoke Swamp to sulphurous hot springs. Continue on the Peach Tree Track to Mt Hobson (Hirakimata)',
         },
         {
           asset_id: '206b3b62-91c8-4f6a-8abe-95cf67abdd94',
-          name: 'Kaitoke Hot Springs Track to Mt Hobson (Hirakimata) - Peach Tree Track to Mt Hobson (Hirakimata)',
+          name: 'Kaitoke Hot Springs - Peach Tree Track to Hirakimata',
           days: 2,
           hours: 10,
           length: 16,
@@ -1625,10 +1647,12 @@ exports.seed = function (knex) {
               [174.996227, -36.775664]
             ]
           ]`,
+          description:
+            'This coastal walk takes you through the Matietie Historic Reserve',
         },
         {
           asset_id: '8ac1b141-afb5-4242-a122-8f5355d09970',
-          name: 'Maungauika/North Head Historic Walk - Coastal Loop',
+          name: 'Maungauika Historic Coastal Loop',
           days: 1,
           hours: 0.5,
           length: 1,
@@ -1654,10 +1678,12 @@ exports.seed = function (knex) {
               [174.81216, -36.827975]
             ]
           ]`,
+          description:
+            'Explore defences that were placed on the headland to protect Auckland from feared Russian invasions',
         },
         {
           asset_id: '8ac1b141-afb5-4242-a122-8f5355d09970',
-          name: 'Maungauika/North Head Historic Walk - Tunnels Loop',
+          name: 'Maungauika Historic Tunnels Loop',
           days: 1,
           hours: 0.3,
           length: 1,
@@ -1682,10 +1708,12 @@ exports.seed = function (knex) {
             [174.811472, -36.826158],
             [174.811582, -36.825943]
           ]`,
+          description:
+            'Explore defences that were placed on the headland to protect Auckland from feared Russian invasions',
         },
         {
           asset_id: '8ac1b141-afb5-4242-a122-8f5355d09970',
-          name: 'Maungauika/North Head Historic Walk - Summit Loop',
+          name: 'Maungauika Historic Summit Loop',
           days: 1,
           hours: 0.4,
           length: 1,
@@ -1718,10 +1746,12 @@ exports.seed = function (knex) {
             [174.811616, -36.829223],
             [174.811573, -36.829062]
           ]`,
+          description:
+            'Explore defences that were placed on the headland to protect Auckland from feared Russian invasions',
         },
         {
           asset_id: 'd6bff284-bd71-4227-bf9a-28e4c1f4ea45',
-          name: 'Moirs Hill Walkway - Moirs Hill Walkway',
+          name: 'Moirs Hill Walkway',
           days: 1,
           hours: 5,
           length: 12,
@@ -1776,10 +1806,12 @@ exports.seed = function (knex) {
             [174.611509, -36.467433],
             [174.611014, -36.46779]
           ]`,
+          description:
+            'Stroll to view the Pohuehue waterfall or complete the walkway or longer loop (Beverley Price Loop Track) through regenerating forest in the Pohuehue Scenic Reserve, just south of Warkworth',
         },
         {
           asset_id: 'd6bff284-bd71-4227-bf9a-28e4c1f4ea45',
-          name: 'Moirs Hill Walkway - Beverly Price Loop Track',
+          name: 'Moirs Hill Beverly Price Loop Track',
           days: 1,
           hours: 2,
           length: 6,
@@ -1823,10 +1855,12 @@ exports.seed = function (knex) {
             [174.65082, -36.45625],
             [174.65145, -36.45602]
           ]`,
+          description:
+            'Stroll to view the Pohuehue waterfall or complete the walkway or longer loop (Beverley Price Loop Track) through regenerating forest in the Pohuehue Scenic Reserve, just south of Warkworth',
         },
         {
           asset_id: 'd6bff284-bd71-4227-bf9a-28e4c1f4ea45',
-          name: 'Moirs Hill Walkway - Waterfall Track',
+          name: 'Moirs Hill Waterfall Track',
           days: 1,
           hours: 0.5,
           length: 1,
@@ -1849,6 +1883,8 @@ exports.seed = function (knex) {
             [174.651533, -36.452999],
             [174.652196, -36.45304]
           ]`,
+          description:
+            'Stroll to view the Pohuehue waterfall or complete the walkway or longer loop (Beverley Price Loop Track) through regenerating forest in the Pohuehue Scenic Reserve, just south of Warkworth',
         },
         {
           asset_id: 'ed925cdf-9893-417a-ab1f-3b3f9f678ede',
@@ -1884,6 +1920,8 @@ exports.seed = function (knex) {
               [174.47162, -36.83678]
             ]
           ]`,
+          description:
+            'Walk the Mokoroa Falls Track to view the falls from a lookout platform. The track can be walked as part of a loop track when joined with the Mokoroa Stream Track and Goldie Bush Walkway',
         },
       ])
     })
