@@ -29,6 +29,7 @@ The beautiful illustration pictures used throughout the app is attributed to: [B
 
 The icons used in this app is either designed by us in Figma or obtained from [SVG Repo](https://www.svgrepo.com/).
 
+VIDEO COMING SOON!!!
 In respect of the video: the music, editing, voiceover and recording was all done by Finn. Each of us in the group had a turn to introduce sections of the app. In order they are:
 - Introduction, Jesse
 - Login page and profile page, Clementine
