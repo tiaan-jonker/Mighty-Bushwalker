@@ -6,7 +6,7 @@ Proudly created by: Clementine, Finn, Tiaan, Jesse and Tai.
 
 ## Note on the app
 
-This application is meant to be downloaded and to function as an iOS or Android mobile application. At this stage the entire app is built with React and made to 'simulate' a mobile application. This took some creative thinking. In future the app might be converted and written in React Native. For some us in this group the intent is to learn React Native and attempt building a mobile app. 
+This application is meant to be downloaded and to function as an iOS or Android mobile application. However, at this stage the entire app is built with React and made to 'simulate' a mobile application. This took some creative thinking. In future the app might be converted and written in React Native. For some us in this group the intent is to learn React Native and attempt building a mobile app. 
 
 ## Getting Started
 
