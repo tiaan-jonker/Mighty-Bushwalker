@@ -9,7 +9,7 @@ function MobileHome({ handleClick, navigate, handleNavigate }) {
           <div className="mighty-bush-container">
             <div>
               <h1 className="mighty-bush-text">
-                GO TO <br></br> THE MIGHTY BUSH
+                GET <br></br> THE MIGHTY BUSH!
               </h1>
             </div>
             <div className="mighty-authors">
