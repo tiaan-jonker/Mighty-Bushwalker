@@ -1,5 +1,7 @@
 # The Migthy Bush App
 
+We all love the nature and beauty of Aotearoa. One of the best pasttimes that we can do in our country is to explore the native flora and fauna via bushwalks! Our app will allow you to get the best out of Aotearoas bush walks by saving your favourite trails, discovering new ones and levelling up your walking with our in-built progression system. We present to you, "The mighty bush!
+
 Proudly created by: Clementine, Finn, Tiaan, Jesse and Tai
 
 ## Getting Started
