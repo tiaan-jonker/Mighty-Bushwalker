@@ -21,13 +21,16 @@ afterAll(() => {
 
 test('getUserById returns the correct user', () => {
   return users
-    .getUsersByAuthId('auth0|61414f84d35ac900717bc280', testDb)
+    .getUsersByAuthId('auth0|62799026a17ac70069715350', testDb)
     .then((user) => {
       expect(user[0].id).toBe(1)
       expect(user[0].name).toBe('kelmarna')
       expect(user[0].description).toBe('the awesome developer')
       expect(user[0].rank).toBe('Bush Lord')
       expect(user[0].xp).toBe(1000)
+      expect(user[0].email).toBe('examplaaaaae@example.com')
+      expect(user[0].displayName).toBe('kelmarna')
+      expect(user[0].status).toBe('Here since day 1')
       return null
     })
 })
