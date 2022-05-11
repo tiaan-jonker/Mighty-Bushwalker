@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { getWalkingUsers } from './trackHelper'
-import { getRanks } from '../user/userHelper'
+import { capitaliseFirstLetter } from '../../utils'
 
 function HikingUsers() {
   const user = useSelector((state) => state.user)
@@ -28,12 +28,14 @@ function HikingUsers() {
               {walkingUsers.map((walker) => {
                 return walker.id == user.id ? (
                   <div key={walker.id} className="self-hiker-info">
-                    {walker.displayName} - &ldquo;{walker.status}&rdquo;
+                    {capitaliseFirstLetter(walker.displayName)} - &ldquo;
+                    {walker.status}&rdquo;
                     <p>this will be rank</p>
                   </div>
                 ) : (
                   <div key={walker.id} className="hiker-info">
-                    {walker.displayName} - &ldquo;{walker.status}&rdquo;
+                    {capitaliseFirstLetter(walker.displayName)} - &ldquo;
+                    {walker.status}&rdquo;
                     <p>this will be rank</p>
                   </div>
                 )
