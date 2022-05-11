@@ -10,6 +10,7 @@ import WeatherInfo from '../weather/WeatherInfo'
 import BadgesModal from './BadgesModal'
 import HikingModal from './HikingModal'
 import HikingUsers from './HikingUsers'
+import { playTheme } from '../musichelper/musichelper'
 
 function Track() {
   const { id } = useParams()
@@ -36,6 +37,7 @@ function Track() {
 
   function handlePlay() {
     setVoiceover((prevState) => !prevState)
+    playTheme(3)
   }
 
   return (
