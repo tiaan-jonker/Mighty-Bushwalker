@@ -19,7 +19,7 @@ function HikingUsers() {
   // and this should refresh the list of walkers to show the current user
 
   return (
-    <div>
+    <div >
       <p className="track-info-heading">Hikers on this track</p>
       <div className="hikers-info-line">
         <div className="hikers-info-container">
