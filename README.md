@@ -1,4 +1,6 @@
-# Fullstack boilerplate
+# The Migthy Bush App
+
+Proudly created by: Clementine, Finn, Tiaan, Jesse and Tai
 
 ## Getting Started
 
