@@ -34,7 +34,7 @@ In respect of the video: the music, editing, voiceover and recording was all don
 - Login page and profile page, Clementine
 - Explore page, Tai
 - Burril Route and details, Tiaan
-- Voiceover and outro, Finn
+- Voiceover, Badges page and outro, Finn
 - Get the MIGHTY BUSH, all of us
 
 ## Tech Stack / Tools used for this App
