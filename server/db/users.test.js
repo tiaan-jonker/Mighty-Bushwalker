@@ -20,30 +20,36 @@ afterAll(() => {
 })
 
 test('getUserById returns the correct user', () => {
-  return users.getUserById('1', testDb).then((user) => {
-    expect(user.id).toBe(1)
-    expect(user.name).toBe('kelmarna')
-    expect(user.description).toBe('the awesome developer')
-    expect(user.rank).toBe('Bush Lord')
-    expect(user.xp).toBe(1000)
-    return null
-  })
+  return users
+    .getUsersByAuthId('auth0|61414f84d35ac900717bc280', testDb)
+    .then((user) => {
+      expect(user[0].id).toBe(1)
+      expect(user[0].name).toBe('kelmarna')
+      expect(user[0].description).toBe('the awesome developer')
+      expect(user[0].rank).toBe('Bush Lord')
+      expect(user[0].xp).toBe(1000)
+      return null
+    })
 })
 
 test('addUser adds a user to the users table', () => {
   const newUser = {
-    id: 3,
-    auth0_id: 69,
+    auth0Id: '69',
     name: 'Purious Fube',
     email: 'pfube@quare.com',
     description: 'great guy',
-    rank: 'expert',
-    xp: 9001,
   }
-  return users.addUser(newUser, testDb).then((users) => {
-    console.log(users)
-    expect(users[2]).toBe('Purious Fube')
-  })
+  return users
+    .addUser(newUser, testDb)
+    .then(() => {
+      return testDb('users').where({ auth0_id: '69' }).first()
+    })
+    .then((user) => {
+      expect(user.name).toBe('Purious Fube')
+      expect(user.email).toBe('pfube@quare.com')
+      expect(user.description).toBe('great guy')
+      expect(user.xp).toBe(500)
+    })
 })
 
 // test('getUsers returns a list of all users', () => {

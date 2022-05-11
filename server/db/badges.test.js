@@ -21,20 +21,32 @@ afterAll(() => {
 
 test('getBadges returns a list of all badges', () => {
   return badges.getBadges(testDb).then((badge_data) => {
-    expect(badge_data).toHaveLength(1)
+    expect(badge_data).toHaveLength(18)
     return null
   })
 })
 
-test('getBadgesByUser returns badges earnt by user', () => {
-  return badges.getBadgesByUser('1', testDb).then((badge_data) => {
-    console.log(badge_data[0].name)
-    expect(badge_data[0].id).toBe(1)
-    expect(badge_data[0].name).toBe('Honorary Busher')
-    expect(badge_data[0].image).toBe('./images/bushwacker.jpg')
-    return null
-  })
+test('addUser adds a user to the users table', () => {
+  return badges
+    .addBadge({ userId: 1, badgeId: 2 }, testDb)
+    .then(() => {
+      return testDb('badges').where({ user_id: 1, badge_id: 2 }).first()
+    })
+    .then((badge) => {
+      expect(badge.user_id).toBe(1)
+      expect(badge.badge_id).toBe(2)
+    })
 })
+
+// test('getBadgesByUser returns badges earnt by user', () => {
+//   return badges.getBadgesByUser('1', testDb).then((badge_data) => {
+//     console.log(badge_data[0].name)
+//     expect(badge_data[0].id).toBe(1)
+//     expect(badge_data[0].name).toBe('Honorary Busher')
+//     expect(badge_data[0].image).toBe('./images/bushwacker.jpg')
+//     return null
+//   })
+// })
 
 // describe('getEventById', () => {
 //   it('returns the chosen Event', () => {
