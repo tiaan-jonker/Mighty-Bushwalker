@@ -40,6 +40,10 @@ In respect of the video: the music, editing, voiceover and recording was all don
 
 ## Tech Stack / Tools used for this App
 
+
+https://user-images.githubusercontent.com/75296793/168143532-44f7e1a9-bfc9-42b1-9d6c-64dc5b6cfa57.mov
+
+
 - React
 - CSS
 - Express
