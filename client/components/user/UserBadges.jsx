@@ -40,8 +40,18 @@ function ProfileBadgeList() {
                     style={badge.achieved ? null : { filter: 'grayscale(1)' }}
                   />
                 </span>
-                <p className="badge-title">{badge.name}</p>
-                <p className="badge-criteria">{badge.criteria}</p>
+                <p
+                  className="badge-title"
+                  style={badge.achieved ? null : { color: 'grey' }}
+                >
+                  {badge.name}
+                </p>
+                <p
+                  className="badge-criteria"
+                  style={badge.achieved ? null : { color: 'grey' }}
+                >
+                  {badge.criteria}
+                </p>
                 {badge.achieved && <p>Achieved</p>}
               </div>
             )
