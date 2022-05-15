@@ -1,0 +1,140 @@
+.track-content-container {
+  padding: 15px;
+}
+
+.track-name {
+  font-size: 28px;
+}
+
+.track-btn {
+  cursor: pointer;
+  border: 1px solid black;
+  border-radius: 10px;
+  color: #eee;
+  background-color: #285656;
+  padding: 10px 20px;
+}
+
+.track-info-container {
+  display: flex;
+  /* align-items: center; */
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+.track-info-heading {
+  font-size: 14px;
+  font-weight: 300;
+}
+
+.points-info {
+  background-color: rgb(253, 196, 56, 0.9);
+  font-size: 13px;
+  padding: 5px 15px;
+  border-radius: 8px;
+}
+
+.track-info-line {
+  height: 0.8px;
+  width: 100%;
+  background-color: rgb(39, 63, 69);
+  margin-top: 10px;
+  margin-bottom: 6px;
+}
+
+.hikers-info-container {
+  display: flex;
+  /* align-items: center; */
+  flex-direction: column;
+  padding-top: 8px;
+  margin-bottom: 500px;
+}
+
+.hikers-info-line {
+  height: 0.8px;
+  width: 100%;
+  background-color: rgb(39, 63, 69);
+  margin-top: 2px;
+}
+
+.hiker-info {
+  font-size: 13px;
+  padding: 3px 15px;
+  margin-top: 5px;
+  border-radius: 8px;
+  border: 1px solid black;
+  color: #eee;
+  background-color: #418080;
+}
+
+.self-hiker-info {
+  font-size: 13px;
+  padding: 3px 15px;
+  margin-top: 5px;
+  border-radius: 8px;
+  border: 1px solid black;
+  color: #eee;
+  background-color: var(--primary-red);
+}
+
+.weather-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.weather-rectangle {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 130px;
+  width: 90px;
+  padding: 10px;
+  border-radius: 20px;
+  background-color: #fff;
+}
+
+.suntime-rectangle {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 130px;
+  width: 130px;
+  padding: 10px;
+  border-radius: 20px;
+  background-color: #fff;
+}
+
+.weather-icon {
+  width: 40px;
+  height: 40px;
+}
+
+.weather-day {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.weather-temp {
+  font-size: 14px;
+  font-weight: 300;
+}
+
+.weather-area {
+  height: 220px;
+  width: 100%;
+}
+
+.track-buttons-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.play-btn {
+  width: 45px;
+  height: 45px;
+}
